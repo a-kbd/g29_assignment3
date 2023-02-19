@@ -24,7 +24,7 @@ public class BinaryTree {
      *
      * @author Unknown
      */
-    static class Node {
+    public static class Node {
 
         /**
          * Data for the node
@@ -54,6 +54,10 @@ public class BinaryTree {
             right = null;
             parent = null;
         }
+
+        public int getData(){
+            return this.data;
+        }
     }
 
     /**
@@ -82,7 +86,7 @@ public class BinaryTree {
     }
 
     public void getCoverage(){
-        System.out.println(Arrays.toString(this.coverageArray));
+        //System.out.println(Arrays.toString(this.coverageArray));
 
         int counter = 0;
         for(int i = 0; i<this.coverageArray.length; i++){
