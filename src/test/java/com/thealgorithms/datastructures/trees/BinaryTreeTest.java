@@ -39,4 +39,17 @@ void test2(){
 
     assertEquals(t.getRoot().getData(), 9);
 }
+
+@Test
+void test3(){
+    BinaryTree t = new BinaryTree();
+    t.put(3);
+    t.put(5);
+    t.put(7);
+    t.put(9);
+    t.put(12);
+
+    assertEquals(t.remove(9), true);
+    assertEquals(t.remove(398745987), false);
+}
 }
