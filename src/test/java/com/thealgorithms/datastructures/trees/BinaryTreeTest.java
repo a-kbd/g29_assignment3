@@ -52,4 +52,22 @@ void test3(){
     assertEquals(t.remove(9), true);
     assertEquals(t.remove(398745987), false);
 }
+
+@Test
+void test4(){
+    BinaryTree t = new BinaryTree();
+    t.put(3);
+    t.put(5);
+    t.put(7);
+    t.put(9);
+    t.put(12);
+
+    t.bfs(t.find(12));
+    t.inOrder(t.getRoot());
+    t.preOrder(t.getRoot());
+    t.postOrder(t.getRoot());
+
+    assertEquals(t.remove(9), true);
+    assertEquals(t.remove(398745987), false);
+}
 }
