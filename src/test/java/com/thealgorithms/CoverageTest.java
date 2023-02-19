@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.thealgorithms.datastructures.trees.BinaryTree;
+import com.thealgorithms.strings.MyAtoi;
 import com.thealgorithms.maths.LongDivision;
 
 public class CoverageTest {
@@ -70,13 +71,13 @@ public class CoverageTest {
         System.out.println("\n===== BinaryTree coverage test 3 =====\n");
         CoverageTest.testBinaryTree3();
 
-
         System.out.println("\n===== LongDivision coverage test =====\n");
         LongDivision l = new LongDivision();
         l.divide(10, 3);
-
+        
+        System.out.println("\n===== MyAtoi coverage test =====\n");
+		    String number = "111111";
+		    int a = MyAtoi.myAtoi(number);
+		    MyAtoi.getCoverage();       
     }
-
-
 }
-
