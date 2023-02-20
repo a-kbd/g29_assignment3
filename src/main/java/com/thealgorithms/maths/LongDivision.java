@@ -10,22 +10,11 @@ public class LongDivision {
 
     private static boolean[] branchesTaken = new boolean[17];
 
-    // Method to get the coverage information
-    public static boolean[] getBranchCoverage() {
-        return branchesTaken;
-    }
-
-    public static void resetCoverage() {
-        for (int i = 0; i < 17; i++) {
-            branchesTaken[i] = false;
-        }
-    }
-
 public static int divide(int dividend, int divisor) {
 
         // Creating a boolean array to keep track of which branches are taken (holds coverage info)
         int numberOfBranches = 17;
-        //boolean[] branchesTaken = new boolean[numberOfBranches];
+        
         for (int i = 0; i < numberOfBranches; i++) {
             branchesTaken[i] = false;
         }
