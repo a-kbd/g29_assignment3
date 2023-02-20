@@ -76,8 +76,9 @@ public class CoverageTest {
         l.divide(10, 3);
         
         System.out.println("\n===== MyAtoi coverage test =====\n");
-		    String number = "111111";
-		    int a = MyAtoi.myAtoi(number);
+		    MyAtoi.myAtoi("42");
+			MyAtoi.myAtoi("-42");
+			MyAtoi.myAtoi("4193");
 		    MyAtoi.getCoverage();       
     }
 }
