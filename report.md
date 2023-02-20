@@ -196,9 +196,10 @@ JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly 
 git diff ...
 
 Number of test cases added: two per team member (P) or at least four (P+).
-> **MyAtoi**\
+> **MyAtoi**
+After implementing the tests JaCoCo showed an improvement to 73%. The main issue was that multiple switch statements for different numerals were not covered. The tests cases improved on that. Additionally, the case of a plus sign was added to add coverage for the case of a redundant plus sign.
 [Tests added for MyAtoi](https://github.com/a-kbd/g29_assignment3/tree/20-feature-request-improve-coverage-for-myatoi)
-> **BinaryTree**\
+> **BinaryTree**
 [Tests added for BinaryTree](https://github.com/a-kbd/g29_assignment3/tree/23-feature-request-improve-coverage-for-binarytree)
 
 > **CRCAlgorithm**
