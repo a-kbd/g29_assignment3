@@ -119,7 +119,7 @@ Everyone got the same result when running Lizard, doing the manual calculation w
 **git diff ...**
 
 > **MyAtoi**
-
+The complexity of MyAtoi is mostly due to the different cases of numbers can be embedded in strings. Some of it, especially the edge cases, can be factored out into a specific function. Especially the MAX_INT handling could be split of into its own function. The switch statement would be difficult to factor out so I would leave it in place.
 > **CRCAlgorithm**
 
 > **BinaryTree**  
@@ -196,8 +196,8 @@ JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly 
 git diff ...
 
 Number of test cases added: two per team member (P) or at least four (P+).
-> **MyAtoi** 
-
+> **MyAtoi**\
+[Tests added for MyAtoi](https://github.com/a-kbd/g29_assignment3/tree/20-feature-request-improve-coverage-for-myatoi)
 > **BinaryTree**\
 [Tests added for BinaryTree](https://github.com/a-kbd/g29_assignment3/tree/23-feature-request-improve-coverage-for-binarytree)
 
