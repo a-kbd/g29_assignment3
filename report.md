@@ -186,12 +186,15 @@ JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly 
 
 **Show the comments that describe the requirements for the coverage.**
 
-**Report of old coverage: [link]**
+**Report of old coverage: [link]**\
+[Old coverage](https://github.com/a-kbd/g29_assignment3/tree/documentation/coverage_reports/old_coverage)
 
 
-**Report of new coverage: [link]**
+**Report of new coverage: [link]**\
+[New coverage](https://github.com/a-kbd/g29_assignment3/tree/documentation/coverage_reports/new_coverage)
 
 **Test cases added:**
+All test cases added are in [this branch](https://github.com/a-kbd/g29_assignment3/tree/19-feature-request-improve-coverage-with-additional-test-cases) (see commits)
 
 git diff ...
 
@@ -261,11 +264,19 @@ The test cases that were added were:
 
 **Current state according to the Essence standard: ...**
 
+The current state according to the Essence standard seems to be "in-place" since all the team members are using the way-of-working to accomplish their tasks.
+
 **Was the self-assessment unanimous? Any doubts about certain items?**
+
+Yes, we were all in agreement on the points of the self-assessment. There were some uncertainty about the fact that we don't have any real "stakeholders" but one could see the TA assessing our work filling that role.
 
 **How have you improved so far?**
 
+We have learned things about the things touched upon by the task such as branch coverage and code complexity. Our way of working has improved during the assignment (not to mention during the whole course) in the way that we are now better at working in a team as well as picking suitable tools for the given task.
+
 **Where is potential for improvement?**
+
+Communication can always be improved and that is also true for our project. It does not necessarily mean that the communication was bad, however, in the future perhaps we could have had planned the times for the meetings more in advance ensuring that nobody in the group missed the memo. 
 
 *Assessment according to the essence standard:* \
 [x]  Principles and constraints are committed to by the team.
@@ -323,6 +334,9 @@ The test cases that were added were:
 
 ## Overall experience
 
-What are your main take-aways from this project? What did you learn?
+**What are your main take-aways from this project? What did you learn?**
 
-Is there something special you want to mention here?
+That perhaps in the future it is worth to explore other build tools other than Maven.
+
+
+
