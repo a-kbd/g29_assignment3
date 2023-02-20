@@ -1,38 +1,32 @@
 # Report for assignment 3
 
-This is a template for your report. You are free to modify it as needed.
-It is not required to use markdown for your report either, but the report
-has to be delivered in a standard, cross-platform format.
+David Cederström, Simon Grunwald, Robert Scholz, Arasp Keighobad
 
 ## Project
 
 Name: TheAlgorithms Java
 
+A repo gathering many different algorithms common in computer science and software engineering.
+
 URL: [Group 29 repository](https://github.com/a-kbd/g29_assignment3),
 [Original repository](https://github.com/TheAlgorithms/Java)
 
-One or two sentences describing it
-
-A repo gathering many different algorithms common in computer science and software engineering.
 
 ## Onboarding experience
 
 ### Did it build and run as documented?
 
-See the assignment for details; if everything works out of the box,
-there is no need to write much here. If the first project(s) you picked
-ended up being unsuitable, you can describe the "onboarding experience"
-for each project, along with reason(s) why you changed to a different one.
+Everything worked out of the box, however, the onboarding with JaCoCo was a little bit rough in the beginning but it sorted itself out pretty quickly. We all had experience with JUnit prior to starting so that part went smoothly. We did not end up changing projects since the first one we picked turned out to be suitable and reasonably straight-forward to get started with.
 
 ### **1. How easily can you build the project? Briefly describe if everything worked as documented or not:**
 
 - Did you have to install a lot of additional tools to build the software?
 
-  >Other than the obvious of having to have a Java runtime installed, we had to install Maven to build the project.
+  Other than the obvious of having to have a Java runtime installed, we had to install Maven to build the project. Moreover, we had to add the JaCoCo plugin to the maven dependencies. 
 
 - Were those tools well documented?
 
-  >Yes, Maven is well documented, besides building it only needed a simple command that also is built in to many IDEs and text editors.
+  Yes, Maven is well documented. Besides building, it only needed a simple command that also is built into many IDEs and text editors.
 
 - Were other components installed automatically by the build script?
 
@@ -40,7 +34,7 @@ for each project, along with reason(s) why you changed to a different one.
 
 - Did the build conclude automatically without errors?
 
-  >Yes.
+  Yes, it concluded automatically without errors.
 
 - How well do examples and tests run on your system(s)?
 
@@ -48,7 +42,7 @@ for each project, along with reason(s) why you changed to a different one.
 
 ### **2. Do you plan to continue or choose another project?**
 
->We plan to continue using this project as it builds fine on our systems and it fulfills the requirements.
+We plan to continue using this project as it builds fine on our systems and it fulfills the requirements. Also it is an interesting repo to work with.
 
 ## Complexity
 
@@ -57,6 +51,8 @@ for each project, along with reason(s) why you changed to a different one.
 >We used Lizard which put the most complex functions as follows.
 
 >The functions are: MyAtoi, LongDivision, CRCAlgorithm, BinaryTree, BinaryTree, RegexMatching, MaximumMinimumWindow, RedBlackBST, ValidParentheses.
+
+Everyone got the same result when running Lizard, doing the manual calculation we got results that were a bit different, see below:
 
 ### **Manual calculation of the complexity**
 
@@ -92,7 +88,7 @@ for each project, along with reason(s) why you changed to a different one.
 
 ### **4. Are exceptions taken into account in the given measurements?**
 
-> Lizard does not seem to count exceptions. This was tested by checking a small file with two functions, one of them throwing one exception. It CC was the same as the one that did not throw an exception.
+> Lizard does not seem to count exceptions. This was tested by checking a small file with two functions, one of them throwing one exception. Its CC was the same as the one that did not throw an exception.
 
 ### **5. Is the documentation clear w.r.t. all the possible outcomes?**
 
@@ -127,7 +123,7 @@ for each project, along with reason(s) why you changed to a different one.
 > **CRCAlgorithm**
 
 > **BinaryTree**  
-Much of the complexity of BinaryTree is attributed to the fact that it includes code to print the tree in pre- post- and infix order as well as a BFS implementation in the same class. One refactoring idea could be to remove these parts of the class and instead have them in separate classes that only handle functionality regarding printing or searching in a tree, that way the BinaryTree class would only be for the representation of the data structure as well as putting and removing values from it.
+Much of the complexity of BinaryTree is attributed to the fact that it includes code to print the tree in pre- post- and infix order as well as a BFS implementation in the same class. One refactoring idea could be to remove these parts of the class and instead have them in separate classes that only handle functionality regarding printing or searching in a tree, that way the BinaryTree class would only be for the representation of the data structure as well as putting and removing values from it. The impact of carrying out refoctoring in the way described would lower the CC and also perhaps make the code of the whole repo easier to understand and more encapsulated. There are not really any drawbacks, another benefit would be that other tree datastructures such as red-black trees or KD-trees could also use the BFS functions (assuming the nodes have similar pointers to their successors etc) 
 
 > **LongDivision**\
 The complexity of the divide function in the given code appears to be reasonable and necessary for implementing a long division algorithm. However, there is scope for improving the code's readability and maintainability by splitting it into smaller units.\
@@ -140,13 +136,16 @@ One possible way to reduce complexity and improve the code's structure would be 
 
 **Document your experience in using a "new"/different coverage tool.**
 
->ANSWER--------------------------------
+Using JaCoCo was surprisingly a nice experience as it allowed you to test the coverage of the code by simply writing JUnit tests and not have to think about it too much. Then it provided you with a nice looking HTML report that one could open in the browser and easily see the coverage of all the different functions and classes in the repo.
+
 
 **How well was the tool documented? Was it possible/easy/difficult to integrate it with your build environment?**
 
->ANSWER--------------------------------
+There was some friction in integrating it with the build environment as it was hard to find a clear walkthrough on how to integrate it with Maven. All the different answers found on knowledge-sharing websites such as StackOverflow assumed different prerequisites and plugins installed etc. At first when we managed to integrate it, it only gave reports stating 0% coverage although we were fairly certain that the hundreds of tests in the test suite should at least provide some coverage. It turned out that the maven-surefire-plugin and JaCoCo were not communicating properly and a necessary file for JaCoCo to create its report was missing after maven-surefire had run.
 
 ### Your own coverage tool
+
+Our own coverage tool is pretty simple and straight-forward to work with since it only consists of a field containing a boolean array in the class being tested where each of the relevant elements gets set to `true` when the corresponding branch is reached (i.e. covered). Then the proportion of the values that were set to true would be used to calculate the coverage percentage.
 
 **Show a patch (or link to a branch) that shows the instrumented code to gather coverage measurements.**
 
@@ -157,20 +156,16 @@ the git command that is used to obtain the patch instead:**
 
 **git diff ...**
 
-**What kinds of constructs does your tool support, and how accurate is
-its output?**
-
 ### Evaluation
 
-**How is the quality of your coverage measurement?**\
+**What kinds of constructs does your tool support, and how accurate is
+its output? How is the quality of your coverage measurement?**\
 The quality of our own coverage measurement is not bad, however, there are some constructs in the language that it does not check, e.g. the ternary operator as that does not allow one to write full code blocks for each branch, rather only a single statement that should be returned. This means that you could not put a "if(reached): true" type of statement to see if the ternary operator was reached.
 
 >The quality of the coverage is measured by creating a boolean array with the size of the number of branches in the function. If a branch is taken, the corresponding elemnent in the array is set to true (initially false). The percentage of true vs false is then calculated and used as a coverage percentage. 
 
 **What are the limitations of your own tool?**\
-It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code.
-
->ANSWER--------------------------------
+It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code. Besides constructs like the ternary operator and the new syntax for the switch statement in Java are not supported as discussed above.
 
 **Are the results of your tool consistent with existing coverage tools?**
 
@@ -193,6 +188,7 @@ JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly 
 
 **Report of old coverage: [link]**
 
+
 **Report of new coverage: [link]**
 
 **Test cases added:**
@@ -202,7 +198,8 @@ git diff ...
 Number of test cases added: two per team member (P) or at least four (P+).
 > **MyAtoi** 
 
-> **BinaryTree**
+> **BinaryTree**\
+[Tests added for BinaryTree](https://github.com/a-kbd/g29_assignment3/tree/23-feature-request-improve-coverage-for-binarytree)
 
 > **CRCAlgorithm**
 
