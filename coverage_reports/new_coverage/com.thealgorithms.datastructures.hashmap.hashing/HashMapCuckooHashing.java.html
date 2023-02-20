@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HashMapCuckooHashing.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.hashmap.hashing</a> &gt; <span class="el_source">HashMapCuckooHashing.java</span></div><h1>HashMapCuckooHashing.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.hashmap.hashing;
+
+import java.lang.Math;
+import java.util.Objects;
+
+/**
+ * This class is an implementation of a hash table using Cuckoo Hashing It uses
+ * a dynamic array to lengthen the size of the hash table when load factor &gt; .7
+ *
+ * &lt;a href=&quot;https://en.wikipedia.org/wiki/Cuckoo_hashing&quot;&gt;...&lt;/a&gt;
+ */
+public class HashMapCuckooHashing {
+
+    private int tableSize; // size of the hash table
+    private Integer[] buckets; // array representing the table
+    private final Integer AVAILABLE;
+    private int size; // number of elements in the hash table
+
+    private int thresh; // threshold for infinite loop checking
+
+    /**
+     * Constructor initializes buckets array, hsize, and creates dummy object
+     * for AVAILABLE
+     *
+     * @param tableSize the desired size of the hash map
+     */
+<span class="nc" id="L27">    public HashMapCuckooHashing(int tableSize) {</span>
+<span class="nc" id="L28">        this.buckets = new Integer[tableSize];</span>
+<span class="nc" id="L29">        this.tableSize = tableSize;</span>
+<span class="nc" id="L30">        this.AVAILABLE = Integer.MIN_VALUE;</span>
+<span class="nc" id="L31">        this.size = 0;</span>
+<span class="nc" id="L32">        this.thresh = (int) (Math.log(tableSize) / Math.log(2)) + 2;</span>
+<span class="nc" id="L33">    }</span>
+
+    /**
+     * The 2 Hash Functions takes a given key and finds an index based on its data, 2 distinctive ways to minimize collisions
+     *
+     * @param key the desired key to be converted
+     * @return int an index corresponding to the key
+     */
+
+    public int hashFunction1(int key) {
+<span class="nc" id="L43">        int hash = key % tableSize;</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (hash &lt; 0) {</span>
+<span class="nc" id="L45">            hash += tableSize;</span>
+        }
+<span class="nc" id="L47">        return hash;</span>
+    }
+
+    public int hashFunction2(int key) {
+<span class="nc" id="L51">        int hash = key / tableSize;</span>
+<span class="nc" id="L52">        hash %= tableSize;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (hash &lt; 0) {</span>
+<span class="nc" id="L54">            hash += tableSize;</span>
+        }
+<span class="nc" id="L56">        return hash;</span>
+    }
+
+    /**
+     * inserts the key into the hash map by wrapping it as an Integer object, then uses while loop to insert new key
+     * if desired place is empty, return.
+     * if already occupied, continue while loop over the new key that has just been pushed out.
+     * if while loop continues more than Thresh, rehash table to new size, then push again.
+     *
+     * @param key the desired key to be inserted in the hash map
+     */
+
+    public void insertKey2HashTable(int key) {
+<span class="nc" id="L69">        Integer wrappedInt = key, temp;</span>
+<span class="nc" id="L70">        int hash, loopCounter = 0;</span>
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (isFull()) {</span>
+<span class="nc" id="L73">            System.out.println(</span>
+                &quot;Hash table is full, lengthening &amp; rehashing table&quot;
+            );
+<span class="nc" id="L76">            reHashTableIncreasesTableSize();</span>
+        }
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (checkTableContainsKey(key)) {</span>
+<span class="nc" id="L80">            throw new IllegalArgumentException(</span>
+                &quot;Key already inside, no duplicates allowed&quot;
+            );
+        }
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        while (loopCounter &lt;= thresh) {</span>
+<span class="nc" id="L86">            loopCounter++;</span>
+<span class="nc" id="L87">            hash = hashFunction1(key);</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (</span>
+                (buckets[hash] == null) ||
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                Objects.equals(buckets[hash], AVAILABLE)</span>
+            ) {
+<span class="nc" id="L93">                buckets[hash] = wrappedInt;</span>
+<span class="nc" id="L94">                size++;</span>
+<span class="nc" id="L95">                checkLoadFactor();</span>
+<span class="nc" id="L96">                return;</span>
+            }
+
+<span class="nc" id="L99">            temp = buckets[hash];</span>
+<span class="nc" id="L100">            buckets[hash] = wrappedInt;</span>
+<span class="nc" id="L101">            wrappedInt = temp;</span>
+<span class="nc" id="L102">            hash = hashFunction2(temp);</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (Objects.equals(buckets[hash], AVAILABLE)) {</span>
+<span class="nc" id="L104">                buckets[hash] = wrappedInt;</span>
+<span class="nc" id="L105">                size++;</span>
+<span class="nc" id="L106">                checkLoadFactor();</span>
+<span class="nc" id="L107">                return;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            } else if (buckets[hash] == null) {</span>
+<span class="nc" id="L109">                buckets[hash] = wrappedInt;</span>
+<span class="nc" id="L110">                size++;</span>
+<span class="nc" id="L111">                checkLoadFactor();</span>
+<span class="nc" id="L112">                return;</span>
+            }
+
+<span class="nc" id="L115">            temp = buckets[hash];</span>
+<span class="nc" id="L116">            buckets[hash] = wrappedInt;</span>
+<span class="nc" id="L117">            wrappedInt = temp;</span>
+        }
+<span class="nc" id="L119">        System.out.println(</span>
+            &quot;Infinite loop occurred, lengthening &amp; rehashing table&quot;
+        );
+<span class="nc" id="L122">        reHashTableIncreasesTableSize();</span>
+<span class="nc" id="L123">        insertKey2HashTable(key);</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * creates new HashMapCuckooHashing object, then inserts each of the elements in the previous table to it with its new hash functions.
+     * then refers current array to new table.
+     *
+     */
+    public void reHashTableIncreasesTableSize() {
+<span class="nc" id="L132">        HashMapCuckooHashing newT = new HashMapCuckooHashing(tableSize * 2);</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        for (int i = 0; i &lt; tableSize; i++) {</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">            if (buckets[i] != null &amp;&amp; !Objects.equals(buckets[i], AVAILABLE)) {</span>
+<span class="nc" id="L135">                newT.insertKey2HashTable(this.buckets[i]);</span>
+            }
+        }
+<span class="nc" id="L138">        this.tableSize *= 2;</span>
+<span class="nc" id="L139">        this.buckets = newT.buckets;</span>
+<span class="nc" id="L140">        this.thresh = (int) (Math.log(tableSize) / Math.log(2)) + 2;</span>
+<span class="nc" id="L141">    }</span>
+
+    /**
+     * deletes a key from the hash map and adds an available placeholder
+     *
+     * @param key the desired key to be deleted
+     */
+    public void deleteKeyFromHashTable(int key) {
+<span class="nc" id="L149">        Integer wrappedInt = key;</span>
+<span class="nc" id="L150">        int hash = hashFunction1(key);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (isEmpty()) {</span>
+<span class="nc" id="L152">            throw new IllegalArgumentException(&quot;Table is empty&quot;);</span>
+        }
+
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (Objects.equals(buckets[hash], wrappedInt)) {</span>
+<span class="nc" id="L156">            buckets[hash] = AVAILABLE;</span>
+<span class="nc" id="L157">            size--;</span>
+<span class="nc" id="L158">            return;</span>
+        }
+
+<span class="nc" id="L161">        hash = hashFunction2(key);</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        if (Objects.equals(buckets[hash], wrappedInt)) {</span>
+<span class="nc" id="L163">            buckets[hash] = AVAILABLE;</span>
+<span class="nc" id="L164">            size--;</span>
+<span class="nc" id="L165">            return;</span>
+        }
+<span class="nc" id="L167">        throw new IllegalArgumentException(</span>
+            &quot;Key &quot; + key + &quot; already inside, no duplicates allowed&quot;
+        );
+    }
+
+    /**
+     * Displays the hash table line by line
+     */
+    public void displayHashtable() {
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        for (int i = 0; i &lt; tableSize; i++) {</span>
+<span class="nc bnc" id="L177" title="All 4 branches missed.">            if ((buckets[i] == null) || Objects.equals(buckets[i], AVAILABLE)) {</span>
+<span class="nc" id="L178">                System.out.println(&quot;Bucket &quot; + i + &quot;: Empty&quot;);</span>
+            } else {
+<span class="nc" id="L180">                System.out.println(</span>
+<span class="nc" id="L181">                    &quot;Bucket &quot; + i + &quot;: &quot; + buckets[i].toString()</span>
+                );
+            }
+        }
+<span class="nc" id="L185">        System.out.println();</span>
+<span class="nc" id="L186">    }</span>
+
+    /**
+     * Finds the index of location based on an inputted key
+     *
+     * @param key the desired key to be found
+     * @return int the index where the key is located
+     */
+    public int findKeyInTable(int key) {
+<span class="nc" id="L195">        Integer wrappedInt = key;</span>
+<span class="nc" id="L196">        int hash = hashFunction1(key);</span>
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (isEmpty()) {</span>
+<span class="nc" id="L199">            throw new IllegalArgumentException(&quot;Table is empty&quot;);</span>
+        }
+
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (Objects.equals(buckets[hash], wrappedInt)) return hash;</span>
+
+<span class="nc" id="L204">        hash = hashFunction2(key);</span>
+<span class="nc" id="L205">        if (</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            !Objects.equals(buckets[hash], wrappedInt)</span>
+<span class="nc" id="L207">        ) throw new IllegalArgumentException(</span>
+            &quot;Key &quot; + key + &quot; not found in table&quot;
+        ); else {
+<span class="nc" id="L210">            return hash;</span>
+        }
+    }
+
+    /**
+     * checks if key is inside without any output other than returned boolean.
+     *
+     * @param key the desired key to be found
+     * @return int the index where the key is located
+     */
+    public boolean checkTableContainsKey(int key) {
+<span class="nc" id="L221">        return (</span>
+            (
+<span class="nc bnc" id="L223" title="All 2 branches missed.">                buckets[hashFunction1(key)] != null &amp;&amp;</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">                buckets[hashFunction1(key)].equals(key)</span>
+            ) ||
+            (
+<span class="nc bnc" id="L227" title="All 2 branches missed.">                buckets[hashFunction2(key)] != null &amp;&amp;</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">                buckets[hashFunction2(key)] == key</span>
+            )
+        );
+    }
+
+    /**
+     * Checks the load factor of the hash table if greater than .7,
+     * automatically lengthens table to prevent further collisions
+     */
+    public double checkLoadFactor() {
+<span class="nc" id="L238">        double factor = (double) size / tableSize;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (factor &gt; .7) {</span>
+<span class="nc" id="L240">            System.out.printf(</span>
+                &quot;Load factor is %.2f , rehashing table\n&quot;,
+<span class="nc" id="L242">                factor</span>
+            );
+<span class="nc" id="L244">            reHashTableIncreasesTableSize();</span>
+        }
+<span class="nc" id="L246">        return factor;</span>
+    }
+
+    /**
+     * isFull returns true if the hash map is full and false if not full
+     *
+     * @return boolean is Empty
+     */
+    public boolean isFull() {
+<span class="nc" id="L255">        boolean response = true;</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">        for (int i = 0; i &lt; tableSize; i++) {</span>
+<span class="nc bnc" id="L257" title="All 4 branches missed.">            if (buckets[i] == null || Objects.equals(buckets[i], AVAILABLE)) {</span>
+<span class="nc" id="L258">                return false;</span>
+            }
+        }
+<span class="nc" id="L261">        return response;</span>
+    }
+
+    /**
+     * isEmpty returns true if the hash map is empty and false if not empty
+     *
+     * @return boolean is Empty
+     */
+    public boolean isEmpty() {
+<span class="nc" id="L270">        boolean response = true;</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        for (int i = 0; i &lt; tableSize; i++) {</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            if (buckets[i] != null) {</span>
+<span class="nc" id="L273">                response = false;</span>
+<span class="nc" id="L274">                break;</span>
+            }
+        }
+<span class="nc" id="L277">        return response;</span>
+    }
+
+    public int getNumberOfKeysInTable() {
+<span class="nc" id="L281">        return size;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

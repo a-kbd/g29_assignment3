@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>A_Star.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.graphs</a> &gt; <span class="el_source">A_Star.java</span></div><h1>A_Star.java</h1><pre class="source lang-java linenums">/*
+	Time Complexity = O(E), where E is equal to the number of edges
+ */
+package com.thealgorithms.datastructures.graphs;
+
+import java.util.*;
+
+<span class="nc" id="L8">public class A_Star {</span>
+
+    private static class Graph {
+
+        // Graph's structure can be changed only applying changes to this class.
+
+        private ArrayList&lt;ArrayList&lt;Edge&gt;&gt; graph;
+
+        // Initialise ArrayLists in Constructor
+<span class="nc" id="L17">        public Graph(int size) {</span>
+<span class="nc" id="L18">            this.graph = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">            for (int i = 0; i &lt; size; i++) {</span>
+<span class="nc" id="L20">                this.graph.add(new ArrayList&lt;&gt;());</span>
+            }
+<span class="nc" id="L22">        }</span>
+
+        private ArrayList&lt;Edge&gt; getNeighbours(int from) {
+<span class="nc" id="L25">            return this.graph.get(from);</span>
+        }
+
+        // Graph is bidirectional, for just one direction remove second instruction of this method.
+        private void addEdge(Edge edge) {
+<span class="nc" id="L30">            this.graph.get(edge.getFrom())</span>
+<span class="nc" id="L31">                .add(new Edge(edge.getFrom(), edge.getTo(), edge.getWeight()));</span>
+<span class="nc" id="L32">            this.graph.get(edge.getTo())</span>
+<span class="nc" id="L33">                .add(new Edge(edge.getTo(), edge.getFrom(), edge.getWeight()));</span>
+<span class="nc" id="L34">        }</span>
+    }
+
+    private static class Edge {
+
+        private int from;
+        private int to;
+        private int weight;
+
+<span class="nc" id="L43">        public Edge(int from, int to, int weight) {</span>
+<span class="nc" id="L44">            this.from = from;</span>
+<span class="nc" id="L45">            this.to = to;</span>
+<span class="nc" id="L46">            this.weight = weight;</span>
+<span class="nc" id="L47">        }</span>
+
+        public int getFrom() {
+<span class="nc" id="L50">            return from;</span>
+        }
+
+        public int getTo() {
+<span class="nc" id="L54">            return to;</span>
+        }
+
+        public int getWeight() {
+<span class="nc" id="L58">            return weight;</span>
+        }
+    }
+
+    // class to iterate during the algorithm execution, and also used to return the solution.
+    private static class PathAndDistance {
+
+        private int distance; // distance advanced so far.
+        private ArrayList&lt;Integer&gt; path; // list of visited nodes in this path.
+        private int estimated; // heuristic value associated to the last node od the path (current node).
+
+        public PathAndDistance(
+            int distance,
+            ArrayList&lt;Integer&gt; path,
+            int estimated
+<span class="nc" id="L73">        ) {</span>
+<span class="nc" id="L74">            this.distance = distance;</span>
+<span class="nc" id="L75">            this.path = path;</span>
+<span class="nc" id="L76">            this.estimated = estimated;</span>
+<span class="nc" id="L77">        }</span>
+
+        public int getDistance() {
+<span class="nc" id="L80">            return distance;</span>
+        }
+
+        public ArrayList&lt;Integer&gt; getPath() {
+<span class="nc" id="L84">            return path;</span>
+        }
+
+        public int getEstimated() {
+<span class="nc" id="L88">            return estimated;</span>
+        }
+
+        private void printSolution() {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (this.path != null) {</span>
+<span class="nc" id="L93">                System.out.println(</span>
+                    &quot;Optimal path: &quot; +
+                    this.path +
+                    &quot;, distance: &quot; +
+                    this.distance
+                );
+            } else {
+<span class="nc" id="L100">                System.out.println(</span>
+                    &quot;There is no path available to connect the points&quot;
+                );
+            }
+<span class="nc" id="L104">        }</span>
+    }
+
+    private static void initializeGraph(Graph graph, ArrayList&lt;Integer&gt; data) {
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        for (int i = 0; i &lt; data.size(); i += 4) {</span>
+<span class="nc" id="L109">            graph.addEdge(</span>
+<span class="nc" id="L110">                new Edge(data.get(i), data.get(i + 1), data.get(i + 2))</span>
+            );
+        }
+        /*
+    .x. node
+    (y) cost
+    - or | or / bidirectional connection
+
+                          ( 98)- .7. -(86)- .4.
+                            |
+                    ( 85)- .17. -(142)- .18. -(92)- .8. -(87)- .11.
+                      |
+                     . 1. -------------------- (160)
+                      |  \                       |
+                    (211) \                     .6.
+                      |    \                     |
+                     . 5.  (101)-.13. -(138)   (115)
+                      |           |     |     /
+                    ( 99)       ( 97)   |    /
+                      |           |     |   /
+        .12. -(151)- .15. -(80)- .14.   |  /
+         |            |           |     | /
+       ( 71)        (140)       (146)- .2. -(120)
+         |            |                       |
+        .19. -( 75)- . 0.        .10. -(75)- .3.
+                      |            |
+                    (118)        ( 70)
+                      |            |
+                     .16. -(111)- .9.
+         */
+<span class="nc" id="L140">    }</span>
+
+    public static void main(String[] args) {
+        // heuristic function optimistic values
+<span class="nc" id="L144">        int[] heuristic = {</span>
+            366,
+            0,
+            160,
+            242,
+            161,
+            178,
+            77,
+            151,
+            226,
+            244,
+            241,
+            234,
+            380,
+            98,
+            193,
+            253,
+            329,
+            80,
+            199,
+            374,
+        };
+
+<span class="nc" id="L167">        Graph graph = new Graph(20);</span>
+<span class="nc" id="L168">        ArrayList&lt;Integer&gt; graphData = new ArrayList&lt;&gt;(</span>
+<span class="nc" id="L169">            Arrays.asList(</span>
+<span class="nc" id="L170">                0,</span>
+<span class="nc" id="L171">                19,</span>
+<span class="nc" id="L172">                75,</span>
+                null,
+<span class="nc" id="L174">                0,</span>
+<span class="nc" id="L175">                15,</span>
+<span class="nc" id="L176">                140,</span>
+                null,
+<span class="nc" id="L178">                0,</span>
+<span class="nc" id="L179">                16,</span>
+<span class="nc" id="L180">                118,</span>
+                null,
+<span class="nc" id="L182">                19,</span>
+<span class="nc" id="L183">                12,</span>
+<span class="nc" id="L184">                71,</span>
+                null,
+<span class="nc" id="L186">                12,</span>
+<span class="nc" id="L187">                15,</span>
+<span class="nc" id="L188">                151,</span>
+                null,
+<span class="nc" id="L190">                16,</span>
+<span class="nc" id="L191">                9,</span>
+<span class="nc" id="L192">                111,</span>
+                null,
+<span class="nc" id="L194">                9,</span>
+<span class="nc" id="L195">                10,</span>
+<span class="nc" id="L196">                70,</span>
+                null,
+<span class="nc" id="L198">                10,</span>
+<span class="nc" id="L199">                3,</span>
+<span class="nc" id="L200">                75,</span>
+                null,
+<span class="nc" id="L202">                3,</span>
+<span class="nc" id="L203">                2,</span>
+<span class="nc" id="L204">                120,</span>
+                null,
+<span class="nc" id="L206">                2,</span>
+<span class="nc" id="L207">                14,</span>
+<span class="nc" id="L208">                146,</span>
+                null,
+<span class="nc" id="L210">                2,</span>
+<span class="nc" id="L211">                13,</span>
+<span class="nc" id="L212">                138,</span>
+                null,
+<span class="nc" id="L214">                2,</span>
+<span class="nc" id="L215">                6,</span>
+<span class="nc" id="L216">                115,</span>
+                null,
+<span class="nc" id="L218">                15,</span>
+<span class="nc" id="L219">                14,</span>
+<span class="nc" id="L220">                80,</span>
+                null,
+<span class="nc" id="L222">                15,</span>
+<span class="nc" id="L223">                5,</span>
+<span class="nc" id="L224">                99,</span>
+                null,
+<span class="nc" id="L226">                14,</span>
+<span class="nc" id="L227">                13,</span>
+<span class="nc" id="L228">                97,</span>
+                null,
+<span class="nc" id="L230">                5,</span>
+<span class="nc" id="L231">                1,</span>
+<span class="nc" id="L232">                211,</span>
+                null,
+<span class="nc" id="L234">                13,</span>
+<span class="nc" id="L235">                1,</span>
+<span class="nc" id="L236">                101,</span>
+                null,
+<span class="nc" id="L238">                6,</span>
+<span class="nc" id="L239">                1,</span>
+<span class="nc" id="L240">                160,</span>
+                null,
+<span class="nc" id="L242">                1,</span>
+<span class="nc" id="L243">                17,</span>
+<span class="nc" id="L244">                85,</span>
+                null,
+<span class="nc" id="L246">                17,</span>
+<span class="nc" id="L247">                7,</span>
+<span class="nc" id="L248">                98,</span>
+                null,
+<span class="nc" id="L250">                7,</span>
+<span class="nc" id="L251">                4,</span>
+<span class="nc" id="L252">                86,</span>
+                null,
+<span class="nc" id="L254">                17,</span>
+<span class="nc" id="L255">                18,</span>
+<span class="nc" id="L256">                142,</span>
+                null,
+<span class="nc" id="L258">                18,</span>
+<span class="nc" id="L259">                8,</span>
+<span class="nc" id="L260">                92,</span>
+                null,
+<span class="nc" id="L262">                8,</span>
+<span class="nc" id="L263">                11,</span>
+<span class="nc" id="L264">                87</span>
+            )
+        );
+<span class="nc" id="L267">        initializeGraph(graph, graphData);</span>
+
+<span class="nc" id="L269">        PathAndDistance solution = aStar(3, 1, graph, heuristic);</span>
+<span class="nc" id="L270">        solution.printSolution();</span>
+<span class="nc" id="L271">    }</span>
+
+    public static PathAndDistance aStar(
+        int from,
+        int to,
+        Graph graph,
+        int[] heuristic
+    ) {
+        // nodes are prioritised by the less value of the current distance of their paths, and the
+        // estimated value
+        // given by the heuristic function to reach the destination point from the current point.
+<span class="nc" id="L282">        PriorityQueue&lt;PathAndDistance&gt; queue = new PriorityQueue&lt;&gt;(</span>
+<span class="nc" id="L283">            Comparator.comparingInt(a -&gt; (a.getDistance() + a.getEstimated()))</span>
+        );
+
+        // dummy data to start the algorithm from the beginning point
+<span class="nc" id="L287">        queue.add(new PathAndDistance(0, new ArrayList&lt;&gt;(List.of(from)), 0));</span>
+
+<span class="nc" id="L289">        boolean solutionFound = false;</span>
+<span class="nc" id="L290">        PathAndDistance currentData = new PathAndDistance(-1, null, -1);</span>
+<span class="nc bnc" id="L291" title="All 4 branches missed.">        while (!queue.isEmpty() &amp;&amp; !solutionFound) {</span>
+<span class="nc" id="L292">            currentData = queue.poll(); // first in the queue, best node so keep exploring.</span>
+<span class="nc" id="L293">            int currentPosition = currentData</span>
+<span class="nc" id="L294">                .getPath()</span>
+<span class="nc" id="L295">                .get(currentData.getPath().size() - 1); // current node.</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">            if (currentPosition == to) {</span>
+<span class="nc" id="L297">                solutionFound = true;</span>
+            } else {
+<span class="nc bnc" id="L299" title="All 2 branches missed.">                for (Edge edge : graph.getNeighbours(currentPosition)) {</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">                    if (!currentData.getPath().contains(edge.getTo())) { // Avoid Cycles</span>
+<span class="nc" id="L301">                        ArrayList&lt;Integer&gt; updatedPath = new ArrayList&lt;&gt;(</span>
+<span class="nc" id="L302">                            currentData.getPath()</span>
+                        );
+<span class="nc" id="L304">                        updatedPath.add(edge.getTo()); // Add the new node to the path, update the distance,</span>
+                        // and the heuristic function value associated to that path.
+<span class="nc" id="L306">                        queue.add(</span>
+                            new PathAndDistance(
+<span class="nc" id="L308">                                currentData.getDistance() + edge.getWeight(),</span>
+                                updatedPath,
+<span class="nc" id="L310">                                heuristic[edge.getTo()]</span>
+                            )
+                        );
+                    }
+<span class="nc" id="L314">                }</span>
+            }
+<span class="nc" id="L316">        }</span>
+<span class="nc bnc" id="L317" title="All 2 branches missed.">        return (solutionFound)</span>
+<span class="nc" id="L318">            ? currentData</span>
+<span class="nc" id="L319">            : new PathAndDistance(-1, null, -1);</span>
+        // Out of while loop, if there is a solution, the current Data stores the optimal path, and its
+        // distance
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

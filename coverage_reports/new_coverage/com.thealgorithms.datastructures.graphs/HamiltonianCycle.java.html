@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HamiltonianCycle.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.graphs</a> &gt; <span class="el_source">HamiltonianCycle.java</span></div><h1>HamiltonianCycle.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.graphs;
+
+/**
+ * Java program for Hamiltonian Cycle (https://en.wikipedia.org/wiki/Hamiltonian_path)
+ * @author Akshay Dubey (https://github.com/itsAkshayDubey)
+ */
+<span class="fc" id="L7">public class HamiltonianCycle {</span>
+
+    private int V, pathCount;
+    private int[] cycle;
+    private int[][] graph;
+
+    /**
+     * Find hamiltonian cycle for given graph G(V,E)
+     * @param graph Adjacency matrix of a graph G(V, E)
+     * for which hamiltonian path is to be found
+     * @return Array containing hamiltonian cycle
+     * else returns 1D array with value -1.
+     */
+    public int[] findHamiltonianCycle(int[][] graph) {
+<span class="fc" id="L21">        this.V = graph.length;</span>
+<span class="fc" id="L22">        this.cycle = new int[this.V + 1];</span>
+
+        //Initialize path array with -1 value
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int i = 0; i &lt; this.cycle.length; i++) {</span>
+<span class="fc" id="L26">            this.cycle[i] = -1;</span>
+        }
+
+<span class="fc" id="L29">        this.graph = graph;</span>
+
+<span class="fc" id="L31">        this.cycle[0] = 0;</span>
+<span class="fc" id="L32">        this.pathCount = 1;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (!isPathFound(0)) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (int i = 0; i &lt; this.cycle.length; i++) {</span>
+<span class="fc" id="L35">                this.cycle[i] = -1;</span>
+            }
+        } else {
+<span class="fc" id="L38">            this.cycle[this.cycle.length - 1] = this.cycle[0];</span>
+        }
+
+<span class="fc" id="L41">        return cycle;</span>
+    }
+
+    /** function to find paths recursively
+     * Find paths recursively from given vertex
+     * @param vertex Vertex from which path is to be found
+     * @returns true if path is found false otherwise
+     */
+    public boolean isPathFound(int vertex) {
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if (this.graph[vertex][0] == 1 &amp;&amp; this.pathCount == this.V) {</span>
+<span class="fc" id="L51">            return true;</span>
+        }
+
+        /** all vertices selected but last vertex not linked to 0 **/
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if (this.pathCount == this.V) {</span>
+<span class="nc" id="L56">            return false;</span>
+        }
+
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (int v = 0; v &lt; this.V; v++) {</span>
+            /** if connected **/
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (this.graph[vertex][v] == 1) {</span>
+                /** add to path **/
+<span class="fc" id="L63">                this.cycle[this.pathCount++] = v;</span>
+
+                /** remove connection **/
+<span class="fc" id="L66">                this.graph[vertex][v] = 0;</span>
+<span class="fc" id="L67">                this.graph[v][vertex] = 0;</span>
+
+                /** if vertex not already selected  solve recursively **/
+<span class="fc bfc" id="L70" title="All 2 branches covered.">                if (!isPresent(v)) {</span>
+<span class="fc" id="L71">                    return isPathFound(v);</span>
+                }
+
+                /** restore connection **/
+<span class="fc" id="L75">                this.graph[vertex][v] = 1;</span>
+<span class="fc" id="L76">                this.graph[v][vertex] = 1;</span>
+
+                /** remove path **/
+<span class="fc" id="L79">                this.cycle[--this.pathCount] = -1;</span>
+            }
+        }
+<span class="fc" id="L82">        return false;</span>
+    }
+
+    /** function to check if path is already selected
+     * Check if path is already selected
+     * @param vertex Starting vertex
+     */
+    public boolean isPresent(int vertex) {
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        for (int i = 0; i &lt; pathCount - 1; i++) {</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">            if (cycle[i] == vertex) {</span>
+<span class="fc" id="L92">                return true;</span>
+            }
+        }
+
+<span class="fc" id="L96">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

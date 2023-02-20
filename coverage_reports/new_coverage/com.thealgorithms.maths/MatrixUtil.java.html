@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MatrixUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.maths</a> &gt; <span class="el_source">MatrixUtil.java</span></div><h1>MatrixUtil.java</h1><pre class="source lang-java linenums">package com.thealgorithms.maths;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.stream.IntStream;
+
+/**
+ * @author: caos321
+ * @date: 31 October 2021 (Sunday)
+ */
+<span class="nc" id="L14">public class MatrixUtil {</span>
+
+    public static boolean isValid(final BigDecimal[][] matrix) {
+<span class="nc bnc" id="L17" title="All 6 branches missed.">        return matrix != null &amp;&amp; matrix.length &gt; 0 &amp;&amp; matrix[0].length &gt; 0;</span>
+    }
+
+    public static boolean hasEqualSizes(
+        final BigDecimal[][] matrix1,
+        final BigDecimal[][] matrix2
+    ) {
+<span class="nc" id="L24">        return (</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">            isValid(matrix1) &amp;&amp;</span>
+<span class="nc bnc" id="L26" title="All 6 branches missed.">            isValid(matrix2) &amp;&amp;</span>
+            matrix1.length == matrix2.length &amp;&amp;
+            matrix1[0].length == matrix2[0].length
+        );
+    }
+
+    public static boolean canMultiply(
+        final BigDecimal[][] matrix1,
+        final BigDecimal[][] matrix2
+    ) {
+<span class="nc" id="L36">        return (</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            isValid(matrix1) &amp;&amp;</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">            isValid(matrix2) &amp;&amp;</span>
+            matrix1[0].length == matrix2.length
+        );
+    }
+
+    public static Optional&lt;BigDecimal[][]&gt; operate(
+        final BigDecimal[][] matrix1,
+        final BigDecimal[][] matrix2,
+        final BiFunction&lt;BigDecimal, BigDecimal, BigDecimal&gt; operation
+    ) {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (!hasEqualSizes(matrix1, matrix2)) {</span>
+<span class="nc" id="L49">            return Optional.empty();</span>
+        }
+
+<span class="nc" id="L52">        final int rowSize = matrix1.length;</span>
+<span class="nc" id="L53">        final int columnSize = matrix1[0].length;</span>
+
+<span class="nc" id="L55">        final BigDecimal[][] result = new BigDecimal[rowSize][columnSize];</span>
+
+<span class="nc" id="L57">        IntStream</span>
+<span class="nc" id="L58">            .range(0, rowSize)</span>
+<span class="nc" id="L59">            .forEach(rowIndex -&gt;</span>
+<span class="nc" id="L60">                IntStream</span>
+<span class="nc" id="L61">                    .range(0, columnSize)</span>
+<span class="nc" id="L62">                    .forEach(columnIndex -&gt; {</span>
+<span class="nc" id="L63">                        final BigDecimal value1 =</span>
+                            matrix1[rowIndex][columnIndex];
+<span class="nc" id="L65">                        final BigDecimal value2 =</span>
+                            matrix2[rowIndex][columnIndex];
+
+<span class="nc" id="L68">                        result[rowIndex][columnIndex] =</span>
+<span class="nc" id="L69">                            operation.apply(value1, value2);</span>
+<span class="nc" id="L70">                    })</span>
+            );
+
+<span class="nc" id="L73">        return Optional.of(result);</span>
+    }
+
+    public static Optional&lt;BigDecimal[][]&gt; add(
+        final BigDecimal[][] matrix1,
+        final BigDecimal[][] matrix2
+    ) {
+<span class="nc" id="L80">        return operate(matrix1, matrix2, BigDecimal::add);</span>
+    }
+
+    public static Optional&lt;BigDecimal[][]&gt; subtract(
+        final BigDecimal[][] matrix1,
+        final BigDecimal[][] matrix2
+    ) {
+<span class="nc" id="L87">        return operate(matrix1, matrix2, BigDecimal::subtract);</span>
+    }
+
+    public static Optional&lt;BigDecimal[][]&gt; multiply(
+        final BigDecimal[][] matrix1,
+        final BigDecimal[][] matrix2
+    ) {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (!canMultiply(matrix1, matrix2)) {</span>
+<span class="nc" id="L95">            return Optional.empty();</span>
+        }
+
+<span class="nc" id="L98">        final int size = matrix1[0].length;</span>
+
+<span class="nc" id="L100">        final int matrix1RowSize = matrix1.length;</span>
+<span class="nc" id="L101">        final int matrix2ColumnSize = matrix2[0].length;</span>
+
+<span class="nc" id="L103">        final BigDecimal[][] result = new BigDecimal[matrix1RowSize][matrix2ColumnSize];</span>
+
+<span class="nc" id="L105">        IntStream</span>
+<span class="nc" id="L106">            .range(0, matrix1RowSize)</span>
+<span class="nc" id="L107">            .forEach(rowIndex -&gt;</span>
+<span class="nc" id="L108">                IntStream</span>
+<span class="nc" id="L109">                    .range(0, matrix2ColumnSize)</span>
+<span class="nc" id="L110">                    .forEach(columnIndex -&gt;</span>
+<span class="nc" id="L111">                        result[rowIndex][columnIndex] =</span>
+                            IntStream
+<span class="nc" id="L113">                                .range(0, size)</span>
+<span class="nc" id="L114">                                .mapToObj(index -&gt; {</span>
+<span class="nc" id="L115">                                    final BigDecimal value1 =</span>
+                                        matrix1[rowIndex][index];
+<span class="nc" id="L117">                                    final BigDecimal value2 =</span>
+                                        matrix2[index][columnIndex];
+
+<span class="nc" id="L120">                                    return value1.multiply(value2);</span>
+                                })
+<span class="nc" id="L122">                                .reduce(BigDecimal.ZERO, BigDecimal::add)</span>
+                    )
+            );
+
+<span class="nc" id="L126">        return Optional.of(result);</span>
+    }
+
+    public static void assertThat(
+        final BigDecimal[][] actual,
+        final BigDecimal[][] expected
+    ) {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (!Objects.deepEquals(actual, expected)) {</span>
+<span class="nc" id="L134">            throw new AssertionError(</span>
+<span class="nc" id="L135">                String.format(</span>
+                    &quot;expected=%s but was actual=%s&quot;,
+<span class="nc" id="L137">                    Arrays.deepToString(expected),</span>
+<span class="nc" id="L138">                    Arrays.deepToString(actual)</span>
+                )
+            );
+        }
+<span class="nc" id="L142">    }</span>
+
+    public static void main(final String[] args) {
+        {
+<span class="nc" id="L146">            final BigDecimal[][] matrix1 = {</span>
+                { new BigDecimal(3), new BigDecimal(2) },
+                { new BigDecimal(0), new BigDecimal(1) },
+            };
+
+<span class="nc" id="L151">            final BigDecimal[][] matrix2 = {</span>
+                { new BigDecimal(1), new BigDecimal(3) },
+                { new BigDecimal(2), new BigDecimal(0) },
+            };
+
+<span class="nc" id="L156">            final BigDecimal[][] actual = add(matrix1, matrix2)</span>
+<span class="nc" id="L157">                .orElseThrow(() -&gt;</span>
+<span class="nc" id="L158">                    new AssertionError(&quot;Could not compute matrix!&quot;)</span>
+                );
+
+<span class="nc" id="L161">            final BigDecimal[][] expected = {</span>
+                { new BigDecimal(4), new BigDecimal(5) },
+                { new BigDecimal(2), new BigDecimal(1) },
+            };
+
+<span class="nc" id="L166">            assertThat(actual, expected);</span>
+        }
+
+        {
+<span class="nc" id="L170">            final BigDecimal[][] matrix1 = {</span>
+                { new BigDecimal(1), new BigDecimal(4) },
+                { new BigDecimal(5), new BigDecimal(6) },
+            };
+
+<span class="nc" id="L175">            final BigDecimal[][] matrix2 = {</span>
+                { new BigDecimal(2), new BigDecimal(0) },
+                { new BigDecimal(-2), new BigDecimal(-3) },
+            };
+
+<span class="nc" id="L180">            final BigDecimal[][] actual = subtract(matrix1, matrix2)</span>
+<span class="nc" id="L181">                .orElseThrow(() -&gt;</span>
+<span class="nc" id="L182">                    new AssertionError(&quot;Could not compute matrix!&quot;)</span>
+                );
+
+<span class="nc" id="L185">            final BigDecimal[][] expected = {</span>
+                { new BigDecimal(-1), new BigDecimal(4) },
+                { new BigDecimal(7), new BigDecimal(9) },
+            };
+
+<span class="nc" id="L190">            assertThat(actual, expected);</span>
+        }
+
+        {
+<span class="nc" id="L194">            final BigDecimal[][] matrix1 = {</span>
+                { new BigDecimal(1), new BigDecimal(2), new BigDecimal(3) },
+                { new BigDecimal(4), new BigDecimal(5), new BigDecimal(6) },
+                { new BigDecimal(7), new BigDecimal(8), new BigDecimal(9) },
+            };
+
+<span class="nc" id="L200">            final BigDecimal[][] matrix2 = {</span>
+                { new BigDecimal(1), new BigDecimal(2) },
+                { new BigDecimal(3), new BigDecimal(4) },
+                { new BigDecimal(5), new BigDecimal(6) },
+            };
+
+<span class="nc" id="L206">            final BigDecimal[][] actual = multiply(matrix1, matrix2)</span>
+<span class="nc" id="L207">                .orElseThrow(() -&gt;</span>
+<span class="nc" id="L208">                    new AssertionError(&quot;Could not compute matrix!&quot;)</span>
+                );
+
+<span class="nc" id="L211">            final BigDecimal[][] expected = {</span>
+                { new BigDecimal(22), new BigDecimal(28) },
+                { new BigDecimal(49), new BigDecimal(64) },
+                { new BigDecimal(76), new BigDecimal(100) },
+            };
+
+<span class="nc" id="L217">            assertThat(actual, expected);</span>
+        }
+<span class="nc" id="L219">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

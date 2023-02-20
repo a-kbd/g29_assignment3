@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MazeRecursion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.backtracking</a> &gt; <span class="el_source">MazeRecursion.java</span></div><h1>MazeRecursion.java</h1><pre class="source lang-java linenums">package com.thealgorithms.backtracking;
+
+<span class="nc" id="L3">public class MazeRecursion {</span>
+
+    public static void mazeRecursion() {
+        // First create a 2 dimensions array to mimic a maze map
+<span class="nc" id="L7">        int[][] map = new int[8][7];</span>
+<span class="nc" id="L8">        int[][] map2 = new int[8][7];</span>
+
+        // We use 1 to indicate wall
+        // Set the ceiling and floor to 1
+<span class="nc bnc" id="L12" title="All 2 branches missed.">        for (int i = 0; i &lt; 7; i++) {</span>
+<span class="nc" id="L13">            map[0][i] = 1;</span>
+<span class="nc" id="L14">            map[7][i] = 1;</span>
+        }
+
+        // Then we set the left and right wall to 1
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        for (int i = 0; i &lt; 8; i++) {</span>
+<span class="nc" id="L19">            map[i][0] = 1;</span>
+<span class="nc" id="L20">            map[i][6] = 1;</span>
+        }
+
+        // Now we have created a maze with its wall initialized
+
+        // Here we set the obstacle
+<span class="nc" id="L26">        map[3][1] = 1;</span>
+<span class="nc" id="L27">        map[3][2] = 1;</span>
+
+        // Print the current map
+<span class="nc" id="L30">        System.out.println(&quot;The condition of the map： &quot;);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for (int i = 0; i &lt; 8; i++) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            for (int j = 0; j &lt; 7; j++) {</span>
+<span class="nc" id="L33">                System.out.print(map[i][j] + &quot; &quot;);</span>
+            }
+<span class="nc" id="L35">            System.out.println();</span>
+        }
+
+        // clone another map for setWay2 method
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        for (int i = 0; i &lt; map.length; i++) {</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            for (int j = 0; j &lt; map[i].length; j++) {</span>
+<span class="nc" id="L41">                map2[i][j] = map[i][j];</span>
+            }
+        }
+
+        // By using recursive backtracking to let your ball(target) find its way in the
+        // maze
+        // The first parameter is the map
+        // Second parameter is x coordinate of your target
+        // Thrid parameter is the y coordinate of your target
+<span class="nc" id="L50">        setWay(map, 1, 1);</span>
+<span class="nc" id="L51">        setWay2(map2, 1, 1);</span>
+
+        // Print out the new map1, with the ball footprint
+<span class="nc" id="L54">        System.out.println(</span>
+            &quot;After the ball goes through the map1，show the current map1 condition&quot;
+        );
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        for (int i = 0; i &lt; 8; i++) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for (int j = 0; j &lt; 7; j++) {</span>
+<span class="nc" id="L59">                System.out.print(map[i][j] + &quot; &quot;);</span>
+            }
+<span class="nc" id="L61">            System.out.println();</span>
+        }
+
+        // Print out the new map2, with the ball footprint
+<span class="nc" id="L65">        System.out.println(</span>
+            &quot;After the ball goes through the map2，show the current map2 condition&quot;
+        );
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        for (int i = 0; i &lt; 8; i++) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            for (int j = 0; j &lt; 7; j++) {</span>
+<span class="nc" id="L70">                System.out.print(map2[i][j] + &quot; &quot;);</span>
+            }
+<span class="nc" id="L72">            System.out.println();</span>
+        }
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * Using recursive path finding to help the ball find its way in the maze
+     * Description：
+     * 1. map (means the maze)
+     * 2. i, j (means the initial coordinate of the ball in the maze)
+     * 3. if the ball can reach the end of maze, that is position of map[6][5],
+     * means the we have found a path for the ball
+     * 4. Additional Information： 0 in the map[i][j] means the ball has not gone
+     * through this position, 1 means the wall, 2 means the path is feasible, 3
+     * means the ball has gone through the path but this path is dead end
+     * 5. We will need strategy for the ball to pass through the maze for example:
+     * Down -&gt; Right -&gt; Up -&gt; Left, if the path doesn't work, then backtrack
+     * 
+     * @author OngLipWei
+     * @version Jun 23, 2021 11:36:14 AM
+     * @param map The maze
+     * @param i   x coordinate of your ball(target)
+     * @param j   y coordinate of your ball(target)
+     * @return If we did find a path for the ball，return true，else false
+     */
+    public static boolean setWay(int[][] map, int i, int j) {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (map[6][5] == 2) { // means the ball find its path, ending condition</span>
+<span class="nc" id="L98">            return true;</span>
+        }
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (map[i][j] == 0) { // if the ball haven't gone through this point</span>
+            // then the ball follows the move strategy : down -&gt; right -&gt; up -&gt; left
+<span class="nc" id="L102">            map[i][j] = 2; // we assume that this path is feasible first, set the current point to 2 first。</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (setWay(map, i + 1, j)) { // go down</span>
+<span class="nc" id="L104">                return true;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            } else if (setWay(map, i, j + 1)) { // go right</span>
+<span class="nc" id="L106">                return true;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            } else if (setWay(map, i - 1, j)) { // go up</span>
+<span class="nc" id="L108">                return true;</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            } else if (setWay(map, i, j - 1)) { // go left</span>
+<span class="nc" id="L110">                return true;</span>
+            } else {
+                // means that the current point is the dead end, the ball cannot proceed, set
+                // the current point to 3 and return false, the backtraking will start, it will
+                // go to the previous step and check for feasible path again
+<span class="nc" id="L115">                map[i][j] = 3;</span>
+<span class="nc" id="L116">                return false;</span>
+            }
+        } else { // if the map[i][j] != 0 , it will probably be 1,2,3, return false because the
+            // ball cannot hit the wall, cannot go to the path that has gone though before,
+            // and cannot head to deadend.
+<span class="nc" id="L121">            return false;</span>
+        }
+    }
+
+    // Here is another move strategy for the ball: up-&gt;right-&gt;down-&gt;left
+    public static boolean setWay2(int[][] map, int i, int j) {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (map[6][5] == 2) { // means the ball find its path, ending condition</span>
+<span class="nc" id="L128">            return true;</span>
+        }
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        if (map[i][j] == 0) { // if the ball haven't gone through this point</span>
+            // then the ball follows the move strategy : up-&gt;right-&gt;down-&gt;left
+<span class="nc" id="L132">            map[i][j] = 2; // we assume that this path is feasible first, set the current point to 2 first。</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (setWay2(map, i - 1, j)) { // go up</span>
+<span class="nc" id="L134">                return true;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            } else if (setWay2(map, i, j + 1)) { // go right</span>
+<span class="nc" id="L136">                return true;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            } else if (setWay2(map, i + 1, j)) { // go down</span>
+<span class="nc" id="L138">                return true;</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            } else if (setWay2(map, i, j - 1)) { // go left</span>
+<span class="nc" id="L140">                return true;</span>
+            } else {
+                // means that the current point is the dead end, the ball cannot proceed, set
+                // the current point to 3 and return false, the backtraking will start, it will
+                // go to the previous step and check for feasible path again
+<span class="nc" id="L145">                map[i][j] = 3;</span>
+<span class="nc" id="L146">                return false;</span>
+            }
+        } else { // if the map[i][j] != 0 , it will probably be 1,2,3, return false because the
+            // ball cannot hit the wall, cannot go to the path that has gone though before,
+            // and cannot head to deadend.
+<span class="nc" id="L151">            return false;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

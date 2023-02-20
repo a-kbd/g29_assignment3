@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.sorts</a> &gt; <span class="el_source">TimSort.java</span></div><h1>TimSort.java</h1><pre class="source lang-java linenums">package com.thealgorithms.sorts;
+
+import static com.thealgorithms.sorts.SortUtils.less;
+
+/**
+ * This is simplified TimSort algorithm implementation. The original one is more complicated.
+ * &lt;p&gt;
+ * For more details @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Timsort&quot;&gt;TimSort Algorithm&lt;/a&gt;
+ */
+<span class="fc" id="L10">class TimSort implements SortAlgorithm {</span>
+    private static final int SUB_ARRAY_SIZE = 32;
+    @SuppressWarnings(&quot;rawtypes&quot;)
+    private static Comparable[] aux;
+
+    @Override
+    public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] a) {
+<span class="fc" id="L17">        int n = a.length;</span>
+
+<span class="fc" id="L19">        InsertionSort insertionSort = new InsertionSort();</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i += SUB_ARRAY_SIZE) {</span>
+<span class="fc" id="L21">            insertionSort.sort(a, i, Math.min(i + SUB_ARRAY_SIZE, n));</span>
+        }
+
+<span class="fc" id="L24">        aux = new Comparable[n];</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int sz = SUB_ARRAY_SIZE; sz &lt; n; sz = sz + sz) {</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">            for (int lo = 0; lo &lt; n - sz; lo += sz + sz) {</span>
+<span class="fc" id="L27">                merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, n - 1));</span>
+            }
+        }
+
+<span class="fc" id="L31">        return a;</span>
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    private static &lt;T extends Comparable&lt;T&gt;&gt; void merge(T[] a, int lo, int mid, int hi) {
+<span class="fc" id="L36">        int i = lo, j = mid + 1;</span>
+<span class="fc" id="L37">        System.arraycopy(a, lo, aux, lo, hi + 1 - lo);</span>
+
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (int k = lo; k &lt;= hi; k++) {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (j &gt; hi) {</span>
+<span class="fc" id="L41">                a[k] = (T) aux[i++];</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            } else if (i &gt; mid) {</span>
+<span class="fc" id="L43">                a[k] = (T) aux[j++];</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            } else if (less(aux[j], aux[i])) {</span>
+<span class="fc" id="L45">                a[k] = (T) aux[j++];</span>
+            } else {
+<span class="fc" id="L47">                a[k] = (T) aux[i++];</span>
+            }
+        }
+<span class="fc" id="L50">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

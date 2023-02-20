@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OptimalJobScheduling.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.dynamicprogramming</a> &gt; <span class="el_source">OptimalJobScheduling.java</span></div><h1>OptimalJobScheduling.java</h1><pre class="source lang-java linenums">package com.thealgorithms.dynamicprogramming;
+
+/**
+ * This class refers to the Optimal Job Scheduling problem with the following constrains:
+ *  - precedence relation between the processes
+ *  - machine pair dependent transportation delays
+ *
+ * https://en.wikipedia.org/wiki/Optimal_job_scheduling
+ *
+ * @author georgioct@csd.auth.gr
+ */
+public class OptimalJobScheduling {
+
+    private final int numberProcesses;
+    private final int numberMachines;
+    private final int[][] Run;
+    private final int[][] Transfer;
+    private final int[][] Cost;
+
+    /**
+     * Constructor of the class.
+     * @param numberProcesses ,refers to the number of precedent processes(N)
+     * @param numberMachines ,refers to the number of different machines in our disposal(M)
+     * @param Run , N*M matrix refers to the cost of running each process to each machine
+     * @param Transfer ,M*M symmetric matrix refers to the transportation delay for each pair of machines
+     */
+<span class="fc" id="L27">    public OptimalJobScheduling(int numberProcesses, int numberMachines, int[][] Run, int[][] Transfer) {</span>
+<span class="fc" id="L28">        this.numberProcesses = numberProcesses;</span>
+<span class="fc" id="L29">        this.numberMachines = numberMachines;</span>
+<span class="fc" id="L30">        this.Run = Run;</span>
+<span class="fc" id="L31">        this.Transfer = Transfer;</span>
+<span class="fc" id="L32">        this.Cost = new int[numberProcesses][numberMachines];</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Function which computes the cost of process scheduling to a number of VMs.
+     */
+    public void execute(){
+<span class="fc" id="L39">        this.calculateCost();</span>
+<span class="fc" id="L40">        this.showResults();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Function which computes the cost of running each Process to each and every Machine
+     */
+    private void calculateCost(){
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (int i=0; i &lt; numberProcesses; i++){           //for each Process</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            for (int j=0; j &lt; numberMachines; j++) {       //for each Machine</span>
+
+<span class="fc" id="L52">                Cost[i][j] = runningCost(i, j);</span>
+            }
+        }
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * Function which returns the minimum cost of running a certain Process to a certain Machine.In order for the Machine to execute the Process ,he requires the output
+     * of the previously executed Process, which may have been executed to the same Machine or some other.If the previous Process has been executed to another Machine,we
+     * have to transfer her result, which means extra cost for transferring the data from one Machine to another(if the previous Process has been executed to the same
+     * Machine, there is no transport cost).
+     *
+     * @param process ,refers to the Process
+     * @param machine ,refers to the Machine
+     * @return the minimum cost of executing the process to the certain machine.
+     */
+    private int runningCost(int process, int machine) {
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (process==0)                         //refers to the first process,which does not require for a previous one to have been executed</span>
+<span class="fc" id="L70">            return Run[process][machine];</span>
+        else {
+
+<span class="fc" id="L73">            int[] runningCosts = new int[numberMachines];     //stores the costs of executing our Process depending on the Machine the previous one was executed</span>
+
+<span class="fc bfc" id="L75" title="All 2 branches covered.">            for (int k=0; k &lt; numberMachines; k++)                                                     //computes the cost of executing the previous process to each and every Machine</span>
+<span class="fc" id="L76">                runningCosts[k] = Cost[process-1][k] + Transfer[k][machine] + Run[process][machine];   //transferring the result to our Machine and executing the Process to our Machine</span>
+
+<span class="fc" id="L78">            return findMin(runningCosts);                     //returns the minimum running cost</span>
+        }
+    }
+
+    /**
+     * Function used in order to return the minimum Cost.
+     * @param cost ,an Array of size M which refers to the costs of executing a Process to each Machine
+     * @return the minimum cost
+     */
+    private int findMin(int[] cost) {
+
+<span class="fc" id="L89">        int min=0;</span>
+
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (int i=1;i&lt;cost.length;i++){</span>
+
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            if (cost[i]&lt;cost[min])</span>
+<span class="fc" id="L94">                min=i;</span>
+        }
+<span class="fc" id="L96">        return cost[min];</span>
+    }
+
+    /**
+     * Method used in order to present the overall costs.
+     */
+    private void showResults(){
+
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        for (int i=0; i &lt; numberProcesses; i++){</span>
+
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            for (int j=0; j &lt; numberMachines; j++) {</span>
+<span class="fc" id="L107">                System.out.print(Cost[i][j]);</span>
+<span class="fc" id="L108">                System.out.print(&quot; &quot;);</span>
+            }
+
+<span class="fc" id="L111">            System.out.println();</span>
+        }
+<span class="fc" id="L113">        System.out.println();</span>
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Getter for the running Cost of i process on j machine.
+     */
+    public int getCost(int process,int machine) {
+<span class="fc" id="L120">        return Cost[process][machine];</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

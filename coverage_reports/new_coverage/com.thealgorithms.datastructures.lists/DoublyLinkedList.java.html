@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoublyLinkedList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.lists</a> &gt; <span class="el_source">DoublyLinkedList.java</span></div><h1>DoublyLinkedList.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.lists;
+
+/**
+ * This class implements a DoublyLinkedList. This is done using the classes
+ * LinkedList and Link.
+ *
+ * &lt;p&gt;
+ * A linked list is similar to an array, it holds values. However, links in a
+ * linked list do not have indexes. With a linked list you do not need to
+ * predetermine it's size as it grows and shrinks as it is edited. This is an
+ * example of a double ended, doubly linked list. Each link references the next
+ * link and the previous one.
+ *
+ * @author Unknown
+ */
+public class DoublyLinkedList {
+
+    /**
+     * Head refers to the front of the list
+     */
+    protected Link head;
+    /**
+     * Tail refers to the back of the list
+     */
+    private Link tail;
+    /**
+     * Link Operations to perform operations on nodes of the list
+     */
+    private LinkOperations linkOperations;
+
+    /**
+     * Size refers to the number of elements present in the list
+     */
+    private int size;
+
+    /**
+     * Default Constructor
+     */
+<span class="nc" id="L39">    public DoublyLinkedList() {</span>
+<span class="nc" id="L40">        head = null;</span>
+<span class="nc" id="L41">        tail = null;</span>
+<span class="nc" id="L42">        size = 0;</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * Constructs a list containing the elements of the array
+     *
+     * @param array the array whose elements are to be placed into this list
+     * @throws NullPointerException if the specified collection is null
+     */
+<span class="nc" id="L51">    public DoublyLinkedList(int[] array) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L53">            throw new NullPointerException();</span>
+        }
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        for (int i : array) {</span>
+<span class="nc" id="L56">            linkOperations.insertTail(i, this);</span>
+        }
+<span class="nc" id="L58">        size = array.length;</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Returns true if list is empty
+     *
+     * @return true if list is empty
+     */
+    public boolean isEmpty() {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        return (head == null);</span>
+    }
+
+    /**
+     * Prints contents of the list
+     */
+    public void display() { // Prints contents of the list
+<span class="nc" id="L74">        Link current = head;</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        while (current != null) {</span>
+<span class="nc" id="L76">            current.displayLink();</span>
+<span class="nc" id="L77">            current = current.next;</span>
+        }
+<span class="nc" id="L79">        System.out.println();</span>
+<span class="nc" id="L80">    }</span>
+
+    /**
+     * Prints the contents of the list in reverse order
+     */
+    public void displayBackwards() {
+<span class="nc" id="L86">        Link current = tail;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        while (current != null) {</span>
+<span class="nc" id="L88">            current.displayLink();</span>
+<span class="nc" id="L89">            current = current.previous;</span>
+        }
+<span class="nc" id="L91">        System.out.println();</span>
+<span class="nc" id="L92">    }</span>
+}
+
+/**
+ * This class is used to implement the nodes of the linked list.
+ *
+ * @author Unknown
+ */
+class Link {
+
+    /**
+     * Value of node
+     */
+    public int value;
+    /**
+     * This points to the link in front of the new link
+     */
+    public Link next;
+    /**
+     * This points to the link behind the new link
+     */
+    public Link previous;
+
+    /**
+     * Constructor
+     *
+     * @param value Value of node
+     */
+<span class="nc" id="L120">    public Link(int value) {</span>
+<span class="nc" id="L121">        this.value = value;</span>
+<span class="nc" id="L122">    }</span>
+
+    /**
+     * Displays the node
+     */
+    public void displayLink() {
+<span class="nc" id="L128">        System.out.print(value + &quot; &quot;);</span>
+<span class="nc" id="L129">    }</span>
+
+    /**
+     * Main Method
+     *
+     * @param args Command line arguments
+     */
+    public static void main(String args[]) {
+<span class="nc" id="L137">        DoublyLinkedList myList = new DoublyLinkedList();</span>
+<span class="nc" id="L138">        LinkOperations linkOperations = new LinkOperations();</span>
+<span class="nc" id="L139">        linkOperations.insertHead(13, myList);</span>
+<span class="nc" id="L140">        linkOperations.insertHead(7, myList);</span>
+<span class="nc" id="L141">        linkOperations.insertHead(10, myList);</span>
+<span class="nc" id="L142">        myList.display(); // &lt;-- 10(head) &lt;--&gt; 7 &lt;--&gt; 13(tail) --&gt;</span>
+<span class="nc" id="L143">        myList.displayBackwards();</span>
+
+<span class="nc" id="L145">        linkOperations.insertTail(11, myList);</span>
+<span class="nc" id="L146">        myList.display(); // &lt;-- 10(head) &lt;--&gt; 7 &lt;--&gt; 13 &lt;--&gt; 11(tail) --&gt;</span>
+<span class="nc" id="L147">        myList.displayBackwards();</span>
+
+<span class="nc" id="L149">        linkOperations.deleteTail();</span>
+<span class="nc" id="L150">        myList.display(); // &lt;-- 10(head) &lt;--&gt; 7 &lt;--&gt; 13(tail) --&gt;</span>
+<span class="nc" id="L151">        myList.displayBackwards();</span>
+
+<span class="nc" id="L153">        linkOperations.delete(7);</span>
+<span class="nc" id="L154">        myList.display(); // &lt;-- 10(head) &lt;--&gt; 13(tail) --&gt;</span>
+<span class="nc" id="L155">        myList.displayBackwards();</span>
+
+<span class="nc" id="L157">        linkOperations.insertOrdered(23, myList);</span>
+<span class="nc" id="L158">        linkOperations.insertOrdered(67, myList);</span>
+<span class="nc" id="L159">        linkOperations.insertOrdered(3, myList);</span>
+<span class="nc" id="L160">        myList.display(); // &lt;-- 3(head) &lt;--&gt; 10 &lt;--&gt; 13 &lt;--&gt; 23 &lt;--&gt; 67(tail) --&gt;</span>
+<span class="nc" id="L161">        linkOperations.insertElementByIndex(5, 1, myList);</span>
+<span class="nc" id="L162">        myList.display(); // &lt;-- 3(head) &lt;--&gt; 5 &lt;--&gt; 10 &lt;--&gt; 13 &lt;--&gt; 23 &lt;--&gt; 67(tail) --&gt;</span>
+<span class="nc" id="L163">        myList.displayBackwards();</span>
+<span class="nc" id="L164">        linkOperations.reverse(); // &lt;-- 67(head) &lt;--&gt; 23 &lt;--&gt; 13 &lt;--&gt; 10 &lt;--&gt; 5 &lt;--&gt; 3(tail) --&gt;</span>
+<span class="nc" id="L165">        myList.display();</span>
+
+<span class="nc" id="L167">        linkOperations.clearList();</span>
+<span class="nc" id="L168">        myList.display();</span>
+<span class="nc" id="L169">        myList.displayBackwards();</span>
+<span class="nc" id="L170">        linkOperations.insertHead(20, myList);</span>
+<span class="nc" id="L171">        myList.display();</span>
+<span class="nc" id="L172">        myList.displayBackwards();</span>
+<span class="nc" id="L173">    }</span>
+}
+
+/*
+ * This class implements the operations of the Link nodes.
+ */
+<span class="nc" id="L179">class LinkOperations {</span>
+
+    /**
+     * Head refers to the front of the list
+     */
+    private Link head;
+    /**
+     * Tail refers to the back of the list
+     */
+    private Link tail;
+
+    /**
+     * Size refers to the number of elements present in the list
+     */
+    private int size;
+
+    /**
+     * Insert an element at the head
+     *
+     * @param x Element to be inserted
+     */
+    public void insertHead(int x, DoublyLinkedList doublyLinkedList) {
+<span class="nc" id="L201">        Link newLink = new Link(x); // Create a new link with a value attached to it</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (doublyLinkedList.isEmpty()) { // Set the first element added to be the tail</span>
+<span class="nc" id="L203">            tail = newLink;</span>
+        } else {
+<span class="nc" id="L205">            head.previous = newLink; // newLink &lt;-- currenthead(head)</span>
+        }
+<span class="nc" id="L207">        newLink.next = head; // newLink &lt;--&gt; currenthead(head)</span>
+<span class="nc" id="L208">        head = newLink; // newLink(head) &lt;--&gt; oldhead</span>
+<span class="nc" id="L209">        ++size;</span>
+<span class="nc" id="L210">    }</span>
+
+    /**
+     * Insert an element at the tail
+     *
+     * @param x Element to be inserted
+     */
+    public void insertTail(int x, DoublyLinkedList doublyLinkedList) {
+<span class="nc" id="L218">        Link newLink = new Link(x);</span>
+<span class="nc" id="L219">        newLink.next = null; // currentTail(tail)     newlink --&gt;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">        if (doublyLinkedList.isEmpty()) { // Check if there are no elements in list then it adds first element</span>
+<span class="nc" id="L221">            tail = newLink;</span>
+<span class="nc" id="L222">            head = tail;</span>
+        } else {
+<span class="nc" id="L224">            tail.next = newLink; // currentTail(tail) --&gt; newLink --&gt;</span>
+<span class="nc" id="L225">            newLink.previous = tail; // currentTail(tail) &lt;--&gt; newLink --&gt;</span>
+<span class="nc" id="L226">            tail = newLink; // oldTail &lt;--&gt; newLink(tail) --&gt;</span>
+        }
+<span class="nc" id="L228">        ++size;</span>
+<span class="nc" id="L229">    }</span>
+
+    /**
+     * Insert an element at the index
+     *
+     * @param x Element to be inserted
+     * @param index Index(from start) at which the element x to be inserted
+     */
+    public void insertElementByIndex(
+        int x,
+        int index,
+        DoublyLinkedList doublyLinkedList
+    ) {
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        if (index &gt; size) {</span>
+<span class="nc" id="L243">            throw new IndexOutOfBoundsException(</span>
+                &quot;Index: &quot; + index + &quot;, Size: &quot; + size
+            );
+        }
+<span class="nc bnc" id="L247" title="All 2 branches missed.">        if (index == 0) {</span>
+<span class="nc" id="L248">            insertHead(x, doublyLinkedList);</span>
+        } else {
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (index == size) {</span>
+<span class="nc" id="L251">                insertTail(x, doublyLinkedList);</span>
+            } else {
+<span class="nc" id="L253">                Link newLink = new Link(x);</span>
+<span class="nc" id="L254">                Link previousLink = head; //</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">                for (int i = 1; i &lt; index; i++) { // Loop to reach the index</span>
+<span class="nc" id="L256">                    previousLink = previousLink.next;</span>
+                }
+                // previousLink is the Link at index - 1 from start
+<span class="nc" id="L259">                previousLink.next.previous = newLink;</span>
+<span class="nc" id="L260">                newLink.next = previousLink.next;</span>
+<span class="nc" id="L261">                newLink.previous = previousLink;</span>
+<span class="nc" id="L262">                previousLink.next = newLink;</span>
+            }
+        }
+<span class="nc" id="L265">        ++size;</span>
+<span class="nc" id="L266">    }</span>
+
+    /**
+     * Delete the element at the head
+     *
+     * @return The new head
+     */
+    public Link deleteHead() {
+<span class="nc" id="L274">        Link temp = head;</span>
+<span class="nc" id="L275">        head = head.next; // oldHead &lt;--&gt; 2ndElement(head)</span>
+
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        if (head == null) {</span>
+<span class="nc" id="L278">            tail = null;</span>
+        } else {
+<span class="nc" id="L280">            head.previous = null; // oldHead --&gt; 2ndElement(head) nothing pointing at old head so will be removed</span>
+        }
+<span class="nc" id="L282">        --size;</span>
+<span class="nc" id="L283">        return temp;</span>
+    }
+
+    /**
+     * Delete the element at the tail
+     *
+     * @return The new tail
+     */
+    public Link deleteTail() {
+<span class="nc" id="L292">        Link temp = tail;</span>
+<span class="nc" id="L293">        tail = tail.previous; // 2ndLast(tail) &lt;--&gt; oldTail --&gt; null</span>
+
+<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (tail == null) {</span>
+<span class="nc" id="L296">            head = null;</span>
+        } else {
+<span class="nc" id="L298">            tail.next = null; // 2ndLast(tail) --&gt; null</span>
+        }
+<span class="nc" id="L300">        --size;</span>
+<span class="nc" id="L301">        return temp;</span>
+    }
+
+    /**
+     * Delete the element from somewhere in the list
+     *
+     * @param x element to be deleted
+     * @return Link deleted
+     */
+    public void delete(int x) {
+<span class="nc" id="L311">        Link current = head;</span>
+
+<span class="nc bnc" id="L313" title="All 2 branches missed.">        while (current.value != x) { // Find the position to delete</span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            if (current != tail) {</span>
+<span class="nc" id="L315">                current = current.next;</span>
+            } else { // If we reach the tail and the element is still not found
+<span class="nc" id="L317">                throw new RuntimeException(</span>
+                    &quot;The element to be deleted does not exist!&quot;
+                );
+            }
+        }
+
+<span class="nc bnc" id="L323" title="All 2 branches missed.">        if (current == head) {</span>
+<span class="nc" id="L324">            deleteHead();</span>
+<span class="nc bnc" id="L325" title="All 2 branches missed.">        } else if (current == tail) {</span>
+<span class="nc" id="L326">            deleteTail();</span>
+        } else { // Before: 1 &lt;--&gt; 2(current) &lt;--&gt; 3
+<span class="nc" id="L328">            current.previous.next = current.next; // 1 --&gt; 3</span>
+<span class="nc" id="L329">            current.next.previous = current.previous; // 1 &lt;--&gt; 3</span>
+        }
+<span class="nc" id="L331">        --size;</span>
+<span class="nc" id="L332">    }</span>
+
+    /**
+     * Inserts element and reorders
+     *
+     * @param x Element to be added
+     */
+    public void insertOrdered(int x, DoublyLinkedList doublyLinkedList) {
+<span class="nc" id="L340">        Link newLink = new Link(x);</span>
+<span class="nc" id="L341">        Link current = head;</span>
+<span class="nc bnc" id="L342" title="All 4 branches missed.">        while (current != null &amp;&amp; x &gt; current.value) { // Find the position to insert</span>
+<span class="nc" id="L343">            current = current.next;</span>
+        }
+
+<span class="nc bnc" id="L346" title="All 2 branches missed.">        if (current == head) {</span>
+<span class="nc" id="L347">            insertHead(x, doublyLinkedList);</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">        } else if (current == null) {</span>
+<span class="nc" id="L349">            insertTail(x, doublyLinkedList);</span>
+        } else { // Before: 1 &lt;--&gt; 2(current) &lt;--&gt; 3
+<span class="nc" id="L351">            newLink.previous = current.previous; // 1 &lt;-- newLink</span>
+<span class="nc" id="L352">            current.previous.next = newLink; // 1 &lt;--&gt; newLink</span>
+<span class="nc" id="L353">            newLink.next = current; // 1 &lt;--&gt; newLink --&gt; 2(current) &lt;--&gt; 3</span>
+<span class="nc" id="L354">            current.previous = newLink; // 1 &lt;--&gt; newLink &lt;--&gt; 2(current) &lt;--&gt; 3</span>
+        }
+<span class="nc" id="L356">        ++size;</span>
+<span class="nc" id="L357">    }</span>
+
+    /**
+     * Deletes the passed node from the current list
+     *
+     * @param z Element to be deleted
+     */
+    public void deleteNode(Link z) {
+<span class="nc bnc" id="L365" title="All 2 branches missed.">        if (z.next == null) {</span>
+<span class="nc" id="L366">            deleteTail();</span>
+<span class="nc bnc" id="L367" title="All 2 branches missed.">        } else if (z == head) {</span>
+<span class="nc" id="L368">            deleteHead();</span>
+        } else { // before &lt;-- 1 &lt;--&gt; 2(z) &lt;--&gt; 3 --&gt;
+<span class="nc" id="L370">            z.previous.next = z.next; // 1 --&gt; 3</span>
+<span class="nc" id="L371">            z.next.previous = z.previous; // 1 &lt;--&gt; 3</span>
+        }
+<span class="nc" id="L373">        --size;</span>
+<span class="nc" id="L374">    }</span>
+
+    public void removeDuplicates(DoublyLinkedList l) {
+<span class="nc" id="L377">        Link linkOne = l.head;</span>
+<span class="nc bnc" id="L378" title="All 2 branches missed.">        while (linkOne.next != null) { // list is present</span>
+<span class="nc" id="L379">            Link linkTwo = linkOne.next; // second link for comparison</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            while (linkTwo.next != null) {</span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">                if (linkOne.value == linkTwo.value) { // if there are duplicates values then</span>
+<span class="nc" id="L382">                    delete(linkTwo.value); // delete the link</span>
+                }
+<span class="nc" id="L384">                linkTwo = linkTwo.next; // go to next link</span>
+            }
+<span class="nc" id="L386">            linkOne = linkOne.next; // go to link link to iterate the whole list again</span>
+<span class="nc" id="L387">        }</span>
+<span class="nc" id="L388">    }</span>
+
+    /**
+     * Reverses the list in place
+     */
+    public void reverse() {
+        // Keep references to the head and tail
+<span class="nc" id="L395">        Link thisHead = this.head;</span>
+<span class="nc" id="L396">        Link thisTail = this.tail;</span>
+
+        // Flip the head and tail references
+<span class="nc" id="L399">        this.head = thisTail;</span>
+<span class="nc" id="L400">        this.tail = thisHead;</span>
+
+        // While the link we're visiting is not null, flip the
+        // next and previous links
+<span class="nc" id="L404">        Link nextLink = thisHead;</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">        while (nextLink != null) {</span>
+<span class="nc" id="L406">            Link nextLinkNext = nextLink.next;</span>
+<span class="nc" id="L407">            Link nextLinkPrevious = nextLink.previous;</span>
+<span class="nc" id="L408">            nextLink.next = nextLinkPrevious;</span>
+<span class="nc" id="L409">            nextLink.previous = nextLinkNext;</span>
+
+            // Now, we want to go to the next link
+<span class="nc" id="L412">            nextLink = nextLinkNext;</span>
+<span class="nc" id="L413">        }</span>
+<span class="nc" id="L414">    }</span>
+
+    /**
+     * Clears List
+     */
+    public void clearList() {
+<span class="nc" id="L420">        head = null;</span>
+<span class="nc" id="L421">        tail = null;</span>
+<span class="nc" id="L422">        size = 0;</span>
+<span class="nc" id="L423">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

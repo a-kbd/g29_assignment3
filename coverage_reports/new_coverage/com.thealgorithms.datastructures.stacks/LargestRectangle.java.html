@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LargestRectangle.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.stacks</a> &gt; <span class="el_source">LargestRectangle.java</span></div><h1>LargestRectangle.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.stacks;
+
+import java.util.Stack;
+
+/**
+ *
+ * @author mohd rameez github.com/rameez471
+ */
+
+<span class="nc bnc" id="L10" title="All 2 branches missed.">public class LargestRectangle {</span>
+
+    public static String largestRectanglehistogram(int[] heights) {
+<span class="nc" id="L13">        int n = heights.length, maxArea = 0;</span>
+<span class="nc" id="L14">        Stack&lt;int[]&gt; st = new Stack&lt;&gt;();</span>
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L16">            int start = i;</span>
+<span class="nc bnc" id="L17" title="All 4 branches missed.">            while (!st.isEmpty() &amp;&amp; st.peek()[1] &gt; heights[i]) {</span>
+<span class="nc" id="L18">                int[] tmp = st.pop();</span>
+<span class="nc" id="L19">                maxArea = Math.max(maxArea, tmp[1] * (i - tmp[0]));</span>
+<span class="nc" id="L20">                start = tmp[0];</span>
+<span class="nc" id="L21">            }</span>
+<span class="nc" id="L22">            st.push(new int[] { start, heights[i] });</span>
+        }
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        while (!st.isEmpty()) {</span>
+<span class="nc" id="L25">            int[] tmp = st.pop();</span>
+<span class="nc" id="L26">            maxArea = Math.max(maxArea, tmp[1] * (n - tmp[0]));</span>
+<span class="nc" id="L27">        }</span>
+<span class="nc" id="L28">        return Integer.toString(maxArea);</span>
+    }
+
+    public static void main(String[] args) {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        assert largestRectanglehistogram(new int[] { 2, 1, 5, 6, 2, 3 })</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            .equals(&quot;10&quot;);</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">        assert largestRectanglehistogram(new int[] { 2, 4 }).equals(&quot;4&quot;);</span>
+<span class="nc" id="L35">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

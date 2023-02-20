@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CombSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.sorts</a> &gt; <span class="el_source">CombSort.java</span></div><h1>CombSort.java</h1><pre class="source lang-java linenums">package com.thealgorithms.sorts;
+
+import static com.thealgorithms.sorts.SortUtils.*;
+
+/**
+ * Comb Sort algorithm implementation
+ *
+ * &lt;p&gt;
+ * Best-case performance O(n * log(n)) Worst-case performance O(n ^ 2)
+ * Worst-case space complexity O(1)
+ *
+ * &lt;p&gt;
+ * Comb sort improves on bubble sort.
+ *
+ * @author Sandeep Roy (https://github.com/sandeeproy99)
+ * @author Podshivalov Nikita (https://github.com/nikitap492)
+ * @see BubbleSort
+ * @see SortAlgorithm
+ */
+<span class="fc" id="L20">class CombSort implements SortAlgorithm {</span>
+
+    // To find gap between elements
+    private int nextGap(int gap) {
+        // Shrink gap by Shrink factor
+<span class="fc" id="L25">        gap = (gap * 10) / 13;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        return (gap &lt; 1) ? 1 : gap;</span>
+    }
+
+    /**
+     * Function to sort arr[] using Comb
+     *
+     * @param arr - an array should be sorted
+     * @return sorted array
+     */
+    @Override
+    public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] arr) {
+<span class="fc" id="L37">        int size = arr.length;</span>
+
+        // initialize gap
+<span class="fc" id="L40">        int gap = size;</span>
+
+        // Initialize swapped as true to make sure that loop runs
+<span class="fc" id="L43">        boolean swapped = true;</span>
+
+        // Keep running while gap is more than 1 and last iteration caused a swap
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        while (gap != 1 || swapped) {</span>
+            // Find next gap
+<span class="fc" id="L48">            gap = nextGap(gap);</span>
+
+            // Initialize swapped as false so that we can check if swap happened or not
+<span class="fc" id="L51">            swapped = false;</span>
+
+            // Compare all elements with current gap
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            for (int i = 0; i &lt; size - gap; i++) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">                if (less(arr[i + gap], arr[i])) {</span>
+                    // Swap arr[i] and arr[i+gap]
+<span class="fc" id="L57">                    swapped = swap(arr, i, i + gap);</span>
+                }
+            }
+        }
+<span class="fc" id="L61">        return arr;</span>
+    }
+
+    // Driver method
+    public static void main(String[] args) {
+<span class="nc" id="L66">        CombSort ob = new CombSort();</span>
+<span class="nc" id="L67">        Integer[] arr = {</span>
+<span class="nc" id="L68">            8,</span>
+<span class="nc" id="L69">            4,</span>
+<span class="nc" id="L70">            1,</span>
+<span class="nc" id="L71">            56,</span>
+<span class="nc" id="L72">            3,</span>
+<span class="nc" id="L73">            -44,</span>
+<span class="nc" id="L74">            -1,</span>
+<span class="nc" id="L75">            0,</span>
+<span class="nc" id="L76">            36,</span>
+<span class="nc" id="L77">            34,</span>
+<span class="nc" id="L78">            8,</span>
+<span class="nc" id="L79">            12,</span>
+<span class="nc" id="L80">            -66,</span>
+<span class="nc" id="L81">            -78,</span>
+<span class="nc" id="L82">            23,</span>
+<span class="nc" id="L83">            -6,</span>
+<span class="nc" id="L84">            28,</span>
+<span class="nc" id="L85">            0,</span>
+        };
+<span class="nc" id="L87">        ob.sort(arr);</span>
+
+<span class="nc" id="L89">        System.out.println(&quot;sorted array&quot;);</span>
+<span class="nc" id="L90">        print(arr);</span>
+<span class="nc" id="L91">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenericHashMapUsingArray.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.hashmap.hashing</a> &gt; <span class="el_source">GenericHashMapUsingArray.java</span></div><h1>GenericHashMapUsingArray.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.hashmap.hashing;
+
+import java.util.LinkedList;
+
+// implementation of generic hashmaps using array of Linked Lists
+
+public class GenericHashMapUsingArray&lt;K, V&gt; {
+
+    private int size; // n (total number of key-value pairs)
+    private LinkedList&lt;Node&gt;[] buckets; // N = buckets.length
+<span class="fc" id="L11">    private float lf = 0.75f;</span>
+
+<span class="fc" id="L13">    public GenericHashMapUsingArray() {</span>
+<span class="fc" id="L14">        initBuckets(16);</span>
+<span class="fc" id="L15">        size = 0;</span>
+<span class="fc" id="L16">    }</span>
+
+    // load factor = 0.75 means if we need to add 100 items and we have added
+    // 75, then adding 76th item it will double the size, copy all elements
+    // &amp; then add 76th item.
+
+    private void initBuckets(int N) {
+<span class="fc" id="L23">        buckets = new LinkedList[N];</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        for (int i = 0; i &lt; buckets.length; i++) {</span>
+<span class="fc" id="L25">            buckets[i] = new LinkedList&lt;&gt;();</span>
+        }
+<span class="fc" id="L27">    }</span>
+
+    public void put(K key, V value) {
+<span class="fc" id="L30">        int bucketIndex = hashFunction(key);</span>
+<span class="fc" id="L31">        LinkedList&lt;Node&gt; nodes = buckets[bucketIndex];</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        for (Node node : nodes) { // if key present =&gt; update</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (node.key.equals(key)) {</span>
+<span class="nc" id="L34">                node.value = value;</span>
+<span class="nc" id="L35">                return;</span>
+            }
+<span class="nc" id="L37">        }</span>
+
+        // key is not present =&gt; insert
+<span class="fc" id="L40">        nodes.add(new Node(key, value));</span>
+<span class="fc" id="L41">        size++;</span>
+
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if ((float) size / buckets.length &gt; lf) {</span>
+<span class="nc" id="L44">            reHash();</span>
+        }
+<span class="fc" id="L46">    }</span>
+
+    // tells which bucket to go to
+    private int hashFunction(K key) {
+<span class="fc" id="L50">        int hc = key.hashCode();</span>
+<span class="fc" id="L51">        return Math.abs(hc) % buckets.length;</span>
+    }
+
+    private void reHash() {
+<span class="nc" id="L55">        System.out.println(&quot;Rehashing!&quot;);</span>
+<span class="nc" id="L56">        LinkedList&lt;Node&gt;[] old = buckets;</span>
+<span class="nc" id="L57">        initBuckets(old.length * 2);</span>
+<span class="nc" id="L58">        this.size = 0;</span>
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        for (LinkedList&lt;Node&gt; nodes : old) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (Node node : nodes) {</span>
+<span class="nc" id="L62">                put(node.key, node.value);</span>
+<span class="nc" id="L63">            }</span>
+        }
+<span class="nc" id="L65">    }</span>
+
+    public void remove(K key) {
+<span class="fc" id="L68">        int bucketIndex = hashFunction(key);</span>
+<span class="fc" id="L69">        LinkedList&lt;Node&gt; nodes = buckets[bucketIndex];</span>
+
+<span class="fc" id="L71">        Node target = null;</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        for (Node node : nodes) {</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">            if (node.key.equals(key)) {</span>
+<span class="fc" id="L74">                target = node;</span>
+<span class="fc" id="L75">                break;</span>
+            }
+<span class="nc" id="L77">        }</span>
+<span class="fc" id="L78">        nodes.remove(target);</span>
+<span class="fc" id="L79">        size--;</span>
+<span class="fc" id="L80">    }</span>
+
+    public int size() {
+<span class="fc" id="L83">        return this.size;</span>
+    }
+
+    public V get(K key) {
+<span class="fc" id="L87">        int bucketIndex = hashFunction(key);</span>
+<span class="fc" id="L88">        LinkedList&lt;Node&gt; nodes = buckets[bucketIndex];</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (Node node : nodes) {</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">            if (node.key.equals(key)) {</span>
+<span class="fc" id="L91">                return node.value;</span>
+            }
+<span class="nc" id="L93">        }</span>
+<span class="fc" id="L94">        return null;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L99">        StringBuilder builder = new StringBuilder();</span>
+
+<span class="nc" id="L101">        builder.append(&quot;{&quot;);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        for (LinkedList&lt;Node&gt; nodes : buckets) {</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            for (Node node : nodes) {</span>
+<span class="nc" id="L104">                builder.append(node.key);</span>
+<span class="nc" id="L105">                builder.append(&quot; : &quot;);</span>
+<span class="nc" id="L106">                builder.append(node.value);</span>
+<span class="nc" id="L107">                builder.append(&quot;, &quot;);</span>
+<span class="nc" id="L108">            }</span>
+        }
+<span class="nc" id="L110">        builder.append(&quot;}&quot;);</span>
+<span class="nc" id="L111">        return builder.toString();</span>
+    }
+
+    public boolean containsKey(K key) {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        return get(key) != null;</span>
+    }
+
+    public class Node {
+
+        K key;
+        V value;
+
+<span class="fc" id="L123">        public Node(K key, V value) {</span>
+<span class="fc" id="L124">            this.key = key;</span>
+<span class="fc" id="L125">            this.value = value;</span>
+<span class="fc" id="L126">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

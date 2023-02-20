@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DynamicArray.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.dynamicarray</a> &gt; <span class="el_source">DynamicArray.java</span></div><h1>DynamicArray.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.dynamicarray;
+
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+/**
+ * This class implements a dynamic array
+ *
+ * @param &lt;E&gt; the type that each index of the array will hold
+ */
+public class DynamicArray&lt;E&gt; implements Iterable&lt;E&gt; {
+
+    private static final int DEFAULT_CAPACITY = 16;
+
+    private int capacity;
+    private int size;
+    private Object[] elements;
+
+    /**
+     * constructor
+     *
+     * @param capacity the starting length of the desired array
+     */
+<span class="nc" id="L26">    public DynamicArray(final int capacity) {</span>
+<span class="nc" id="L27">        this.size = 0;</span>
+<span class="nc" id="L28">        this.capacity = capacity;</span>
+<span class="nc" id="L29">        this.elements = new Object[this.capacity];</span>
+<span class="nc" id="L30">    }</span>
+
+    /**
+     * No-args constructor
+     */
+    public DynamicArray() {
+<span class="nc" id="L36">        this(DEFAULT_CAPACITY);</span>
+<span class="nc" id="L37">    }</span>
+
+    /**
+     * Adds an element to the array If full, creates a copy array twice the size
+     * of the current one
+     *
+     * @param element the element of type &lt;E&gt; to be added to the array
+     */
+    public void add(final E element) {
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (this.size == this.elements.length) {</span>
+<span class="nc" id="L47">            this.elements =</span>
+<span class="nc" id="L48">                Arrays.copyOf(this.elements, newCapacity(2 * this.capacity));</span>
+        }
+
+<span class="nc" id="L51">        this.elements[this.size] = element;</span>
+<span class="nc" id="L52">        size++;</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Places element of type &lt;E&gt; at the desired index
+     *
+     * @param index the index for the element to be placed
+     * @param element the element to be inserted
+     */
+    public void put(final int index, E element) {
+<span class="nc" id="L62">        this.elements[index] = element;</span>
+<span class="nc" id="L63">    }</span>
+
+    /**
+     * get method for element at a given index returns null if the index is
+     * empty
+     *
+     * @param index the desired index of the element
+     * @return &lt;E&gt; the element at the specified index
+     */
+    public E get(final int index) {
+<span class="nc" id="L73">        return getElement(index);</span>
+    }
+
+    /**
+     * Removes an element from the array
+     *
+     * @param index the index of the element to be removed
+     * @return &lt;E&gt; the element removed
+     */
+    public E remove(final int index) {
+<span class="nc" id="L83">        final E oldElement = getElement(index);</span>
+<span class="nc" id="L84">        fastRemove(this.elements, index);</span>
+
+<span class="nc bnc" id="L86" title="All 4 branches missed.">        if (this.capacity &gt; DEFAULT_CAPACITY &amp;&amp; size * 4 &lt;= this.capacity) {</span>
+<span class="nc" id="L87">            this.elements =</span>
+<span class="nc" id="L88">                Arrays.copyOf(this.elements, newCapacity(this.capacity / 2));</span>
+        }
+<span class="nc" id="L90">        return oldElement;</span>
+    }
+
+    /**
+     * get method for size field
+     *
+     * @return int size
+     */
+    public int getSize() {
+<span class="nc" id="L99">        return this.size;</span>
+    }
+
+    /**
+     * isEmpty helper method
+     *
+     * @return boolean true if the array contains no elements, false otherwise
+     */
+    public boolean isEmpty() {
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        return this.size == 0;</span>
+    }
+
+    public Stream&lt;E&gt; stream() {
+<span class="nc" id="L112">        return StreamSupport.stream(spliterator(), false);</span>
+    }
+
+    private void fastRemove(final Object[] elements, final int index) {
+<span class="nc" id="L116">        final int newSize = this.size - 1;</span>
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        if (newSize &gt; index) {</span>
+<span class="nc" id="L119">            System.arraycopy(</span>
+                elements,
+                index + 1,
+                elements,
+                index,
+                newSize - index
+            );
+        }
+
+<span class="nc" id="L128">        elements[this.size = newSize] = null;</span>
+<span class="nc" id="L129">    }</span>
+
+    private E getElement(final int index) {
+<span class="nc" id="L132">        return (E) this.elements[index];</span>
+    }
+
+    private int newCapacity(int capacity) {
+<span class="nc" id="L136">        this.capacity = capacity;</span>
+<span class="nc" id="L137">        return this.capacity;</span>
+    }
+
+    /**
+     * returns a String representation of this object
+     *
+     * @return String a String representing the array
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L147">        return Arrays.toString(</span>
+<span class="nc" id="L148">            Arrays.stream(this.elements).filter(Objects::nonNull).toArray()</span>
+        );
+    }
+
+    /**
+     * Creates and returns a new Dynamic Array Iterator
+     *
+     * @return Iterator a Dynamic Array Iterator
+     */
+    @Override
+    public Iterator iterator() {
+<span class="nc" id="L159">        return new DynamicArrayIterator();</span>
+    }
+
+<span class="nc" id="L162">    private class DynamicArrayIterator implements Iterator&lt;E&gt; {</span>
+
+        private int cursor;
+
+        @Override
+        public boolean hasNext() {
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            return this.cursor != size;</span>
+        }
+
+        @Override
+        public E next() {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (this.cursor &gt; DynamicArray.this.size) {</span>
+<span class="nc" id="L174">                throw new NoSuchElementException();</span>
+            }
+
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (this.cursor &gt; DynamicArray.this.elements.length) {</span>
+<span class="nc" id="L178">                throw new ConcurrentModificationException();</span>
+            }
+
+<span class="nc" id="L181">            final E element = DynamicArray.this.getElement(this.cursor);</span>
+<span class="nc" id="L182">            this.cursor++;</span>
+
+<span class="nc" id="L184">            return element;</span>
+        }
+
+        @Override
+        public void remove() {
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (this.cursor &lt; 0) {</span>
+<span class="nc" id="L190">                throw new IllegalStateException();</span>
+            }
+
+<span class="nc" id="L193">            DynamicArray.this.remove(this.cursor);</span>
+<span class="nc" id="L194">            this.cursor--;</span>
+<span class="nc" id="L195">        }</span>
+
+        @Override
+        public void forEachRemaining(Consumer&lt;? super E&gt; action) {
+<span class="nc" id="L199">            Objects.requireNonNull(action);</span>
+
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            for (int i = 0; i &lt; DynamicArray.this.size; i++) {</span>
+<span class="nc" id="L202">                action.accept(DynamicArray.this.getElement(i));</span>
+            }
+<span class="nc" id="L204">        }</span>
+    }
+
+    /**
+     * This class is the driver for the DynamicArray&lt;E&gt; class it tests a variety
+     * of methods and prints the output
+     */
+    public static void main(String[] args) {
+<span class="nc" id="L212">        DynamicArray&lt;String&gt; names = new DynamicArray&lt;&gt;();</span>
+<span class="nc" id="L213">        names.add(&quot;Peubes&quot;);</span>
+<span class="nc" id="L214">        names.add(&quot;Marley&quot;);</span>
+
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        for (String name : names) {</span>
+<span class="nc" id="L217">            System.out.println(name);</span>
+<span class="nc" id="L218">        }</span>
+
+<span class="nc" id="L220">        names.stream().forEach(System.out::println);</span>
+
+<span class="nc" id="L222">        System.out.println(names);</span>
+
+<span class="nc" id="L224">        System.out.println(names.getSize());</span>
+
+<span class="nc" id="L226">        names.remove(0);</span>
+
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        for (String name : names) {</span>
+<span class="nc" id="L229">            System.out.println(name);</span>
+<span class="nc" id="L230">        }</span>
+<span class="nc" id="L231">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

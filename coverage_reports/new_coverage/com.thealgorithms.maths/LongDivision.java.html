@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LongDivision.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.maths</a> &gt; <span class="el_source">LongDivision.java</span></div><h1>LongDivision.java</h1><pre class="source lang-java linenums">//        Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+//
+//        The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, 
+//        and -2.7335 would be truncated to -2.
+//        My method used Long Division, here is the source &quot;https://en.wikipedia.org/wiki/Long_division&quot;
+
+package com.thealgorithms.maths;
+
+<span class="nc" id="L9">public class LongDivision {</span>
+public static int divide(int dividend, int divisor) {
+
+<span class="nc" id="L12">        long new_dividend_1 = dividend;</span>
+<span class="nc" id="L13">        long new_divisor_1 = divisor;</span>
+
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (divisor == 0){</span>
+<span class="nc" id="L16">            return 0;</span>
+        }
+
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (dividend &lt; 0) {                        </span>
+<span class="nc" id="L20">            new_dividend_1 = new_dividend_1 * -1;</span>
+        }
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (divisor &lt; 0) {                                </span>
+<span class="nc" id="L24">            new_divisor_1 = new_divisor_1 * -1;</span>
+        }
+
+<span class="nc bnc" id="L27" title="All 4 branches missed.">        if (dividend == 0 || new_dividend_1 &lt; new_divisor_1) {  </span>
+<span class="nc" id="L28">            return 0;                                           </span>
+        }
+
+<span class="nc" id="L31">        StringBuilder answer = new StringBuilder();</span>
+
+<span class="nc" id="L33">        String dividend_string = &quot;&quot; + new_dividend_1;</span>
+<span class="nc" id="L34">        int last_index = 0;</span>
+
+<span class="nc" id="L36">        String remainder = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        for (int i = 0; i &lt; dividend_string.length(); i++) {                               </span>
+<span class="nc" id="L39">            String part_v1 = remainder + &quot;&quot; + dividend_string.substring(last_index, i + 1);</span>
+<span class="nc" id="L40">            long part_1 = Long.parseLong(part_v1);</span>
+
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (part_1 &gt; new_divisor_1) {                                                  </span>
+<span class="nc" id="L43">                int quotient = 0;</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                while (part_1 &gt;= new_divisor_1) {                                        </span>
+<span class="nc" id="L46">                    part_1 = part_1 - new_divisor_1;</span>
+<span class="nc" id="L47">                    quotient++;</span>
+                }
+<span class="nc" id="L49">                answer.append(quotient);</span>
+<span class="nc" id="L50">            }</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            else if (part_1 == new_divisor_1) {                                         </span>
+<span class="nc" id="L53">                int quotient = 0;</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                while (part_1 &gt;= new_divisor_1) {                                        </span>
+<span class="nc" id="L56">                    part_1 = part_1 - new_divisor_1;</span>
+<span class="nc" id="L57">                    quotient++;</span>
+                }
+<span class="nc" id="L59">                answer.append(quotient);</span>
+<span class="nc" id="L60">            } </span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            else if (part_1 == 0) {                                                  </span>
+<span class="nc" id="L63">                answer.append(0);</span>
+            } 
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            else if (part_1 &lt; new_divisor_1) {                                         </span>
+<span class="nc" id="L67">                answer.append(0);</span>
+            }
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (!(part_1 == 0)) {                                                         </span>
+<span class="nc" id="L71">                remainder = String.valueOf(part_1);</span>
+            }
+
+            else{                                                                   
+<span class="nc" id="L75">                remainder = &quot;&quot;;</span>
+            }
+
+<span class="nc" id="L78">            last_index++;</span>
+        }
+
+<span class="nc bnc" id="L81" title="All 8 branches missed.">        if ((dividend &lt; 0 &amp;&amp; divisor &gt; 0) || (dividend &gt; 0 &amp;&amp; divisor &lt; 0)) {    </span>
+            try {                                                                      
+<span class="nc" id="L83">                return Integer.parseInt(answer.toString()) * (-1);                          </span>
+            } 
+<span class="nc" id="L85">            catch (NumberFormatException e) {                                       </span>
+<span class="nc" id="L86">                return -2147483648;                                                         </span>
+            }
+        }
+        try {                                                                       
+<span class="nc" id="L90">            return Integer.parseInt(answer.toString());                                   </span>
+        } 
+<span class="nc" id="L92">        catch (NumberFormatException e) {                                       </span>
+<span class="nc" id="L93">            return 2147483647;                                                             </span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

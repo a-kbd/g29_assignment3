@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RSA.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.ciphers</a> &gt; <span class="el_source">RSA.java</span></div><h1>RSA.java</h1><pre class="source lang-java linenums">package com.thealgorithms.ciphers;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+/**
+ * @author Nguyen Duy Tiep on 23-Oct-17.
+ */
+public class RSA {
+
+    private BigInteger modulus;
+    private BigInteger privateKey;
+    private BigInteger publicKey;
+
+<span class="fc" id="L15">    public RSA(int bits) {</span>
+<span class="fc" id="L16">        generateKeys(bits);</span>
+<span class="fc" id="L17">    }</span>
+
+    /**
+     * @return encrypted message
+     */
+    public synchronized String encrypt(String message) {
+<span class="fc" id="L23">        return (new BigInteger(message.getBytes())).modPow(publicKey, modulus)</span>
+<span class="fc" id="L24">            .toString();</span>
+    }
+
+    /**
+     * @return encrypted message as big integer
+     */
+    public synchronized BigInteger encrypt(BigInteger message) {
+<span class="nc" id="L31">        return message.modPow(publicKey, modulus);</span>
+    }
+
+    /**
+     * @return plain message
+     */
+    public synchronized String decrypt(String encryptedMessage) {
+<span class="fc" id="L38">        return new String(</span>
+<span class="fc" id="L39">            (new BigInteger(encryptedMessage)).modPow(privateKey, modulus)</span>
+<span class="fc" id="L40">                .toByteArray()</span>
+        );
+    }
+
+    /**
+     * @return plain message as big integer
+     */
+    public synchronized BigInteger decrypt(BigInteger encryptedMessage) {
+<span class="nc" id="L48">        return encryptedMessage.modPow(privateKey, modulus);</span>
+    }
+
+    /**
+     * Generate a new public and private key set.
+     */
+    public synchronized void generateKeys(int bits) {
+<span class="fc" id="L55">        SecureRandom r = new SecureRandom();</span>
+<span class="fc" id="L56">        BigInteger p = new BigInteger(bits / 2, 100, r);</span>
+<span class="fc" id="L57">        BigInteger q = new BigInteger(bits / 2, 100, r);</span>
+<span class="fc" id="L58">        modulus = p.multiply(q);</span>
+
+<span class="fc" id="L60">        BigInteger m =</span>
+<span class="fc" id="L61">            (p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE));</span>
+
+<span class="fc" id="L63">        publicKey = BigInteger.valueOf(3L);</span>
+
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        while (m.gcd(publicKey).intValue() &gt; 1) {</span>
+<span class="nc" id="L66">            publicKey = publicKey.add(BigInteger.TWO);</span>
+        }
+
+<span class="fc" id="L69">        privateKey = publicKey.modInverse(m);</span>
+<span class="fc" id="L70">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

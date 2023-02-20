@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ADTFraction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.maths</a> &gt; <span class="el_source">ADTFraction.java</span></div><h1>ADTFraction.java</h1><pre class="source lang-java linenums">package com.thealgorithms.maths;
+
+<span class="nc" id="L3">public record ADTFraction(int numerator, int denominator) {</span>
+    /**
+     * Initializes a newly created {@code ADTFraction} object so that it represents
+     * a fraction with the {@code numerator} and {@code denominator} provided as arguments.
+     *
+     * @param numerator   The fraction numerator
+     * @param denominator The fraction denominator
+     */
+<span class="nc" id="L11">    public ADTFraction {</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (denominator == 0) {</span>
+<span class="nc" id="L13">            throw new IllegalArgumentException(&quot;Denominator cannot be 0&quot;);</span>
+        }
+<span class="nc" id="L15">    }</span>
+
+    /**
+     * Add two fractions.
+     *
+     * @param fraction the {@code ADTFraction} to add
+     * @return A new {@code ADTFraction} containing the result of the operation
+     */
+    public ADTFraction plus(ADTFraction fraction) {
+<span class="nc" id="L24">        var numerator =</span>
+            this.denominator *
+            fraction.numerator +
+            this.numerator *
+            fraction.denominator;
+<span class="nc" id="L29">        var denominator = this.denominator * fraction.denominator;</span>
+<span class="nc" id="L30">        return new ADTFraction(numerator, denominator);</span>
+    }
+
+    /**
+     * Multiply fraction by a number.
+     *
+     * @param number the number to multiply
+     * @return A new {@code ADTFraction} containing the result of the operation
+     */
+    public ADTFraction times(int number) {
+<span class="nc" id="L40">        return times(new ADTFraction(number, 1));</span>
+    }
+
+    /**
+     * Multiply two fractions.
+     *
+     * @param fraction the {@code ADTFraction} to multiply
+     * @return A new {@code ADTFraction} containing the result of the operation
+     */
+    public ADTFraction times(ADTFraction fraction) {
+<span class="nc" id="L50">        var numerator = this.numerator * fraction.numerator;</span>
+<span class="nc" id="L51">        var denominator = this.denominator * fraction.denominator;</span>
+<span class="nc" id="L52">        return new ADTFraction(numerator, denominator);</span>
+    }
+
+    /**
+     * Generates the reciprocal of the fraction.
+     *
+     * @return A new {@code ADTFraction} with the {@code numerator} and {@code denominator} switched
+     */
+    public ADTFraction reciprocal() {
+<span class="nc" id="L61">        return new ADTFraction(this.denominator, this.numerator);</span>
+    }
+
+    /**
+     * Calculates the result of the fraction.
+     *
+     * @return The numerical result of the division between {@code numerator} and {@code denominator}
+     */
+    public float value() {
+<span class="nc" id="L70">        return (float) this.numerator / this.denominator;</span>
+    }
+
+    /**
+     * Returns a string representation of this {@code ADTFraction} in the format
+     * {@code numerator}/{@code denominator}.
+     *
+     * @return A string representation of this {@code ADTFraction}
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L81">        return String.format(&quot;%d/%d&quot;, this.numerator, this.denominator);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

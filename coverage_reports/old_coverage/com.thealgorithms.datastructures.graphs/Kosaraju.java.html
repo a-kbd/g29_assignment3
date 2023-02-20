@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Kosaraju.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.graphs</a> &gt; <span class="el_source">Kosaraju.java</span></div><h1>Kosaraju.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.graphs;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+/**
+ * Java program that implements Kosaraju Algorithm.
+ * @author Shivanagouda S A (https://github.com/shivu2002a)
+ * 
+ */
+
+/**
+ * Kosaraju algorithm is a linear time algorithm to find the strongly connected components of a 
+   directed graph, which, from here onwards will be referred by SCC. It leverages the fact that the transpose
+   graph (same graph with all the edges reversed) has exactly the same SCCs as the original graph.
+    
+ * A graph is said to be strongly connected if every vertex is reachable from every other vertex. 
+   The SCCs of a directed graph form a partition into subgraphs that are themselves strongly connected.
+   Single node is always a SCC.
+
+ * Example:
+
+    0 &lt;--- 2 -------&gt; 3 -------- &gt; 4 ---- &gt; 7
+    |     ^                      | ^       ^
+    |    /                       |  \     /
+    |   /                        |   \   /
+    v  /                         v    \ /
+    1                            5 --&gt; 6 
+
+    For the above graph, the SCC list goes as follows:
+    0, 1, 2 
+    3
+    4, 5, 6
+    7
+    
+    We can also see that order of the nodes in an SCC doesn't matter since they are in cycle.
+
+ {@summary}
+ * Kosaraju Algorithm: 
+    1. Perform DFS traversal of the graph. Push node to stack before returning. This gives edges sorted by lowest finish time.
+    2. Find the transpose graph by reversing the edges.
+    3. Pop nodes one by one from the stack and again to DFS on the modified graph.
+
+    The transpose graph of the above graph:
+     0 ---&gt; 2 &lt;------- 3 &lt;------- 4 &lt;------ 7
+    ^     /                      ^ \       /
+    |    /                       |  \     /
+    |   /                        |   \   /
+    |  v                         |    v v
+    1                            5 &lt;--- 6 
+
+    We can observe that this graph has the same SCC as that of original graph.
+
+ */
+
+<span class="nc" id="L57">public class Kosaraju {</span>
+
+    // Sort edges according to lowest finish time
+<span class="nc" id="L60">    Stack&lt;Integer&gt; stack = new Stack&lt;Integer&gt;();</span>
+
+    //Store each component
+<span class="nc" id="L63">    private List&lt;Integer&gt; scc = new ArrayList&lt;&gt;();</span>
+
+    //All the strongly connected components
+<span class="nc" id="L66">    private List&lt;List&lt;Integer&gt;&gt; sccsList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * 
+     * @param v Node count
+     * @param list Adjacency list of graph
+     * @return List of SCCs
+     */
+    public List&lt;List&lt;Integer&gt;&gt; kosaraju(int v, List&lt;List&lt;Integer&gt;&gt; list){
+        
+<span class="nc" id="L76">        sortEdgesByLowestFinishTime(v, list);</span>
+        
+<span class="nc" id="L78">        List&lt;List&lt;Integer&gt;&gt; transposeGraph = createTransposeMatrix(v, list);</span>
+
+<span class="nc" id="L80">        findStronglyConnectedComponents(v, transposeGraph);</span>
+        
+<span class="nc" id="L82">        return sccsList;</span>
+    }
+
+    private void sortEdgesByLowestFinishTime(int v, List&lt;List&lt;Integer&gt;&gt; list){
+<span class="nc" id="L86">        int vis[] = new int[v];</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (int i = 0; i &lt; v; i++) {</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if(vis[i] == 0){</span>
+<span class="nc" id="L89">                dfs(i, vis, list);</span>
+            }
+        }
+<span class="nc" id="L92">    }</span>
+
+    private List&lt;List&lt;Integer&gt;&gt; createTransposeMatrix(int v, List&lt;List&lt;Integer&gt;&gt; list) {
+<span class="nc" id="L95">        var transposeGraph = new ArrayList&lt;List&lt;Integer&gt;&gt;(v);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        for (int i = 0; i &lt; v; i++) {</span>
+<span class="nc" id="L97">            transposeGraph.add(new ArrayList&lt;&gt;());</span>
+        }
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        for (int i = 0; i &lt; v; i++) {</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            for (Integer neigh : list.get(i)) {</span>
+<span class="nc" id="L101">                transposeGraph.get(neigh).add(i);</span>
+<span class="nc" id="L102">            }</span>
+        }
+<span class="nc" id="L104">        return transposeGraph;</span>
+    }
+
+    /**
+     * 
+     * @param v Node count
+     * @param transposeGraph Transpose of the given adjacency list
+     */
+    public void findStronglyConnectedComponents(int v, List&lt;List&lt;Integer&gt;&gt; transposeGraph){
+<span class="nc" id="L113">        int vis[] = new int[v];</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        while (!stack.isEmpty()) {</span>
+<span class="nc" id="L115">            var node = stack.pop();</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if(vis[node] == 0){</span>
+<span class="nc" id="L117">                dfs2(node, vis, transposeGraph);</span>
+<span class="nc" id="L118">                sccsList.add(scc);</span>
+<span class="nc" id="L119">                scc = new ArrayList&lt;&gt;();</span>
+            }
+<span class="nc" id="L121">        }</span>
+<span class="nc" id="L122">    }</span>
+
+    //Dfs to store the nodes in order of lowest finish time
+    private void dfs(int node, int vis[], List&lt;List&lt;Integer&gt;&gt; list){
+<span class="nc" id="L126">        vis[node] = 1;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        for(Integer neighbour : list.get(node)){</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if(vis[neighbour] == 0)</span>
+<span class="nc" id="L129">                dfs(neighbour, vis, list);</span>
+<span class="nc" id="L130">        }</span>
+<span class="nc" id="L131">        stack.push(node);</span>
+<span class="nc" id="L132">    }</span>
+
+    //Dfs to find all the nodes of each strongly connected component
+    private void dfs2(int node, int vis[], List&lt;List&lt;Integer&gt;&gt; list){
+<span class="nc" id="L136">        vis[node] = 1;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        for(Integer neighbour : list.get(node)){</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if(vis[neighbour] == 0)</span>
+<span class="nc" id="L139">                dfs2(neighbour, vis, list);</span>
+<span class="nc" id="L140">        }</span>
+<span class="nc" id="L141">        scc.add(node);</span>
+<span class="nc" id="L142">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DualPivotQuickSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.sorts</a> &gt; <span class="el_source">DualPivotQuickSort.java</span></div><h1>DualPivotQuickSort.java</h1><pre class="source lang-java linenums">package com.thealgorithms.sorts;
+
+/**
+ * Dual Pivot Quick Sort Algorithm
+ * 
+ * @author Debasish Biswas (https://github.com/debasishbsws) *
+ * @see SortAlgorithm
+ */
+<span class="nc" id="L9">public class DualPivotQuickSort implements SortAlgorithm {</span>
+
+    /**
+     * This method implements the Dual pivot Quick Sort
+     *
+     * @param array The array to be sorted Sorts the array in increasing order
+     */
+    @Override
+    public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] array) {
+<span class="nc" id="L18">        dualPivotQuicksort(array, 0, array.length - 1);</span>
+<span class="nc" id="L19">        return array;</span>
+    }
+
+    /**
+     * The sorting process
+     *
+     * @param left  The first index of an array
+     * @param right The last index of an array
+     * @param array The array to be sorted
+     */
+    private static &lt;T extends Comparable&lt;T&gt;&gt; void dualPivotQuicksort(T[] array, int left, int right) {
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (left &lt; right) {</span>
+<span class="nc" id="L31">            int[] pivots = partition(array, left, right);</span>
+
+<span class="nc" id="L33">            dualPivotQuicksort(array, left, pivots[0] - 1);</span>
+<span class="nc" id="L34">            dualPivotQuicksort(array, pivots[0] + 1, pivots[1] - 1);</span>
+<span class="nc" id="L35">            dualPivotQuicksort(array, pivots[1] + 1, right);</span>
+        }
+<span class="nc" id="L37">    }</span>
+
+    /**
+     * This method finds the partition indices for an array
+     *
+     * @param array The array to be sorted
+     * @param left  The first index of an array
+     * @param right The last index of an array Finds the partition index of an array
+     */
+    private static &lt;T extends Comparable&lt;T&gt;&gt; int[] partition(T[] array, int left, int right) {
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (array[left].compareTo(array[right]) &gt; 0)</span>
+<span class="nc" id="L48">            swap(array, left, right);</span>
+
+<span class="nc" id="L50">        T pivot1 = array[left];</span>
+<span class="nc" id="L51">        T pivot2 = array[right];</span>
+
+<span class="nc" id="L53">        int j = left + 1;</span>
+<span class="nc" id="L54">        int less = left + 1;</span>
+<span class="nc" id="L55">        int great = right - 1;</span>
+
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        while (less &lt;= great) {</span>
+            // If element is less than pivot1
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (array[less].compareTo(pivot1) &lt; 0) {</span>
+<span class="nc" id="L60">                swap(array, less, left++);</span>
+            }
+
+            // If element is greater or equal to pivot2
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            else if (array[less].compareTo(pivot2) &gt;= 0) {</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">                while (less &lt; great &amp;&amp; array[great].compareTo(pivot2) &gt; 0)</span>
+<span class="nc" id="L66">                    great--;</span>
+
+<span class="nc" id="L68">                swap(array, less, great--);</span>
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                if (array[less].compareTo(pivot1) &lt; 0)</span>
+<span class="nc" id="L71">                    swap(array, less, left++);</span>
+
+            }
+
+<span class="nc" id="L75">            less++;</span>
+        }
+<span class="nc" id="L77">        j--;</span>
+<span class="nc" id="L78">        great++;</span>
+        // Bring the pivots to their appropriate positions
+<span class="nc" id="L80">        swap(array, left, j);</span>
+<span class="nc" id="L81">        swap(array, right, great);</span>
+
+        // return the pivots' indices
+<span class="nc" id="L84">        return new int[] { less, great };</span>
+    }
+
+    private static &lt;T extends Comparable&lt;T&gt;&gt; void swap(T[] array, int left, int right) {
+<span class="nc" id="L88">        T temp = array[left];</span>
+<span class="nc" id="L89">        array[left] = array[right];</span>
+<span class="nc" id="L90">        array[right] = temp;</span>
+<span class="nc" id="L91">    }</span>
+
+    /**
+     * Main method
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+<span class="nc" id="L99">        Integer array[] = { 24, 8, -42, 75, -29, -77, 38, 57 };</span>
+<span class="nc" id="L100">        DualPivotQuickSort dualPivotQuickSort = new DualPivotQuickSort();</span>
+<span class="nc" id="L101">        dualPivotQuickSort.sort(array);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="nc" id="L103">            System.out.print(array[i] + &quot; &quot;);</span>
+        }
+<span class="nc" id="L105">    }</span>
+
+    /*
+     * References: https://www.geeksforgeeks.org/dual-pivot-quicksort/
+     */
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

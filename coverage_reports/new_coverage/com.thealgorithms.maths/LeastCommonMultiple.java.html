@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LeastCommonMultiple.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.maths</a> &gt; <span class="el_source">LeastCommonMultiple.java</span></div><h1>LeastCommonMultiple.java</h1><pre class="source lang-java linenums">package com.thealgorithms.maths;
+
+import java.util.*;
+
+/**
+ * Is a common mathematics concept to find the smallest value number
+ * that can be divide using either number without having the remainder.
+ * https://maticschool.blogspot.com/2013/11/find-least-common-multiple-lcm.html
+ * @author LauKinHoong
+ */
+
+<span class="nc" id="L12">public class LeastCommonMultiple {</span>
+
+    /**
+     * Driver Code
+     */
+    public static void main(String[] args) {
+<span class="nc" id="L18">        Scanner input = new Scanner(System.in);</span>
+<span class="nc" id="L19">        System.out.println(&quot;Please enter first number &gt;&gt; &quot;);</span>
+<span class="nc" id="L20">        int num1 = input.nextInt();</span>
+<span class="nc" id="L21">        System.out.println(&quot;Please enter second number &gt;&gt; &quot;);</span>
+<span class="nc" id="L22">        int num2 = input.nextInt();</span>
+<span class="nc" id="L23">        System.out.println(</span>
+<span class="nc" id="L24">            &quot;The least common multiple of two numbers is &gt;&gt; &quot; + lcm(num1, num2)</span>
+        );
+<span class="nc" id="L26">    }</span>
+
+    /*
+     * get least common multiple from two number
+     */
+    public static int lcm(int num1, int num2) {
+        int high, num3;
+<span class="nc" id="L33">        int cmv = 0;</span>
+        /*
+         * value selection for the numerator
+         */
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (num1 &gt; num2) {</span>
+<span class="nc" id="L38">            high = num3 = num1;</span>
+        } else {
+<span class="nc" id="L40">            high = num3 = num2;</span>
+        }
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        while (num1 != 0) {</span>
+<span class="nc bnc" id="L44" title="All 4 branches missed.">            if (high % num1 == 0 &amp;&amp; high % num2 == 0) {</span>
+<span class="nc" id="L45">                cmv = high;</span>
+<span class="nc" id="L46">                break;</span>
+            }
+<span class="nc" id="L48">            high += num3;</span>
+        }
+<span class="nc" id="L50">        return cmv;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

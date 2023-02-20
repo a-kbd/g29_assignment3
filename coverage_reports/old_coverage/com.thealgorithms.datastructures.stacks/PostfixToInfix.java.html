@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PostfixToInfix.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.stacks</a> &gt; <span class="el_source">PostfixToInfix.java</span></div><h1>PostfixToInfix.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.stacks;
+
+import java.util.Stack;
+
+/**
+ * Postfix to Infix implementation via Stack
+ *
+ * Function: String getPostfixToInfix(String postfix)
+ * Returns the Infix Expression for the given postfix parameter.
+ *
+ * Avoid using parentheses/brackets/braces for the postfix string.
+ * Postfix Expressions don't require these.
+ *
+ *
+ * @author nikslyon19 (Nikhil Bisht)
+ *
+ */
+
+<span class="nc bnc" id="L19" title="All 2 branches missed.">public class PostfixToInfix {</span>
+
+    public static boolean isOperator(char token) {
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        switch (token) {</span>
+            case '+':
+            case '-':
+            case '/':
+            case '*':
+            case '^':
+<span class="nc" id="L28">                return true;</span>
+        }
+
+<span class="nc" id="L31">        return false;</span>
+    }
+
+    public static boolean isValidPostfixExpression(String postfix) {
+        /* Postfix expression length should NOT be less than 3 */
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (postfix.length() &lt; 3) return false;</span>
+
+        /* First two characters should NOT be operators */
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (isOperator(postfix.charAt(0))) return false;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (isOperator(postfix.charAt(1))) return false;</span>
+
+<span class="nc" id="L42">        int operandCount = 0;</span>
+<span class="nc" id="L43">        int operatorCount = 0;</span>
+
+        /* Traverse the postfix string to check if --&gt; Number of operands = Number of operators + 1 */
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        for (int i = 0; i &lt; postfix.length(); i++) {</span>
+<span class="nc" id="L47">            char token = postfix.charAt(i);</span>
+
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (isOperator(token)) {</span>
+<span class="nc" id="L50">                operatorCount++;</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (operatorCount &gt;= operandCount) return false;</span>
+            } else {
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                if (operatorCount == 0) {</span>
+<span class="nc" id="L54">                    operandCount++;</span>
+<span class="nc" id="L55">                    continue;</span>
+                }
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                if (operandCount != operatorCount + 1) return false;</span>
+
+                /* Operand count is set to 2 because:-
+                 *
+                 * 1) the previous set of operands &amp; operators combined have become a single valid expression,
+                 * which could be considered/assigned as a single operand.
+                 *
+                 * 2) the operand in the current iteration.
+                 */
+<span class="nc" id="L67">                operandCount = 2;</span>
+
+                /* Reset operator count */
+<span class="nc" id="L70">                operatorCount = 0;</span>
+            }
+        }
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        return (operandCount == operatorCount + 1);</span>
+    }
+
+    public static String getPostfixToInfix(String postfix) {
+<span class="nc" id="L78">        String infix = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (postfix.isEmpty()) return infix;</span>
+
+        /* Validate Postfix expression before proceeding with the Infix conversion */
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (!isValidPostfixExpression(postfix)) {</span>
+<span class="nc" id="L84">            throw new IllegalArgumentException(&quot;Invalid Postfix Expression&quot;);</span>
+        }
+
+<span class="nc" id="L87">        Stack&lt;String&gt; stack = new Stack&lt;&gt;();</span>
+<span class="nc" id="L88">        StringBuilder valueString = new StringBuilder();</span>
+
+        String operandA, operandB;
+        char operator;
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        for (int index = 0; index &lt; postfix.length(); index++) {</span>
+<span class="nc" id="L94">            char token = postfix.charAt(index);</span>
+
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            if (!isOperator(token)) {</span>
+<span class="nc" id="L97">                stack.push(Character.toString(token));</span>
+<span class="nc" id="L98">                continue;</span>
+            }
+
+<span class="nc" id="L101">            operator = token;</span>
+<span class="nc" id="L102">            operandB = stack.pop();</span>
+<span class="nc" id="L103">            operandA = stack.pop();</span>
+
+<span class="nc" id="L105">            valueString.append('(');</span>
+
+<span class="nc" id="L107">            valueString.append(operandA);</span>
+<span class="nc" id="L108">            valueString.append(operator);</span>
+<span class="nc" id="L109">            valueString.append(operandB);</span>
+
+<span class="nc" id="L111">            valueString.append(')');</span>
+
+<span class="nc" id="L113">            stack.push(valueString.toString());</span>
+<span class="nc" id="L114">            valueString.setLength(0);</span>
+        }
+
+<span class="nc" id="L117">        infix = stack.pop();</span>
+<span class="nc" id="L118">        return infix;</span>
+    }
+
+    public static void main(String args[]) {
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        assert getPostfixToInfix(&quot;ABC+/&quot;).equals(&quot;(A/(B+C))&quot;);</span>
+<span class="nc bnc" id="L123" title="All 4 branches missed.">        assert getPostfixToInfix(&quot;AB+CD+*&quot;).equals(&quot;((A+B)*(C+D))&quot;);</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">        assert getPostfixToInfix(&quot;AB+C+D+&quot;).equals(&quot;(((A+B)+C)+D)&quot;);</span>
+<span class="nc bnc" id="L125" title="All 4 branches missed.">        assert getPostfixToInfix(&quot;ABCDE^*/-&quot;).equals(&quot;(A-(B/(C*(D^E))))&quot;);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        assert getPostfixToInfix(&quot;AB+CD^/E*FGH+-^&quot;)</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            .equals(&quot;((((A+B)/(C^D))*E)^(F-(G+H)))&quot;);</span>
+<span class="nc" id="L128">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

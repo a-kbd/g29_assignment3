@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FloydWarshall.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.datastructures.graphs</a> &gt; <span class="el_source">FloydWarshall.java</span></div><h1>FloydWarshall.java</h1><pre class="source lang-java linenums">package com.thealgorithms.datastructures.graphs;
+
+import java.util.Scanner;
+
+public class FloydWarshall {
+
+    private int DistanceMatrix[][];
+    private int numberofvertices; // number of vertices in the graph
+    public static final int INFINITY = 999;
+
+<span class="nc" id="L11">    public FloydWarshall(int numberofvertices) {</span>
+<span class="nc" id="L12">        DistanceMatrix = new int[numberofvertices + 1][numberofvertices + 1]; // stores the value of distance from all the possible path form the source</span>
+        // vertex to destination vertex
+        // The matrix is initialized with 0's by default
+<span class="nc" id="L15">        this.numberofvertices = numberofvertices;</span>
+<span class="nc" id="L16">    }</span>
+
+    public void floydwarshall(int AdjacencyMatrix[][]) { // calculates all the distances from source to destination vertex
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (int source = 1; source &lt;= numberofvertices; source++) {</span>
+            for (
+<span class="nc" id="L21">                int destination = 1;</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">                destination &lt;= numberofvertices;</span>
+<span class="nc" id="L23">                destination++</span>
+            ) {
+<span class="nc" id="L25">                DistanceMatrix[source][destination] =</span>
+                    AdjacencyMatrix[source][destination];
+            }
+        }
+        for (
+<span class="nc" id="L30">            int intermediate = 1;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            intermediate &lt;= numberofvertices;</span>
+<span class="nc" id="L32">            intermediate++</span>
+        ) {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            for (int source = 1; source &lt;= numberofvertices; source++) {</span>
+                for (
+<span class="nc" id="L36">                    int destination = 1;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">                    destination &lt;= numberofvertices;</span>
+<span class="nc" id="L38">                    destination++</span>
+                ) {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                    if (</span>
+                        DistanceMatrix[source][intermediate] +
+                        DistanceMatrix[intermediate][destination] &lt;
+                        DistanceMatrix[source][destination]
+                    ) { // calculated distance it get replaced as new shortest distance // if the new distance calculated is less then the earlier shortest
+<span class="nc" id="L45">                        DistanceMatrix[source][destination] =</span>
+                            DistanceMatrix[source][intermediate] +
+                            DistanceMatrix[intermediate][destination];
+                    }
+                }
+            }
+        }
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (int source = 1; source &lt;= numberofvertices; source++) {</span>
+<span class="nc" id="L53">            System.out.print(&quot;\t&quot; + source);</span>
+        }
+<span class="nc" id="L55">        System.out.println();</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        for (int source = 1; source &lt;= numberofvertices; source++) {</span>
+<span class="nc" id="L57">            System.out.print(source + &quot;\t&quot;);</span>
+            for (
+<span class="nc" id="L59">                int destination = 1;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                destination &lt;= numberofvertices;</span>
+<span class="nc" id="L61">                destination++</span>
+            ) {
+<span class="nc" id="L63">                System.out.print(DistanceMatrix[source][destination] + &quot;\t&quot;);</span>
+            }
+<span class="nc" id="L65">            System.out.println();</span>
+        }
+<span class="nc" id="L67">    }</span>
+
+    public static void main(String... arg) {
+<span class="nc" id="L70">        Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L71">        System.out.println(&quot;Enter the number of vertices&quot;);</span>
+<span class="nc" id="L72">        int numberOfVertices = scan.nextInt();</span>
+<span class="nc" id="L73">        int[][] adjacencyMatrix = new int[numberOfVertices +</span>
+        1][numberOfVertices + 1];
+<span class="nc" id="L75">        System.out.println(&quot;Enter the Weighted Matrix for the graph&quot;);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (int source = 1; source &lt;= numberOfVertices; source++) {</span>
+            for (
+<span class="nc" id="L78">                int destination = 1;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                destination &lt;= numberOfVertices;</span>
+<span class="nc" id="L80">                destination++</span>
+            ) {
+<span class="nc" id="L82">                adjacencyMatrix[source][destination] = scan.nextInt();</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">                if (source == destination) {</span>
+<span class="nc" id="L84">                    adjacencyMatrix[source][destination] = 0;</span>
+<span class="nc" id="L85">                    continue;</span>
+                }
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                if (adjacencyMatrix[source][destination] == 0) {</span>
+<span class="nc" id="L88">                    adjacencyMatrix[source][destination] = INFINITY;</span>
+                }
+            }
+        }
+<span class="nc" id="L92">        System.out.println(&quot;The Transitive Closure of the Graph&quot;);</span>
+<span class="nc" id="L93">        FloydWarshall floydwarshall = new FloydWarshall(numberOfVertices);</span>
+<span class="nc" id="L94">        floydwarshall.floydwarshall(adjacencyMatrix);</span>
+<span class="nc" id="L95">        scan.close();</span>
+<span class="nc" id="L96">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

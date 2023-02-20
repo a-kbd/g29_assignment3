@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HeapSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.sorts</a> &gt; <span class="el_source">HeapSort.java</span></div><h1>HeapSort.java</h1><pre class="source lang-java linenums">package com.thealgorithms.sorts;
+
+/**
+ * Heap Sort Algorithm Implementation
+ *
+ * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Heapsort&quot;&gt;Heap Sort Algorithm&lt;/a&gt;
+ */
+<span class="nc" id="L8">public class HeapSort implements SortAlgorithm {</span>
+
+    /**
+     * For simplicity, we are considering the heap root index as 1 instead of 0.
+     * It simplifies future calculations. Because of that we are decreasing the
+     * provided indexes by 1 in {@link #swap(Object[], int, int)} and
+     * {@link #less(Comparable[], int, int)} functions.
+     */
+    @Override
+    public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] unsorted) {
+<span class="nc" id="L18">        int n = unsorted.length;</span>
+<span class="nc" id="L19">        heapify(unsorted, n);</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        while (n &gt; 1) {</span>
+<span class="nc" id="L21">            swap(unsorted, 1, n--);</span>
+<span class="nc" id="L22">            siftDown(unsorted, 1, n);</span>
+        }
+<span class="nc" id="L24">        return unsorted;</span>
+    }
+
+    private static &lt;T extends Comparable&lt;T&gt;&gt; void heapify(T[] unsorted, int n) {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (int k = n / 2; k &gt;= 1; k--) {</span>
+<span class="nc" id="L29">            siftDown(unsorted, k, n);</span>
+        }
+<span class="nc" id="L31">    }</span>
+
+    private static &lt;T extends Comparable&lt;T&gt;&gt; void siftDown(T[] unsorted, int k, int n) {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        while (2 * k &lt;= n) {</span>
+<span class="nc" id="L35">            int j = 2 * k;</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (j &lt; n &amp;&amp; less(unsorted, j, j + 1)) {</span>
+<span class="nc" id="L37">                j++;</span>
+            }
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (!less(unsorted, k, j)) {</span>
+<span class="nc" id="L40">                break;</span>
+            }
+<span class="nc" id="L42">            swap(unsorted, k, j);</span>
+<span class="nc" id="L43">            k = j;</span>
+<span class="nc" id="L44">        }</span>
+<span class="nc" id="L45">    }</span>
+
+    private static &lt;T&gt; void swap(T[] array, int idx, int idy) {
+<span class="nc" id="L48">        T swap = array[idx - 1];</span>
+<span class="nc" id="L49">        array[idx - 1] = array[idy - 1];</span>
+<span class="nc" id="L50">        array[idy - 1] = swap;</span>
+<span class="nc" id="L51">    }</span>
+
+    private static &lt;T extends Comparable&lt;T&gt;&gt; boolean less(T[] array, int idx, int idy) {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        return array[idx - 1].compareTo(array[idy - 1]) &lt; 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RabinKarpAlgorithm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.searches</a> &gt; <span class="el_source">RabinKarpAlgorithm.java</span></div><h1>RabinKarpAlgorithm.java</h1><pre class="source lang-java linenums">package com.thealgorithms.searches;
+
+// Following program is a Java implementation
+// of Rabin Karp Algorithm given in the CLRS book
+
+<span class="fc" id="L6">public class RabinKarpAlgorithm {</span>
+
+    // d is the number of characters in the input alphabet
+    public static final int d = 256;
+
+    /* pat -&gt; pattern
+        txt -&gt; text
+        q -&gt; A prime number
+    */
+    public int search(String pat, String txt, int q) {
+<span class="fc" id="L16">        int index = -1; //note: -1 here represent not found, it is not an index</span>
+<span class="fc" id="L17">        int M = pat.length();</span>
+<span class="fc" id="L18">        int N = txt.length();</span>
+        int i, j;
+<span class="fc" id="L20">        int p = 0; // hash value for pattern</span>
+<span class="fc" id="L21">        int t = 0; // hash value for txt</span>
+<span class="fc" id="L22">        int h = 1;</span>
+
+        // The value of h would be &quot;pow(d, M-1)%q&quot;
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (i = 0; i &lt; M - 1; i++) h = (h * d) % q;</span>
+
+        // Calculate the hash value of pattern and first
+        // window of text
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (i = 0; i &lt; M; i++) {</span>
+<span class="fc" id="L30">            p = (d * p + pat.charAt(i)) % q;</span>
+<span class="fc" id="L31">            t = (d * t + txt.charAt(i)) % q;</span>
+        }
+
+        // Slide the pattern over text one by one
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (i = 0; i &lt;= N - M; i++) {</span>
+            // Check the hash values of current window of text
+            // and pattern. If the hash values match then only
+            // check for characters one by one
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (p == t) {</span>
+                /* Check for characters one by one */
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                for (j = 0; j &lt; M; j++) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                    if (txt.charAt(i + j) != pat.charAt(j)) break;</span>
+                }
+
+                // if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                if (j == M) {</span>
+<span class="fc" id="L47">                    System.out.println(&quot;Pattern found at index &quot; + i);</span>
+<span class="fc" id="L48">                    index = i;</span>
+<span class="fc" id="L49">                    return index;</span>
+                }
+            }
+
+            // Calculate hash value for next window of text: Remove
+            // leading digit, add trailing digit
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (i &lt; N - M) {</span>
+<span class="fc" id="L56">                t = (d * (t - txt.charAt(i) * h) + txt.charAt(i + M)) % q;</span>
+
+                // We might get negative value of t, converting it
+                // to positive
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">                if (t &lt; 0) t = (t + q);</span>
+            }
+        }
+<span class="fc" id="L63">        return index; // return -1 if pattern does not found</span>
+    }
+}
+// This code is contributed by nuclode
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

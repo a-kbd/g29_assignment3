@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MemoryManagementAlgorithms.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.others</a> &gt; <span class="el_source">MemoryManagementAlgorithms.java</span></div><h1>MemoryManagementAlgorithms.java</h1><pre class="source lang-java linenums">package com.thealgorithms.others;
+
+/**
+ * @author Alexandros Lemonaris
+ */
+
+import java.util.ArrayList;
+
+<span class="fc" id="L9">public abstract class MemoryManagementAlgorithms {</span>
+
+    /**
+     * Method to allocate memory to blocks according to CPU algorithms.
+     * Use of inheritance to avoid repeated code.
+     * Abstract method since it is implemented different for each algorithm.
+     * It should return an ArrayList of Integers, where the index is the process
+     * ID (zero-indexed) and the value is the block number (also zero-indexed).
+     * @param sizeOfBlocks an int array that contains the sizes of the memory
+     * blocks available.
+     * @param sizeOfProcesses: an int array that contains the sizes of the
+     * processes we need memory blocks for.
+     * @return the ArrayList filled with Integers repressenting the memory
+     * allocation that took place.
+     */
+    public abstract ArrayList&lt;Integer&gt; fitProcess(
+        int[] sizeOfBlocks,
+        int[] sizeOfProcesses
+    );
+}
+
+/**
+ * @author Dekas Dimitrios
+ */
+<span class="fc" id="L33">class BestFitCPU extends MemoryManagementAlgorithms {</span>
+
+    private static final int NO_ALLOCATION = -255; // if a process has been allocated in position -255,
+
+    // it means that it has not been actually allocated.
+
+    /**
+     * Method to find the maximum valued element of an array filled with
+     * positive integers.
+     *
+     * @param array: an array filled with positive integers.
+     * @return the maximum valued element of the array.
+     */
+    private static int findMaxElement(int[] array) {
+<span class="fc" id="L47">        int max = -1;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (int value : array) {</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if (value &gt; max) {</span>
+<span class="fc" id="L50">                max = value;</span>
+            }
+        }
+<span class="fc" id="L53">        return max;</span>
+    }
+
+    /**
+     * Method to find the index of the memory block that is going to fit the
+     * given process based on the best fit algorithm.
+     *
+     * @param blocks: the array with the available memory blocks.
+     * @param process: the size of the process.
+     * @return the index of the block that fits, or -255 if no such block
+     * exists.
+     */
+    private static int findBestFit(int[] blockSizes, int processSize) {
+        // Initialize minDiff with an unreachable value by a difference between a blockSize and the
+        // processSize.
+<span class="fc" id="L68">        int minDiff = findMaxElement(blockSizes);</span>
+<span class="fc" id="L69">        int index = NO_ALLOCATION; // If there is no block that can fit the process, return NO_ALLOCATION as the</span>
+        // result.
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for (int i = 0; i &lt; blockSizes.length; i++) { // Find the most fitting memory block for the given process.</span>
+<span class="fc bfc" id="L72" title="All 4 branches covered.">            if (</span>
+                blockSizes[i] - processSize &lt; minDiff &amp;&amp;
+                blockSizes[i] - processSize &gt;= 0
+            ) {
+<span class="fc" id="L76">                minDiff = blockSizes[i] - processSize;</span>
+<span class="fc" id="L77">                index = i;</span>
+            }
+        }
+<span class="fc" id="L80">        return index;</span>
+    }
+
+    /**
+     * Method to allocate memory to blocks according to the best fit algorithm.
+     * It should return an ArrayList of Integers, where the index is the process
+     * ID (zero-indexed) and the value is the block number (also zero-indexed).
+     *
+     * @param sizeOfBlocks: an int array that contains the sizes of the memory
+     * blocks available.
+     * @param sizeOfProcesses: an int array that contains the sizes of the
+     * processes we need memory blocks for.
+     * @return the ArrayList filled with Integers repressenting the memory
+     * allocation that took place.
+     */
+    public ArrayList&lt;Integer&gt; fitProcess(
+        int[] sizeOfBlocks,
+        int[] sizeOfProcesses
+    ) {
+        // The array list responsible for saving the memory allocations done by the best-fit algorithm
+<span class="fc" id="L100">        ArrayList&lt;Integer&gt; memAlloc = new ArrayList&lt;&gt;();</span>
+        // Do this for every process
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (int processSize : sizeOfProcesses) {</span>
+<span class="fc" id="L103">            int chosenBlockIdx = findBestFit(sizeOfBlocks, processSize); // Find the index of the memory block going to be used</span>
+<span class="fc" id="L104">            memAlloc.add(chosenBlockIdx); // Store the chosen block index in the memAlloc array list</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            if (chosenBlockIdx != NO_ALLOCATION) { // Only if a block was chosen to store the process in it,</span>
+<span class="fc" id="L106">                sizeOfBlocks[chosenBlockIdx] -= processSize; // resize the block based on the process size</span>
+            }
+        }
+<span class="fc" id="L109">        return memAlloc;</span>
+    }
+}
+
+/**
+ * @author Dekas Dimitrios
+ */
+<span class="nc" id="L116">class WorstFitCPU extends MemoryManagementAlgorithms {</span>
+
+    private static final int NO_ALLOCATION = -255; // if a process has been allocated in position -255,
+
+    // it means that it has not been actually allocated.
+
+    /**
+     * Method to find the index of the memory block that is going to fit the
+     * given process based on the worst fit algorithm.
+     *
+     * @param blocks: the array with the available memory blocks.
+     * @param process: the size of the process.
+     * @return the index of the block that fits, or -255 if no such block
+     * exists.
+     */
+    private static int findWorstFit(int[] blockSizes, int processSize) {
+<span class="nc" id="L132">        int max = -1;</span>
+<span class="nc" id="L133">        int index = -1;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        for (int i = 0; i &lt; blockSizes.length; i++) { // Find the index of the biggest memory block available.</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (blockSizes[i] &gt; max) {</span>
+<span class="nc" id="L136">                max = blockSizes[i];</span>
+<span class="nc" id="L137">                index = i;</span>
+            }
+        }
+        // If the biggest memory block cannot fit the process, return -255 as the result
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (processSize &gt; blockSizes[index]) {</span>
+<span class="nc" id="L142">            return NO_ALLOCATION;</span>
+        }
+<span class="nc" id="L144">        return index;</span>
+    }
+
+    /**
+     * Method to allocate memory to blocks according to the worst fit algorithm.
+     * It should return an ArrayList of Integers, where the index is the process
+     * ID (zero-indexed) and the value is the block number (also zero-indexed).
+     *
+     * @param sizeOfBlocks: an int array that contains the sizes of the memory
+     * blocks available.
+     * @param sizeOfProcesses: an int array that contains the sizes of the
+     * processes we need memory blocks for.
+     * @return the ArrayList filled with Integers repressenting the memory
+     * allocation that took place.
+     */
+    public ArrayList&lt;Integer&gt; fitProcess(
+        int[] sizeOfBlocks,
+        int[] sizeOfProcesses
+    ) {
+        // The array list responsible for saving the memory allocations done by the worst-fit algorithm
+<span class="nc" id="L164">        ArrayList&lt;Integer&gt; memAlloc = new ArrayList&lt;&gt;();</span>
+        // Do this for every process
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        for (int processSize : sizeOfProcesses) {</span>
+<span class="nc" id="L167">            int chosenBlockIdx = findWorstFit(sizeOfBlocks, processSize); // Find the index of the memory block going to be used</span>
+<span class="nc" id="L168">            memAlloc.add(chosenBlockIdx); // Store the chosen block index in the memAlloc array list</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (chosenBlockIdx != NO_ALLOCATION) { // Only if a block was chosen to store the process in it,</span>
+<span class="nc" id="L170">                sizeOfBlocks[chosenBlockIdx] -= processSize; // resize the block based on the process size</span>
+            }
+        }
+<span class="nc" id="L173">        return memAlloc;</span>
+    }
+}
+
+/**
+ * @author Dekas Dimitrios
+ */
+<span class="nc" id="L180">class FirstFitCPU extends MemoryManagementAlgorithms {</span>
+
+    private static final int NO_ALLOCATION = -255; // if a process has been allocated in position -255,
+
+    // it means that it has not been actually allocated.
+
+    /**
+     * Method to find the index of the memory block that is going to fit the
+     * given process based on the first fit algorithm.
+     *
+     * @param blocks: the array with the available memory blocks.
+     * @param process: the size of the process.
+     * @return the index of the block that fits, or -255 if no such block
+     * exists.
+     */
+    private static int findFirstFit(int[] blockSizes, int processSize) {
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        for (int i = 0; i &lt; blockSizes.length; i++) {</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (blockSizes[i] &gt;= processSize) {</span>
+<span class="nc" id="L198">                return i;</span>
+            }
+        }
+        // If there is not a block that can fit the process, return -255 as the result
+<span class="nc" id="L202">        return NO_ALLOCATION;</span>
+    }
+
+    /**
+     * Method to allocate memory to blocks according to the first fit algorithm.
+     * It should return an ArrayList of Integers, where the index is the process
+     * ID (zero-indexed) and the value is the block number (also zero-indexed).
+     *
+     * @param sizeOfBlocks: an int array that contains the sizes of the memory
+     * blocks available.
+     * @param sizeOfProcesses: an int array that contains the sizes of the
+     * processes we need memory blocks for.
+     * @return the ArrayList filled with Integers repressenting the memory
+     * allocation that took place.
+     */
+    public ArrayList&lt;Integer&gt; fitProcess(
+        int[] sizeOfBlocks,
+        int[] sizeOfProcesses
+    ) {
+        // The array list responsible for saving the memory allocations done by the first-fit algorithm
+<span class="nc" id="L222">        ArrayList&lt;Integer&gt; memAlloc = new ArrayList&lt;&gt;();</span>
+        // Do this for every process
+<span class="nc bnc" id="L224" title="All 2 branches missed.">        for (int processSize : sizeOfProcesses) {</span>
+<span class="nc" id="L225">            int chosenBlockIdx = findFirstFit(sizeOfBlocks, processSize); // Find the index of the memory block going to be used</span>
+<span class="nc" id="L226">            memAlloc.add(chosenBlockIdx); // Store the chosen block index in the memAlloc array list</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if (chosenBlockIdx != NO_ALLOCATION) { // Only if a block was chosen to store the process in it,</span>
+<span class="nc" id="L228">                sizeOfBlocks[chosenBlockIdx] -= processSize; // resize the block based on the process size</span>
+            }
+        }
+<span class="nc" id="L231">        return memAlloc;</span>
+    }
+}
+
+/**
+ * @author Alexandros Lemonaris
+ */
+<span class="fc" id="L238">class NextFit extends MemoryManagementAlgorithms {</span>
+
+    private static final int NO_ALLOCATION = -255; // if a process has been allocated in position -255,
+    // it means that it has not been actually allocated.
+<span class="fc" id="L242">    private int counter = 0; // variable that keeps the position of the last registration into the memory</span>
+
+    /**
+     * Method to find the index of the memory block that is going to fit the
+     * given process based on the next fit algorithm. In the case of next fit,
+     * if the search is interrupted in between, the new search is carried out from the last location.
+     *
+     * @param blocks: the array with the available memory blocks.
+     * @param process: the size of the process.
+     * @return the index of the block that fits, or -255 if no such block
+     * exists.
+     */
+    private int findNextFit(int[] blockSizes, int processSize) {
+<span class="fc bfc" id="L255" title="All 2 branches covered.">        for (int i = 0; i &lt; blockSizes.length; i++) {</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">            if (counter + i &gt;= blockSizes.length) {</span>
+<span class="fc" id="L257">                counter = -i; // starts from the start of the array</span>
+            }
+<span class="fc bfc" id="L259" title="All 2 branches covered.">            if (blockSizes[i + counter] &gt;= processSize) {</span>
+<span class="fc" id="L260">                counter += i;</span>
+<span class="fc" id="L261">                return counter;</span>
+            }
+        }
+        // If there is not a block that can fit the process, return -255 as the result
+<span class="fc" id="L265">        counter += blockSizes.length; // counter keeps its last value</span>
+<span class="fc" id="L266">        return NO_ALLOCATION;</span>
+    }
+
+    /**
+     * Method to allocate memory to blocks according to the first fit algorithm.
+     * It should return an ArrayList of Integers, where the index is the process
+     * ID (zero-indexed) and the value is the block number (also zero-indexed).
+     *
+     * @param sizeOfBlocks: an int array that contains the sizes of the memory
+     * blocks available.
+     * @param sizeOfProcesses: an int array that contains the sizes of the
+     * processes we need memory blocks for.
+     * @return the ArrayList filled with Integers repressenting the memory
+     * allocation that took place.
+     */
+    public ArrayList&lt;Integer&gt; fitProcess(
+        int[] sizeOfBlocks,
+        int[] sizeOfProcesses
+    ) {
+        // The array list responsible for saving the memory allocations done by the first-fit algorithm
+<span class="fc" id="L286">        ArrayList&lt;Integer&gt; memAlloc = new ArrayList&lt;&gt;();</span>
+        // Do this for every process
+<span class="fc bfc" id="L288" title="All 2 branches covered.">        for (int processSize : sizeOfProcesses) {</span>
+<span class="fc" id="L289">            int chosenBlockIdx = findNextFit(sizeOfBlocks, processSize); // Find the index of the memory block going to be used</span>
+<span class="fc" id="L290">            memAlloc.add(chosenBlockIdx); // Store the chosen block index in the memAlloc array list</span>
+<span class="fc bfc" id="L291" title="All 2 branches covered.">            if (chosenBlockIdx != NO_ALLOCATION) { // Only if a block was chosen to store the process in it,</span>
+<span class="fc" id="L292">                sizeOfBlocks[chosenBlockIdx] -= processSize; // resize the block based on the process size</span>
+            }
+        }
+<span class="fc" id="L295">        return memAlloc;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

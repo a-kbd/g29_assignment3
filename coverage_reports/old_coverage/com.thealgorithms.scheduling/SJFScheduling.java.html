@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SJFScheduling.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.scheduling</a> &gt; <span class="el_source">SJFScheduling.java</span></div><h1>SJFScheduling.java</h1><pre class="source lang-java linenums">package com.thealgorithms.scheduling;
+
+import com.thealgorithms.devutils.entities.ProcessDetails;
+
+import java.util.ArrayList;
+
+/**
+ * Implementation of Shortest Job First Algorithm: The algorithm allows the waiting process with the minimal burst time to be executed first.
+ * see more here: https://www.guru99.com/shortest-job-first-sjf-scheduling.html
+ */
+
+public class SJFScheduling {
+    protected ArrayList&lt;ProcessDetails&gt; processes;
+    protected ArrayList&lt;String&gt;schedule ;
+
+    /**
+     * a simple constructor
+     * @param processes a list of processes the user wants to schedule
+     *  it also sorts the processes based on the time of their arrival
+     */
+<span class="nc" id="L21">    SJFScheduling(final ArrayList&lt;ProcessDetails&gt; processes) {</span>
+<span class="nc" id="L22">        this.processes = processes;</span>
+<span class="nc" id="L23">        schedule=new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L24">        sortByArrivalTime();</span>
+<span class="nc" id="L25">    }</span>
+protected void sortByArrivalTime() {
+<span class="nc" id="L27">        int size=processes.size(),i,j;</span>
+        ProcessDetails temp;
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for(i=0;i&lt;size;i++)</span>
+        {
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            for(j=i+1;j&lt;size-1;j++)</span>
+            {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">                if(processes.get(j).getArrivalTime()&gt;processes.get(j+1).getArrivalTime())</span>
+                {
+<span class="nc" id="L35">                    temp=processes.get(j);</span>
+<span class="nc" id="L36">                    processes.set(j,processes.get(j+1));</span>
+<span class="nc" id="L37">                    processes.set(j+1,temp);</span>
+                }
+            }
+        }
+
+<span class="nc" id="L42">}</span>
+
+    /**
+     * this functions returns the order of the executions
+     */
+
+    public void scheduleProcesses() {
+<span class="nc" id="L49">        ArrayList&lt;ProcessDetails&gt; ready=new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L51">        int size = processes.size(),runtime,time=0;</span>
+<span class="nc" id="L52">        int executed=0,j,k=0;</span>
+        ProcessDetails running;
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (size == 0) {</span>
+<span class="nc" id="L56">            return;</span>
+        }
+
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        while(executed&lt;size)</span>
+        {
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            while(k&lt;size &amp;&amp; processes.get(k).getArrivalTime()&lt;=time)//here we find the processes that have arrived.</span>
+            {
+<span class="nc" id="L64">                ready.add(processes.get(k));</span>
+<span class="nc" id="L65">                k++;</span>
+            }
+
+<span class="nc" id="L68">            running=findShortestJob(ready);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(running==null)</span>
+            {
+<span class="nc" id="L71">                  time++;</span>
+            }
+            else {
+<span class="nc" id="L74">                  runtime = running.getBurstTime();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">                  for (j = 0; j &lt; runtime; j++) {</span>
+<span class="nc" id="L76">                      time++;}</span>
+<span class="nc" id="L77">                  schedule.add(running.getProcessId());</span>
+<span class="nc" id="L78">                  ready.remove(running);</span>
+<span class="nc" id="L79">                  executed++;</span>
+                  }
+        }
+
+
+<span class="nc" id="L84">    }</span>
+
+    /**
+     * this function evaluates the shortest job of all the ready processes (based on  a process burst time)
+     * @param ReadyProcesses an array list of ready processes
+     * @return returns the process' with the shortest burst time OR NULL if there are no ready processes
+     */
+    private ProcessDetails findShortestJob(ArrayList&lt;ProcessDetails&gt; ReadyProcesses) {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (ReadyProcesses.isEmpty()){</span>
+<span class="nc" id="L93">            return null;</span>
+        }
+<span class="nc" id="L95">        int i,size = ReadyProcesses.size();</span>
+<span class="nc" id="L96">        int minBurstTime = ReadyProcesses.get(0).getBurstTime(), temp, positionOfShortestJob = 0;</span>
+
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        for (i = 1; i &lt; size; i++) {</span>
+<span class="nc" id="L100">            temp = ReadyProcesses.get(i).getBurstTime();</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (minBurstTime &gt; temp  ) {</span>
+<span class="nc" id="L102">                minBurstTime = temp;</span>
+<span class="nc" id="L103">                positionOfShortestJob = i;</span>
+            }
+        }
+
+<span class="nc" id="L107">        return ReadyProcesses.get(positionOfShortestJob);</span>
+    }
+
+
+
+
+
+    }
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
