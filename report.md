@@ -79,9 +79,9 @@ They are also long. The median LOC is 2 whereas the median for the top eight is 
 
 - **BinaryTree** is a representation of the data structure binary tree where there are nodes containing some data, each with two successor nodes, children, also containing data. The tree structure enables the use of various different algorithms for searching etc. These algorithms are included in the class such as BFS and others in order to add a node at the right place, remove a node etc. Lots of conditional statements (branches) are needed in that case to see whether the node you are at is not a leaf etc and this explains the high CC.
 
-- **ValidParentheses:** Given a string of exclusively brackets, it checks whether the brackets are closed properly in the right order.
+- **ValidParentheses:** Given a string of brackets, it checks whether the brackets are in the right order (opened and closed) and also closed properly with the same bracket type. For this relatively small and primitive function, it has a high CC. This is due the fact that it has 4 switch cases which is relatively high for such a small function.
 
-- **DeleteFixUp:** It ensures for a red-black-tree that the red-black properties are not violated.
+- **DeleteFixUp:** When a node is deleted from a red-black tree, it can potentially cause a violation of the red-black properties, so this function is used to restore these properties. The function takes a node x as input, and it adjusts the colors and structure of the tree in a way that restores the red-black properties. The function continues this process until it reaches the root or until it has fixed all of the violations of the red-black properties. Finally, the colour of x is set to black to ensure that the root remains black. The high CC is because of the many if else statements (2 x 4).
 
 - **RegexMatching:** The function takes in a string and a series of characters that are matched against the string (so called wildcard pattern) and returns whether the pattern matches the string. The function is related to high CC since it contains a recursion containing a lot of conditional statements to see if the string (or substring) fulfills different conditions. LOC is 181.
 
@@ -101,9 +101,9 @@ Lizard does not seem to count exceptions. This was tested by checking a small fi
 
 - **BinaryTree** sometimes explains what happens in different cases but mostly does not, however, the documentation regarding the correct functionality of the program is satisfactory.
 
-- **ValidParentheses:**
+- **ValidParentheses:** It explains the input (string consisting of inputs) and explains the requirements in order to have a valid input (true input).
 
-- **DeleteFixUp:**
+- **DeleteFixUp:** There is no documentation for it.
 
 - **RegexMatching:** The documentation regarding the functionality of the function is rather good. The documentation also contains comments regarding the complexity of the function but lacks examples of input and how it would work. Every method has short documentation of how it works.
 
