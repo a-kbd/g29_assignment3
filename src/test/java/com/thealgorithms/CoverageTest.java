@@ -1,11 +1,8 @@
 package com.thealgorithms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.thealgorithms.datastructures.trees.BinaryTree;
-import com.thealgorithms.strings.MyAtoi;
 import com.thealgorithms.maths.LongDivision;
+import com.thealgorithms.strings.MyAtoi;
 
 public class CoverageTest {
 
@@ -77,8 +74,8 @@ public class CoverageTest {
         
         System.out.println("\n===== MyAtoi coverage test =====\n");
 		    MyAtoi.myAtoi("42");
-			MyAtoi.myAtoi("-42");
-			MyAtoi.myAtoi("4193");
+			MyAtoi.myAtoi("   -42");
+			MyAtoi.myAtoi("4193 with words");
 		    MyAtoi.getCoverage();       
     }
 }
