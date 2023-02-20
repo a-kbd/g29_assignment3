@@ -134,7 +134,9 @@ integrate it with your build environment?
 ### Your own coverage tool
 
 Show a patch (or link to a branch) that shows the instrumented code to
-gather coverage measurements.
+gather coverage measurements. 
+
+The covergae tool implemented by the group can be seen in the [diy-coverage branch](https://github.com/a-kbd/g29_assignment3/tree/diy-coverage).
 
 The patch is probably too long to be copied here, so please add
 the git command that is used to obtain the patch instead:
@@ -154,11 +156,13 @@ its output?
 - **MyAtoi**: No. The manual coverage JaCoCo reports is 59% whereas the manual tool reports roughly 33%.
 
 - **BinaryTree**
-There was no test suite included in the repo for the BinaryTree. However, looking at the comments of the class itself, one could see the documentation and through that deduce the required functionality. E.g. in the test later we are testing assertEquals(remove(9), true) or because the remove function is supposed to return a boolean based on whether the specified node was found and removed from the tree or not.
-
-In CoverageTest.java, separate functions are created to test the function, printing the coverage percentage of the different branches after each run. Branch coverage is increased in each test case 13%→20%→40%. The simple diy test data structure is set up as a field consisting of an array of boolean values in the class being tested, each branch changes its corresponding entry in the array if it was reached and the class being tested then has a method to return the field of the particular object instance of the test.
-
+There was no test suite included in the repo for the BinaryTree. However, looking at the comments of the class itself, one could see the documentation and through that deduce the required functionality. E.g. in the test later we are testing assertEquals(remove(9), true) or because the remove function is supposed to return a boolean based on whether the specified node was found and removed from the tree or not. \
+In CoverageTest.java, separate functions are created to test the function, printing the coverage percentage of the different branches after each run. Branch coverage is increased in each test case 13%→20%→40%. The simple diy test data structure is set up as a field consisting of an array of boolean values in the class being tested, each branch changes its corresponding entry in the array if it was reached and the class being tested then has a method to return the field of the particular object instance of the test. \
 JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly consistent with the 40% reported by our own simple coverage tool.
+
+- **LongDivision** Yes. JaCoco showed a coverage of 71% before the group implemented further tests. The manual tool reported 70% percent for two of the test cases that was previously implemented in the original repository while one reported a coverage of roughly 54%. \
+After implementing new tests, JaCoCo showed a coverage of 88% which is an improvement of around 18%. This is primarily because the previous test cases missed to test some of the conditions implemented in the LongDivision function. One test especially, was added to test the edge case of when the divisor is zero. The original code did not have functionality for handling this case and was therefore added. 
+
 ## Coverage improvement
 
 Show the comments that describe the requirements for the coverage.
