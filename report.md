@@ -28,46 +28,49 @@ for each project, along with reason(s) why you changed to a different one.
 
 - Did you have to install a lot of additional tools to build the software?
 
-  Other than the obvious of having to have a Java runtime installed, we had to install Maven to build the project.
+  >Other than the obvious of having to have a Java runtime installed, we had to install Maven to build the project.
 
 - Were those tools well documented?
 
-  Yes, Maven is well documented, besides building it only needed a simple command that also is built in to many IDEs and text editors.
+  >Yes, Maven is well documented, besides building it only needed a simple command that also is built in to many IDEs and text editors.
 
 - Were other components installed automatically by the build script?
 
-  Dependencies like JUnit and the maven-surefire-plugin were installed automatically, however, only when running the tests as they are not required otherwise. All tests pass.
+  >Dependencies like JUnit and the maven-surefire-plugin were installed automatically, however, only when running the tests as they are not required otherwise. All tests pass.
 
 - Did the build conclude automatically without errors?
 
-  Yes.
+  >Yes.
 
 - How well do examples and tests run on your system(s)?
 
-  They run perfectly.
+  >They run perfectly.
 
 ### **2. Do you plan to continue or choose another project?**
 
-We plan to continue using this project as it builds fine on our systems and it fulfills the requirements.
+>We plan to continue using this project as it builds fine on our systems and it fulfills the requirements.
 
 ## Complexity
 
 ### **1. What are your results for eight complex functions? Did everyone get the same result? Is there something that is unclear? If you have a tool, is its result the same as yours?**
 
-We used Lizard which put the most complex functions as follows.
+>We used Lizard which put the most complex functions as follows.
 
-The functions are MyAtoi, LongDivision, CRCAlgorithm, BinaryTree, BinaryTree, RegexMatching, MaximumMinimumWindow, RedBlackBST, ValidParentheses.
+>The functions are: MyAtoi, LongDivision, CRCAlgorithm, BinaryTree, BinaryTree, RegexMatching, MaximumMinimumWindow, RedBlackBST, ValidParentheses.
 
-#### Manual calculation of the complexity
+### **Manual calculation of the complexity**
 
-- MyAtoi had 32 branches and 8 exit points, based on the formula we have the complexity is 32-8+2=26. This is contrary to what Lizard finds.
-- LongDivision had 17 branches and 5 exit points. Based on the formula, the cyclomatic complecity was manually calculated to be 17-5+2=14. This was not coherent with the data we got from Lizard, which told the CC was  19. 
-- CRCAlgorithm had 21 branches and 5 exit points, based on the formula we have the complexity is 21-5+2=18. This is the same value that Lizard finds.
-- BinaryTree had 30 branches and 17 exit points, based on the formula we have the complexity 30-17+2=15. This is _not_ the same value that Lizard finds.
+- **MyAtoi** had 32 branches and 8 exit points, based on the formula we have the complexity is 32-8+2=26. This is contrary to what Lizard finds.
+
+- **LongDivision** had 17 branches and 5 exit points. Based on the formula, the cyclomatic complecity was manually calculated to be 17-5+2=14. This was not coherent with the data we got from Lizard, which told the CC was  19. 
+
+- **CRCAlgorithm** had 21 branches and 5 exit points, based on the formula we have the complexity is 21-5+2=18. This is the same value that Lizard finds.
+
+- **BinaryTree** had 30 branches and 17 exit points, based on the formula we have the complexity 30-17+2=15. This is _not_ the same value that Lizard finds.
 
 ### **2. Are the functions just complex, or also long?**
 
-They are also long. The median LOC is 2 whereas the median for the top eight is 16.5. Thus they are longer.
+>They are also long. The median LOC is 2 whereas the median for the top eight is 16.5. Thus they are longer.
 
 ### **3. What is the purpose of the functions? Is it related to the high CC?**
 
@@ -89,7 +92,7 @@ They are also long. The median LOC is 2 whereas the median for the top eight is 
 
 ### **4. Are exceptions taken into account in the given measurements?**
 
-Lizard does not seem to count exceptions. This was tested by checking a small file with two functions, one of them throwing one exception. It CC was the same as the one that did not throw an exception.
+> Lizard does not seem to count exceptions. This was tested by checking a small file with two functions, one of them throwing one exception. It CC was the same as the one that did not throw an exception.
 
 ### **5. Is the documentation clear w.r.t. all the possible outcomes?**
 
@@ -111,135 +114,215 @@ Lizard does not seem to count exceptions. This was tested by checking a small fi
 
 ## Refactoring
 
-Plan for refactoring complex code:
+**Plan for refactoring complex code:**
 
-Estimated impact of refactoring (lower CC, but other drawbacks?).
+**Estimated impact of refactoring (lower CC, but other drawbacks?).**
 
-Carried out refactoring (optional, P+):
+**Carried out refactoring (optional, P+):**
 
-git diff ...
+**git diff ...**
 
+> **MyAtoi**
 
-- **BinaryTree** Much of the complexity of BinaryTree is attributed to the fact that it includes code to print the tree in pre- post- and infix order as well as a BFS implementation in the same class. One refactoring idea could be to remove these parts of the class and instead have them in separate classes that only handle functionality regarding printing or searching in a tree, that way the BinaryTree class would only be for the representation of the data structure as well as putting and removing values from it.
+> **CRCAlgorithm**
+
+> **BinaryTree**  
+Much of the complexity of BinaryTree is attributed to the fact that it includes code to print the tree in pre- post- and infix order as well as a BFS implementation in the same class. One refactoring idea could be to remove these parts of the class and instead have them in separate classes that only handle functionality regarding printing or searching in a tree, that way the BinaryTree class would only be for the representation of the data structure as well as putting and removing values from it.
+
+> **LongDivision**\
+The complexity of the divide function in the given code appears to be reasonable and necessary for implementing a long division algorithm. However, there is scope for improving the code's readability and maintainability by splitting it into smaller units.\
+One possible way to reduce complexity and improve the code's structure would be to split the divide function into smaller functions, each performing a specific task within the long division algorithm. For example, one function could be responsible for converting the dividend and divisor to positive numbers if either or both are negative, another function could be responsible for calculating the next quotient digit, and so on. 
+
 
 ## Coverage
 
 ### Tools
 
-Document your experience in using a "new"/different coverage tool.
+**Document your experience in using a "new"/different coverage tool.**
 
-How well was the tool documented? Was it possible/easy/difficult to
-integrate it with your build environment?
+>ANSWER--------------------------------
+
+**How well was the tool documented? Was it possible/easy/difficult to integrate it with your build environment?**
+
+>ANSWER--------------------------------
 
 ### Your own coverage tool
 
-Show a patch (or link to a branch) that shows the instrumented code to
-gather coverage measurements. 
+**Show a patch (or link to a branch) that shows the instrumented code to gather coverage measurements.**
 
-The covergae tool implemented by the group can be seen in the [diy-coverage branch](https://github.com/a-kbd/g29_assignment3/tree/diy-coverage).
+>The covergae tool implemented by the group can be seen in the [diy-coverage branch](https://github.com/a-kbd/g29_assignment3/tree/diy-coverage).
 
-The patch is probably too long to be copied here, so please add
-the git command that is used to obtain the patch instead:
+**The patch is probably too long to be copied here, so please add
+the git command that is used to obtain the patch instead:**
 
-git diff ...
+**git diff ...**
 
-What kinds of constructs does your tool support, and how accurate is
-its output?
+**What kinds of constructs does your tool support, and how accurate is
+its output?**
 
 ### Evaluation
 
-1. How is the quality of your coverage measurement?
-1.1 The quality of our own coverage measurement is not bad, however, there are some constructs in the language that it does not check, e.g. the ternary operator as that does not allow one to write full code blocks for each branch, rather only a single statement that should be returned. This means that you could not put a "if(reached): true" type of statement to see if the ternary operator was reached.
-2. What are the limitations of your own tool?
-2.1 It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code.
-3. Are the results of your tool consistent with existing coverage tools?
-- **MyAtoi**: No. The manual coverage JaCoCo reports is 59% whereas the manual tool reports roughly 33%.
+**How is the quality of your coverage measurement?**\
+The quality of our own coverage measurement is not bad, however, there are some constructs in the language that it does not check, e.g. the ternary operator as that does not allow one to write full code blocks for each branch, rather only a single statement that should be returned. This means that you could not put a "if(reached): true" type of statement to see if the ternary operator was reached.
 
-- **BinaryTree**
+>The quality of the coverage is measured by creating a boolean array with the size of the number of branches in the function. If a branch is taken, the corresponding elemnent in the array is set to true (initially false). The percentage of true vs false is then calculated and used as a coverage percentage. 
+
+**What are the limitations of your own tool?**\
+It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code.
+
+>ANSWER--------------------------------
+
+**Are the results of your tool consistent with existing coverage tools?**
+
+>**MyAtoi**\
+ No. The manual coverage JaCoCo reports is 59% whereas the manual tool reports roughly 33%.
+
+> **CRCAlgorithm**\
+
+> **BinaryTree**\
 There was no test suite included in the repo for the BinaryTree. However, looking at the comments of the class itself, one could see the documentation and through that deduce the required functionality. E.g. in the test later we are testing assertEquals(remove(9), true) or because the remove function is supposed to return a boolean based on whether the specified node was found and removed from the tree or not. \
 In CoverageTest.java, separate functions are created to test the function, printing the coverage percentage of the different branches after each run. Branch coverage is increased in each test case 13%→20%→40%. The simple diy test data structure is set up as a field consisting of an array of boolean values in the class being tested, each branch changes its corresponding entry in the array if it was reached and the class being tested then has a method to return the field of the particular object instance of the test. \
 JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly consistent with the 40% reported by our own simple coverage tool.
 
-- **LongDivision** Yes. JaCoco showed a coverage of 71% before the group implemented further tests. The manual tool reported 70% percent for two of the test cases that was previously implemented in the original repository while one reported a coverage of roughly 54%. \
-After implementing new tests, JaCoCo showed a coverage of 88% which is an improvement of around 18%. This is primarily because the previous test cases missed to test some of the conditions implemented in the LongDivision function. One test especially, was added to test the edge case of when the divisor is zero. The original code did not have functionality for handling this case and was therefore added. 
+>**LongDivision**\
+ Yes. JaCoco showed a coverage of 71% before the group implemented further tests. The manual tool reported 70% percent for two of the test cases that was previously implemented in the original repository while one reported a coverage of roughly 54%.
 
 ## Coverage improvement
 
-Show the comments that describe the requirements for the coverage.
+**Show the comments that describe the requirements for the coverage.**
 
-Report of old coverage: [link]
+**Report of old coverage: [link]**
 
-Report of new coverage: [link]
+**Report of new coverage: [link]**
 
-Test cases added:
+**Test cases added:**
 
 git diff ...
 
 Number of test cases added: two per team member (P) or at least four (P+).
+> **MyAtoi** 
+
+> **BinaryTree**
+
+> **CRCAlgorithm**
+
+>**LongDivision**\
+After implementing new tests, JaCoCo showed a coverage of 88% which is an improvement of around 18%. This is primarily because the previous test cases missed to test some of the conditions implemented in the LongDivision function. One test especially, was added to test the edge case of when the divisor is zero. The original code did not have functionality for handling this case and was therefore added.\
+The test cases that were added were: 
+```java
+  // Requirement: Dividend (negative), divisor (positive), returns correct integer after division
+  // Tests the case where the dividend is less than 0.
+  @Test
+  void testNegativeDividend() {
+      assertEquals(-1, LongDivision.divide(-5,3));
+  }
+
+  // Requirement: Dividend (positive), divisor (positive), returns correct integer after division
+  // Tests the case where the dividend is less than the divisor. The test should return 0 in this case. 
+  @Test
+  void testDividendLessThanDivisor() {
+      assertEquals(0, LongDivision.divide(3,5));
+  }
+
+  // Requirement: Dividend (neither), divisor (positive), returns correct integer after division
+  // Tests the case where the dividend is 0. This should return a 0.
+  @Test
+  void testDividendIsZero() {
+      assertEquals(0, LongDivision.divide(0,5));
+  }
+
+  // Requirement: Dividend (positive), divisor (neither), returns correct integer after division
+  // Tests the case where the divisor is 0. This should return a 0.
+  @Test
+  void testDivisionByZero() {
+      assertEquals(0, LongDivision.divide(5,0));  
+  }
+```
+>Comments were added to the tests that were already implemented to identify the requirements that were tested. The requirements were identified as follows:
+```java
+  // Requirement: Dividend (positive) is  greater than divisor (positive), returns correct integer after division
+  @Test
+  void testOne() {
+      assertEquals(3, LongDivision.divide(10,3));
+  }
+
+  // Requirement: Dividend (positive) is  greater than divisor (negative), returns correct integer after division
+  @Test
+  void testTwo() {
+      assertEquals(-2, LongDivision.divide(7,-3));
+  }
+
+  // Requirement: Dividend (positive) is  greater than divisor (negative), returns correct integer after division (basically the same as the first test)
+  @Test
+  void testThree() {
+      assertEquals(10, LongDivision.divide(105,10));
+  }
+
+```
 
 ## Self-assessment: Way of working
 
-Current state according to the Essence standard: ...
+**Current state according to the Essence standard: ...**
 
-Was the self-assessment unanimous? Any doubts about certain items?
+**Was the self-assessment unanimous? Any doubts about certain items?**
 
-How have you improved so far?
+**How have you improved so far?**
 
-Where is potential for improvement?
+**Where is potential for improvement?**
 
-*Assessment according to the essence standard:*
+*Assessment according to the essence standard:* \
 [x]  Principles and constraints are committed to by the team.
-→ Yes, we agreed on a way of writing commit messages, we settled on what tools to use like JaCoCo and Java, as well as JUnit which was already used by the repo.
-[-] Principles and constraints are agreed to by the stakeholders.
-[-] The tool needs of the work and its stakeholders are agreed.
+→ Yes, we agreed on a way of writing commit messages, we settled on what tools to use like JaCoCo and Java, as well as JUnit which was already used by the repo.\
+[-] Principles and constraints are agreed to by the stakeholders.\
+[-] The tool needs of the work and its stakeholders are agreed.\
 [x] A recommendation for the approach to be taken is available.
-→ The assignment description
+→ The assignment description.\
 [x] The context within which the team will operate is understood.
-→ A school assignment where some criteria need to be met to pass.
+→ A school assignment where some criteria need to be met to pass.\
 [x] The constraints that apply to the selection, acquisition, and use of practices and tools are known.
-→ Yes, such constraints were discussed before the start of the project.
+→ Yes, such constraints were discussed before the start of the project.\
 [x] The key practices and tools that form the foundation of the way-of-working are selected.
-→ Yes, tools were selected at the start of the project.
+→ Yes, tools were selected at the start of the project.\
 [x] Enough practices for work to start are agreed to by the team.
-→ Yes, deciding to use Github and the particular repo was enough to start making issues and start work.
+→ Yes, deciding to use Github and the particular repo was enough to start making issues and start work.\
 [x] All non-negotiable practices and tools have been identified.
-→ Git was non-negotiable for the group since the course recommends it and is very centered around it. The repo we chose used Github which made using that too convenient.
+→ Git was non-negotiable for the group since the course recommends it and is very centered around it. The repo we chose used Github which made using that too convenient.\
 [x] The gaps that exist between the practices and tools that are needed and the practices and tools that are available have been analyzed and understood.
-→ No gaps could be identified through thorough analysis.
+→ No gaps could be identified through thorough analysis.\
 [x] The capability gaps that exist between what is needed to execute the desired way of working and the capability levels of the team have been analyzed and understood.
-→ No gaps identified through discussion at the start of the project.
+→ No gaps identified through discussion at the start of the project.\
 [x] The selected practices and tools have been integrated to form a usable way-of-working.
-→ Yes.
+→ Yes.\
 [x] The practices and tools are being used to do real work.
-→ Yes the tools used are common in industry and were useful for the work in this project.
+→ Yes the tools used are common in industry and were useful for the work in this project.\
 [x] The use of the practices and tools selected are regularly inspected.
-→ Yes inspected regularly during code review and approvals when doing pull requests.
+→ Yes inspected regularly during code review and approvals when doing pull requests.\
 [x] The practices and tools are being adapted to the team’s context.
-→ We added a plugin via maven, JaCoCo.
+→ We added a plugin via maven, JaCoCo.\
 [x] The use of the practices and tools is supported by the team.
-→ Yes, after some negative opinions on using Java were noted in the initial discussions, the whole team agreed on and supported the tools.
+→ Yes, after some negative opinions on using Java were noted in the initial discussions, the whole team agreed on and supported the tools.\
 [x] Procedures are in place to handle feedback on the team’s way of working.
-→ Regular meetings where feedback could be given and discussed, the chat on Discord could also be used for this.
+→ Regular meetings where feedback could be given and discussed, the chat on Discord could also be used for this.\
 [x] The practices and tools support team communication and collaboration.
-→ Yes, the disussion forum on discord provided good communication and the voice chat with screen sharing could be used for live collaboration.
+→ Yes, the disussion forum on discord provided good communication and the voice chat with screen sharing could be used for live collaboration.\
 [x] The practices and tools are being used by the whole team to perform their work.
-→ Yes, everybody adhered to the practices and tools decided upon.
+→ Yes, everybody adhered to the practices and tools decided upon.\
 [x] All team members have access to the practices and tools required to do their work.
-→ Yes, everybody had access to git and Java on their machines.
+→ Yes, everybody had access to git and Java on their machines.\
 [x] The whole team is involved in the inspection and adaptation of the way-of-working.
-→ Yes, the whole team was involved in this through the frequent meetings and discussions.
+→ Yes, the whole team was involved in this through the frequent meetings and discussions.\
 [x] Team members are making progress as planned by using and adapting the way-of-working to suit their current context.
-→ Yes, as seen in the progress tracker on Github.
+→ Yes, as seen in the progress tracker on Github.\
 [x] The team naturally applies the practices without thinking about them.
-→ Yes, at this point of the course things like git comes naturally to the group members, practices such as linking each commit with an issue in the issue tracker and so on were adhered to.
+→ Yes, at this point of the course things like git comes naturally to the group members, practices such as linking each commit with an issue in the issue tracker and so on were adhered to.\
 [x] The tools naturally support the way that the team works.
-→ Git feels very suited for software development so it comes naturally. Java and JaCoCo became transparent to the workflow and naturally after some time.
+→ Git feels very suited for software development so it comes naturally. Java and JaCoCo became transparent to the workflow and naturally after some time.\
 [-] The team continually tunes their use of the practices and tools.
-→ No, it was not really needed for the short timespan of the project.
+→ No, it was not really needed for the short timespan of the project.\
 [-] The team's way of working is no longer being used.
-→ It was used until the end of the project
+→ It was used until the end of the project.\
 [x] Lessons learned are shared for future use.
-→ Yes, any lessons learned were shared on Discord for the others to have a kind of reference manual for the tools that were figured out by only part of the team.
+→ Yes, any lessons learned were shared on Discord for the others to have a kind of reference manual for the tools that were figured out by only part of the team.\
 
 ## Overall experience
 
