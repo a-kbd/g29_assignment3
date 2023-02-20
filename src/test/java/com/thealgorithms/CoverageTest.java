@@ -71,6 +71,9 @@ public class CoverageTest {
         System.out.println("\n===== LongDivision coverage test =====\n");
         LongDivision l = new LongDivision();
         l.divide(10, 3);
+        l.divide(7, -3);
+        l.divide(105, 10);
+
         
         System.out.println("\n===== MyAtoi coverage test =====\n");
 		    MyAtoi.myAtoi("42");
