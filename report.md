@@ -143,10 +143,10 @@ its output?
 
 ### Evaluation
 
-1. How detailed is your coverage measurement?
-
+1. How is the quality of your coverage measurement?
+1.1 The quality of our own coverage measurement is not bad, however, there are some constructs in the language that it does not check, e.g. the ternary operator as that does not allow one to write full code blocks for each branch, rather only a single statement that should be returned. This means that you could not put a "if(reached): true" type of statement to see if the ternary operator was reached.
 2. What are the limitations of your own tool?
-
+2.1 It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code.
 3. Are the results of your tool consistent with existing coverage tools?
 
 ## Coverage improvement
