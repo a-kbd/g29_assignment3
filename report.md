@@ -119,6 +119,9 @@ Carried out refactoring (optional, P+):
 
 git diff ...
 
+
+- **BinaryTree** Much of the complexity of BinaryTree is attributed to the fact that it includes code to print the tree in pre- post- and infix order as well as a BFS implementation in the same class. One refactoring idea could be to remove these parts of the class and instead have them in separate classes that only handle functionality regarding printing or searching in a tree, that way the BinaryTree class would only be for the representation of the data structure as well as putting and removing values from it.
+
 ## Coverage
 
 ### Tools
@@ -149,6 +152,13 @@ its output?
 2.1 It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code.
 3. Are the results of your tool consistent with existing coverage tools?
 - **MyAtoi**: No. The manual coverage JaCoCo reports is 59% whereas the manual tool reports roughly 33%.
+
+- **BinaryTree**
+There was no test suite included in the repo for the BinaryTree. However, looking at the comments of the class itself, one could see the documentation and through that deduce the required functionality. E.g. in the test later we are testing assertEquals(remove(9), true) or because the remove function is supposed to return a boolean based on whether the specified node was found and removed from the tree or not.
+
+In CoverageTest.java, separate functions are created to test the function, printing the coverage percentage of the different branches after each run. Branch coverage is increased in each test case 13%→20%→40%. The simple diy test data structure is set up as a field consisting of an array of boolean values in the class being tested, each branch changes its corresponding entry in the array if it was reached and the class being tested then has a method to return the field of the particular object instance of the test.
+
+JaCoCo going through the added JUnit tests gave a 44% coverage which is roughly consistent with the 40% reported by our own simple coverage tool.
 ## Coverage improvement
 
 Show the comments that describe the requirements for the coverage.
@@ -172,6 +182,60 @@ Was the self-assessment unanimous? Any doubts about certain items?
 How have you improved so far?
 
 Where is potential for improvement?
+
+*Assessment according to the essence standard:*
+[x]  Principles and constraints are committed to by the team.
+→ Yes, we agreed on a way of writing commit messages, we settled on what tools to use like JaCoCo and Java, as well as JUnit which was already used by the repo.
+[-] Principles and constraints are agreed to by the stakeholders.
+[-] The tool needs of the work and its stakeholders are agreed.
+[x] A recommendation for the approach to be taken is available.
+→ The assignment description
+[x] The context within which the team will operate is understood.
+→ A school assignment where some criteria need to be met to pass.
+[x] The constraints that apply to the selection, acquisition, and use of practices and tools are known.
+→ Yes, such constraints were discussed before the start of the project.
+[x] The key practices and tools that form the foundation of the way-of-working are selected.
+→ Yes, tools were selected at the start of the project.
+[x] Enough practices for work to start are agreed to by the team.
+→ Yes, deciding to use Github and the particular repo was enough to start making issues and start work.
+[x] All non-negotiable practices and tools have been identified.
+→ Git was non-negotiable for the group since the course recommends it and is very centered around it. The repo we chose used Github which made using that too convenient.
+[x] The gaps that exist between the practices and tools that are needed and the practices and tools that are available have been analyzed and understood.
+→ No gaps could be identified through thorough analysis.
+[x] The capability gaps that exist between what is needed to execute the desired way of working and the capability levels of the team have been analyzed and understood.
+→ No gaps identified through discussion at the start of the project.
+[x] The selected practices and tools have been integrated to form a usable way-of-working.
+→ Yes.
+[x] The practices and tools are being used to do real work.
+→ Yes the tools used are common in industry and were useful for the work in this project.
+[x] The use of the practices and tools selected are regularly inspected.
+→ Yes inspected regularly during code review and approvals when doing pull requests.
+[x] The practices and tools are being adapted to the team’s context.
+→ We added a plugin via maven, JaCoCo.
+[x] The use of the practices and tools is supported by the team.
+→ Yes, after some negative opinions on using Java were noted in the initial discussions, the whole team agreed on and supported the tools.
+[x] Procedures are in place to handle feedback on the team’s way of working.
+→ Regular meetings where feedback could be given and discussed, the chat on Discord could also be used for this.
+[x] The practices and tools support team communication and collaboration.
+→ Yes, the disussion forum on discord provided good communication and the voice chat with screen sharing could be used for live collaboration.
+[x] The practices and tools are being used by the whole team to perform their work.
+→ Yes, everybody adhered to the practices and tools decided upon.
+[x] All team members have access to the practices and tools required to do their work.
+→ Yes, everybody had access to git and Java on their machines.
+[x] The whole team is involved in the inspection and adaptation of the way-of-working.
+→ Yes, the whole team was involved in this through the frequent meetings and discussions.
+[x] Team members are making progress as planned by using and adapting the way-of-working to suit their current context.
+→ Yes, as seen in the progress tracker on Github.
+[x] The team naturally applies the practices without thinking about them.
+→ Yes, at this point of the course things like git comes naturally to the group members, practices such as linking each commit with an issue in the issue tracker and so on were adhered to.
+[x] The tools naturally support the way that the team works.
+→ Git feels very suited for software development so it comes naturally. Java and JaCoCo became transparent to the workflow and naturally after some time.
+[-] The team continually tunes their use of the practices and tools.
+→ No, it was not really needed for the short timespan of the project.
+[-] The team's way of working is no longer being used.
+→ It was used until the end of the project
+[x] Lessons learned are shared for future use.
+→ Yes, any lessons learned were shared on Discord for the others to have a kind of reference manual for the tools that were figured out by only part of the team.
 
 ## Overall experience
 
