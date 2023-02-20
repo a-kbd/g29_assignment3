@@ -148,7 +148,7 @@ its output?
 2. What are the limitations of your own tool?
 2.1 It only works for the specific program as it is entirely manual. It does not take exceptions into account as none were used in the code.
 3. Are the results of your tool consistent with existing coverage tools?
-
+- **MyAtoi**: No. The manual coverage JaCoCo reports is 59% whereas the manual tool reports roughly 33%.
 ## Coverage improvement
 
 Show the comments that describe the requirements for the coverage.
