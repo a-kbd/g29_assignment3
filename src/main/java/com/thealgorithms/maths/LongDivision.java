@@ -136,7 +136,7 @@ public static int divide(int dividend, int divisor) {
             else if (!b){
                 numberOfFalse++;
             }
-            System.out.println(b);
+            //System.out.println(b);
         }
         percentage = (numberOfTrue/numberOfFalse) * 100;
         //System.out.println("Number of true: " + numberOfTrue);
