@@ -204,7 +204,8 @@ Number of test cases added: two per team member (P) or at least four (P+).
 > **BinaryTree**\
 [Tests added for BinaryTree](https://github.com/a-kbd/g29_assignment3/tree/23-feature-request-improve-coverage-for-binarytree)
 
-> **CRCAlgorithm**
+> **CRCAlgorithm**\
+[Tests added for CRCAlgorithm](https://github.com/a-kbd/g29_assignment3/tree/7-feature-request-implement-manual-test-coverage-for-the-crcalgorithm)
 
 >**LongDivision**\
 After implementing new tests, JaCoCo showed a coverage of 88% which is an improvement of around 18%. This is primarily because the previous test cases missed to test some of the conditions implemented in the LongDivision function. One test especially, was added to test the edge case of when the divisor is zero. The original code did not have functionality for handling this case and was therefore added.\
