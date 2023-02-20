@@ -40,6 +40,8 @@ void test2(){
     assertEquals(t.getRoot().getData(), 9);
 }
 
+//checks that removing an unexistend node returns false
+// as specified by the documentation of the function
 @Test
 void test3(){
     BinaryTree t = new BinaryTree();
@@ -53,6 +55,9 @@ void test3(){
     assertEquals(t.remove(398745987), false);
 }
 
+//check if the bfs, inOrder, preOrder and postOrder functions
+//worg as expected, also increases the coverage measures in
+//JaCoCo
 @Test
 void test4(){
     BinaryTree t = new BinaryTree();
