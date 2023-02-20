@@ -1,16 +1,10 @@
 package com.thealgorithms.maths;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-
 public class LongDivisionTest {
-	
-    private static boolean[] branchCoverage = new boolean[17];
 
     // Requirement: Dividend (positive) is  greater than divisor (positive), returns correct integer after division
     @Test
@@ -31,12 +25,8 @@ public class LongDivisionTest {
         assertEquals(10, LongDivision.divide(105,10));
     }
 
-
-    /* The following tests are added according to task 3.5.2 */
-
-
     // Requirement: Dividend (negative), divisor (positive), returns correct integer after division
-    // Tests the case where the dividend is less than 0. Was not tested before. 
+    // Tests the case where the dividend is less than 0.
     @Test
     void testNegativeDividend() {
         assertEquals(-1, LongDivision.divide(-5,3));
@@ -57,11 +47,9 @@ public class LongDivisionTest {
     }
 
     // Requirement: Dividend (positive), divisor (neither), returns correct integer after division
-    // Tests the case where the divisor is 0. This should return a 0. DOESNT WORK, DOESNT HAVE A CASE FOR IF THE DIVISOR IS 0
+    // Tests the case where the divisor is 0. This should return a 0.
     @Test
     void testDivisionByZero() {
         assertEquals(0, LongDivision.divide(5,0));  
     }
-
-
 }
