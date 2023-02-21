@@ -11,13 +11,13 @@ package com.thealgorithms.maths;
 <span class="nc" id="L11">public class FastInverseSqrt {</span>
 
     public static boolean inverseSqrt(float number) {
-<span class="nc" id="L14">        float x = number;</span>
-<span class="nc" id="L15">        float xhalf = 0.5f * x;</span>
-<span class="nc" id="L16">        int i = Float.floatToIntBits(x);</span>
-<span class="nc" id="L17">        i = 0x5f3759df - (i &gt;&gt; 1);</span>
-<span class="nc" id="L18">        x = Float.intBitsToFloat(i);</span>
-<span class="nc" id="L19">        x = x * (1.5f - xhalf * x * x);</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">        return x == (float) ((float) 1 / (float) Math.sqrt(number));</span>
+<span class="fc" id="L14">        float x = number;</span>
+<span class="fc" id="L15">        float xhalf = 0.5f * x;</span>
+<span class="fc" id="L16">        int i = Float.floatToIntBits(x);</span>
+<span class="fc" id="L17">        i = 0x5f3759df - (i &gt;&gt; 1);</span>
+<span class="fc" id="L18">        x = Float.intBitsToFloat(i);</span>
+<span class="fc" id="L19">        x = x * (1.5f - xhalf * x * x);</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        return x == (float) ((float) 1 / (float) Math.sqrt(number));</span>
     }
 
     /**

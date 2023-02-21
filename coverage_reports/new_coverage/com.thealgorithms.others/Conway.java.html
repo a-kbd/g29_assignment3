@@ -15,23 +15,23 @@ import java.util.*;
      * https://en.wikipedia.org/wiki/Look-and-say_sequence
      * */
 
-<span class="fc" id="L18">    private static final StringBuilder builder = new StringBuilder();</span>
+<span class="nc" id="L18">    private static final StringBuilder builder = new StringBuilder();</span>
 
     protected static List&lt;String&gt; generateList(String originalString, int maxIteration) {
-<span class="fc" id="L21">        List&lt;String&gt; numbers = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        for(int i=0; i&lt;maxIteration; i++) {</span>
-<span class="fc" id="L23">            originalString = generateNextElement(originalString);</span>
-<span class="fc" id="L24">            numbers.add(originalString);</span>
+<span class="nc" id="L21">        List&lt;String&gt; numbers = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        for(int i=0; i&lt;maxIteration; i++) {</span>
+<span class="nc" id="L23">            originalString = generateNextElement(originalString);</span>
+<span class="nc" id="L24">            numbers.add(originalString);</span>
         }
-<span class="fc" id="L26">        return numbers;</span>
+<span class="nc" id="L26">        return numbers;</span>
     }
 
 
     public static String generateNextElement(String originalString) {
-<span class="fc" id="L31">        builder.setLength(0);</span>
-<span class="fc" id="L32">        String[] stp = originalString.split(&quot;(?&lt;=(.))(?!\\1)&quot;);</span>
-<span class="fc" id="L33">        Arrays.stream(stp).forEach(s -&gt; builder.append(s.length()).append(s.charAt(0)));</span>
-<span class="fc" id="L34">        return builder.toString();</span>
+<span class="nc" id="L31">        builder.setLength(0);</span>
+<span class="nc" id="L32">        String[] stp = originalString.split(&quot;(?&lt;=(.))(?!\\1)&quot;);</span>
+<span class="nc" id="L33">        Arrays.stream(stp).forEach(s -&gt; builder.append(s.length()).append(s.charAt(0)));</span>
+<span class="nc" id="L34">        return builder.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

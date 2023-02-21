@@ -52,44 +52,44 @@ public class KDTree {
      * @param pointsCoordinates Array of initial points coordinates
      *
      */
-<span class="fc" id="L55">    KDTree(int[][] pointsCoordinates) {</span>
-<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (pointsCoordinates.length == 0) throw new IllegalArgumentException(</span>
+<span class="nc" id="L55">    KDTree(int[][] pointsCoordinates) {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (pointsCoordinates.length == 0) throw new IllegalArgumentException(</span>
             &quot;Points array cannot be empty&quot;
         );
-<span class="fc" id="L59">        this.k = pointsCoordinates[0].length;</span>
-<span class="fc" id="L60">        Point[] points = Arrays</span>
-<span class="fc" id="L61">            .stream(pointsCoordinates)</span>
-<span class="fc" id="L62">            .map(Point::new)</span>
-<span class="fc" id="L63">            .toArray(Point[]::new);</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (Point point : points) if (</span>
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            point.getDimension() != k</span>
+<span class="nc" id="L59">        this.k = pointsCoordinates[0].length;</span>
+<span class="nc" id="L60">        Point[] points = Arrays</span>
+<span class="nc" id="L61">            .stream(pointsCoordinates)</span>
+<span class="nc" id="L62">            .map(Point::new)</span>
+<span class="nc" id="L63">            .toArray(Point[]::new);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for (Point point : points) if (</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            point.getDimension() != k</span>
 <span class="nc" id="L66">        ) throw new IllegalArgumentException(</span>
             &quot;Points must have the same dimension&quot;
         );
-<span class="fc" id="L69">        this.root = build(points, 0);</span>
-<span class="fc" id="L70">    }</span>
+<span class="nc" id="L69">        this.root = build(points, 0);</span>
+<span class="nc" id="L70">    }</span>
 
     static class Point {
 
         int[] coordinates;
 
         public int getCoordinate(int i) {
-<span class="fc" id="L77">            return coordinates[i];</span>
+<span class="nc" id="L77">            return coordinates[i];</span>
         }
 
         public int getDimension() {
-<span class="fc" id="L81">            return coordinates.length;</span>
+<span class="nc" id="L81">            return coordinates.length;</span>
         }
 
-<span class="fc" id="L84">        public Point(int[] coordinates) {</span>
-<span class="fc" id="L85">            this.coordinates = coordinates;</span>
-<span class="fc" id="L86">        }</span>
+<span class="nc" id="L84">        public Point(int[] coordinates) {</span>
+<span class="nc" id="L85">            this.coordinates = coordinates;</span>
+<span class="nc" id="L86">        }</span>
 
         @Override
         public boolean equals(Object obj) {
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">            if (obj instanceof Point other) {</span>
-<span class="pc bpc" id="L91" title="1 of 2 branches missed.">                if (other.getDimension() != this.getDimension()) return false;</span>
-<span class="fc" id="L92">                return Arrays.equals(other.coordinates, this.coordinates);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (obj instanceof Point other) {</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                if (other.getDimension() != this.getDimension()) return false;</span>
+<span class="nc" id="L92">                return Arrays.equals(other.coordinates, this.coordinates);</span>
             }
 <span class="nc" id="L94">            return false;</span>
         }
@@ -108,12 +108,12 @@ public class KDTree {
          * @return The comparable distance between the two points
          */
         public static int comparableDistance(Point p1, Point p2) {
-<span class="fc" id="L111">            int distance = 0;</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">            for (int i = 0; i &lt; p1.getDimension(); i++) {</span>
-<span class="fc" id="L113">                int t = p1.getCoordinate(i) - p2.getCoordinate(i);</span>
-<span class="fc" id="L114">                distance += t * t;</span>
+<span class="nc" id="L111">            int distance = 0;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            for (int i = 0; i &lt; p1.getDimension(); i++) {</span>
+<span class="nc" id="L113">                int t = p1.getCoordinate(i) - p2.getCoordinate(i);</span>
+<span class="nc" id="L114">                distance += t * t;</span>
             }
-<span class="fc" id="L116">            return distance;</span>
+<span class="nc" id="L116">            return distance;</span>
         }
 
         /**
@@ -130,13 +130,13 @@ public class KDTree {
             Point p2,
             int axis
         ) {
-<span class="fc" id="L133">            int distance = 0;</span>
-<span class="fc bfc" id="L134" title="All 2 branches covered.">            for (int i = 0; i &lt; p1.getDimension(); i++) {</span>
-<span class="fc bfc" id="L135" title="All 2 branches covered.">                if (i == axis) continue;</span>
-<span class="fc" id="L136">                int t = p1.getCoordinate(i) - p2.getCoordinate(i);</span>
-<span class="fc" id="L137">                distance += t * t;</span>
+<span class="nc" id="L133">            int distance = 0;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            for (int i = 0; i &lt; p1.getDimension(); i++) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">                if (i == axis) continue;</span>
+<span class="nc" id="L136">                int t = p1.getCoordinate(i) - p2.getCoordinate(i);</span>
+<span class="nc" id="L137">                distance += t * t;</span>
             }
-<span class="fc" id="L139">            return distance;</span>
+<span class="nc" id="L139">            return distance;</span>
         }
     }
 
@@ -145,16 +145,16 @@ public class KDTree {
         private Point point;
         private int axis; // 0 for x, 1 for y, 2 for z, etc.
 
-<span class="fc" id="L148">        private Node left = null; // Left child</span>
-<span class="fc" id="L149">        private Node right = null; // Right child</span>
+<span class="nc" id="L148">        private Node left = null; // Left child</span>
+<span class="nc" id="L149">        private Node right = null; // Right child</span>
 
-<span class="fc" id="L151">        Node(Point point, int axis) {</span>
-<span class="fc" id="L152">            this.point = point;</span>
-<span class="fc" id="L153">            this.axis = axis;</span>
-<span class="fc" id="L154">        }</span>
+<span class="nc" id="L151">        Node(Point point, int axis) {</span>
+<span class="nc" id="L152">            this.point = point;</span>
+<span class="nc" id="L153">            this.axis = axis;</span>
+<span class="nc" id="L154">        }</span>
 
         public Point getPoint() {
-<span class="fc" id="L157">            return point;</span>
+<span class="nc" id="L157">            return point;</span>
         }
 
         public Node getLeft() {
@@ -166,7 +166,7 @@ public class KDTree {
         }
 
         public int getAxis() {
-<span class="fc" id="L169">            return axis;</span>
+<span class="nc" id="L169">            return axis;</span>
         }
 
         /**
@@ -177,9 +177,9 @@ public class KDTree {
          * @return The nearest child Node
          */
         public Node getNearChild(Point point) {
-<span class="fc" id="L180">            if (</span>
-<span class="fc bfc" id="L181" title="All 2 branches covered.">                point.getCoordinate(axis) &lt; this.point.getCoordinate(axis)</span>
-<span class="fc" id="L182">            ) return left; else return right;</span>
+<span class="nc" id="L180">            if (</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">                point.getCoordinate(axis) &lt; this.point.getCoordinate(axis)</span>
+<span class="nc" id="L182">            ) return left; else return right;</span>
         }
 
         /**
@@ -190,9 +190,9 @@ public class KDTree {
          * @return The farthest child Node
          */
         public Node getFarChild(Point point) {
-<span class="fc" id="L193">            if (</span>
-<span class="fc bfc" id="L194" title="All 2 branches covered.">                point.getCoordinate(axis) &lt; this.point.getCoordinate(axis)</span>
-<span class="fc" id="L195">            ) return right; else return left;</span>
+<span class="nc" id="L193">            if (</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">                point.getCoordinate(axis) &lt; this.point.getCoordinate(axis)</span>
+<span class="nc" id="L195">            ) return right; else return left;</span>
         }
 
         /**
@@ -201,12 +201,12 @@ public class KDTree {
          * @return The axis coordinate of the point
          */
         public int getAxisCoordinate() {
-<span class="fc" id="L204">            return point.getCoordinate(axis);</span>
+<span class="nc" id="L204">            return point.getCoordinate(axis);</span>
         }
     }
 
     public Node getRoot() {
-<span class="fc" id="L209">        return root;</span>
+<span class="nc" id="L209">        return root;</span>
     }
 
     /**
@@ -218,22 +218,22 @@ public class KDTree {
      * @return The root of the KDTree
      */
     private Node build(Point[] points, int depth) {
-<span class="fc bfc" id="L221" title="All 2 branches covered.">        if (points.length == 0) return null;</span>
-<span class="fc" id="L222">        int axis = depth % k;</span>
-<span class="fc bfc" id="L223" title="All 2 branches covered.">        if (points.length == 1) return new Node(points[0], axis);</span>
-<span class="fc" id="L224">        Arrays.sort(</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        if (points.length == 0) return null;</span>
+<span class="nc" id="L222">        int axis = depth % k;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (points.length == 1) return new Node(points[0], axis);</span>
+<span class="nc" id="L224">        Arrays.sort(</span>
             points,
-<span class="fc" id="L226">            Comparator.comparingInt(o -&gt; o.getCoordinate(axis))</span>
+<span class="nc" id="L226">            Comparator.comparingInt(o -&gt; o.getCoordinate(axis))</span>
         );
-<span class="fc" id="L228">        int median = points.length &gt;&gt; 1;</span>
-<span class="fc" id="L229">        Node node = new Node(points[median], axis);</span>
-<span class="fc" id="L230">        node.left = build(Arrays.copyOfRange(points, 0, median), depth + 1);</span>
-<span class="fc" id="L231">        node.right =</span>
-<span class="fc" id="L232">            build(</span>
-<span class="fc" id="L233">                Arrays.copyOfRange(points, median + 1, points.length),</span>
+<span class="nc" id="L228">        int median = points.length &gt;&gt; 1;</span>
+<span class="nc" id="L229">        Node node = new Node(points[median], axis);</span>
+<span class="nc" id="L230">        node.left = build(Arrays.copyOfRange(points, 0, median), depth + 1);</span>
+<span class="nc" id="L231">        node.right =</span>
+<span class="nc" id="L232">            build(</span>
+<span class="nc" id="L233">                Arrays.copyOfRange(points, median + 1, points.length),</span>
                 depth + 1
             );
-<span class="fc" id="L236">        return node;</span>
+<span class="nc" id="L236">        return node;</span>
     }
 
     /**
@@ -276,10 +276,10 @@ public class KDTree {
      * @return The Node corresponding to the specified point
      */
     public Optional&lt;Node&gt; search(Point point) {
-<span class="pc bpc" id="L279" title="1 of 2 branches missed.">        if (point.getDimension() != k) throw new IllegalArgumentException(</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">        if (point.getDimension() != k) throw new IllegalArgumentException(</span>
             &quot;Point has wrong dimension&quot;
         );
-<span class="fc" id="L282">        return search(root, point);</span>
+<span class="nc" id="L282">        return search(root, point);</span>
     }
 
     /**
@@ -291,9 +291,9 @@ public class KDTree {
      * @return The Node corresponding to the specified point
      */
     public Optional&lt;Node&gt; search(Node root, Point point) {
-<span class="pc bpc" id="L294" title="1 of 2 branches missed.">        if (root == null) return Optional.empty();</span>
-<span class="fc bfc" id="L295" title="All 2 branches covered.">        if (root.point.equals(point)) return Optional.of(root);</span>
-<span class="fc" id="L296">        return search(root.getNearChild(point), point);</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">        if (root == null) return Optional.empty();</span>
+<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (root.point.equals(point)) return Optional.of(root);</span>
+<span class="nc" id="L296">        return search(root.getNearChild(point), point);</span>
     }
 
     /**
@@ -304,7 +304,7 @@ public class KDTree {
      * @return The point with minimum value in the specified axis
      */
     public Point findMin(int axis) {
-<span class="fc" id="L307">        return findMin(root, axis).point;</span>
+<span class="nc" id="L307">        return findMin(root, axis).point;</span>
     }
 
     /**
@@ -316,19 +316,19 @@ public class KDTree {
      * @return The Node with minimum value in the specified axis of the point
      */
     public Node findMin(Node root, int axis) {
-<span class="fc bfc" id="L319" title="All 2 branches covered.">        if (root == null) return null;</span>
-<span class="fc bfc" id="L320" title="All 2 branches covered.">        if (root.getAxis() == axis) {</span>
-<span class="fc bfc" id="L321" title="All 2 branches covered.">            if (root.left == null) return root;</span>
-<span class="fc" id="L322">            return findMin(root.left, axis);</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">        if (root == null) return null;</span>
+<span class="nc bnc" id="L320" title="All 2 branches missed.">        if (root.getAxis() == axis) {</span>
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            if (root.left == null) return root;</span>
+<span class="nc" id="L322">            return findMin(root.left, axis);</span>
         } else {
-<span class="fc" id="L324">            Node left = findMin(root.left, axis);</span>
-<span class="fc" id="L325">            Node right = findMin(root.right, axis);</span>
-<span class="fc" id="L326">            Node[] candidates = { left, root, right };</span>
-<span class="fc" id="L327">            return Arrays</span>
-<span class="fc" id="L328">                .stream(candidates)</span>
-<span class="fc" id="L329">                .filter(Objects::nonNull)</span>
-<span class="fc" id="L330">                .min(Comparator.comparingInt(a -&gt; a.point.getCoordinate(axis)))</span>
-<span class="fc" id="L331">                .orElse(null);</span>
+<span class="nc" id="L324">            Node left = findMin(root.left, axis);</span>
+<span class="nc" id="L325">            Node right = findMin(root.right, axis);</span>
+<span class="nc" id="L326">            Node[] candidates = { left, root, right };</span>
+<span class="nc" id="L327">            return Arrays</span>
+<span class="nc" id="L328">                .stream(candidates)</span>
+<span class="nc" id="L329">                .filter(Objects::nonNull)</span>
+<span class="nc" id="L330">                .min(Comparator.comparingInt(a -&gt; a.point.getCoordinate(axis)))</span>
+<span class="nc" id="L331">                .orElse(null);</span>
         }
     }
 
@@ -374,10 +374,10 @@ public class KDTree {
      * @param point the point to delete
      * */
     public void delete(Point point) {
-<span class="fc" id="L377">        Node node = search(point)</span>
-<span class="pc" id="L378">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Point not found&quot;));</span>
-<span class="fc" id="L379">        root = delete(root, node);</span>
-<span class="fc" id="L380">    }</span>
+<span class="nc" id="L377">        Node node = search(point)</span>
+<span class="nc" id="L378">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Point not found&quot;));</span>
+<span class="nc" id="L379">        root = delete(root, node);</span>
+<span class="nc" id="L380">    }</span>
 
     /**
      * Delete the specified node from a subtree.
@@ -388,8 +388,8 @@ public class KDTree {
      * @return The new root of the subtree
      */
     private Node delete(Node root, Node node) {
-<span class="fc bfc" id="L391" title="All 2 branches covered.">        if (root == null) return null;</span>
-<span class="pc bpc" id="L392" title="1 of 2 branches missed.">        if (root.equals(node)) {</span>
+<span class="nc bnc" id="L391" title="All 2 branches missed.">        if (root == null) return null;</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">        if (root.equals(node)) {</span>
 <span class="nc bnc" id="L393" title="All 2 branches missed.">            if (root.right != null) {</span>
 <span class="nc" id="L394">                Node min = findMin(root.right, root.getAxis());</span>
 <span class="nc" id="L395">                root.point = min.point;</span>
@@ -400,11 +400,11 @@ public class KDTree {
 <span class="nc" id="L400">                root.left = delete(root.left, min);</span>
 <span class="nc" id="L401">            } else return null;</span>
         }
-<span class="fc" id="L403">        if (</span>
-<span class="pc bpc" id="L404" title="1 of 2 branches missed.">            root.getAxisCoordinate() &lt; node.point.getCoordinate(root.getAxis())</span>
-<span class="pc" id="L405">        ) root.left = delete(root.left, node); else root.right =</span>
-<span class="fc" id="L406">            delete(root.right, node);</span>
-<span class="fc" id="L407">        return root;</span>
+<span class="nc" id="L403">        if (</span>
+<span class="nc bnc" id="L404" title="All 2 branches missed.">            root.getAxisCoordinate() &lt; node.point.getCoordinate(root.getAxis())</span>
+<span class="nc" id="L405">        ) root.left = delete(root.left, node); else root.right =</span>
+<span class="nc" id="L406">            delete(root.right, node);</span>
+<span class="nc" id="L407">        return root;</span>
     }
 
     /**
@@ -413,7 +413,7 @@ public class KDTree {
      * @param point The point to find the nearest neighbor to.
      * */
     public Point findNearest(Point point) {
-<span class="fc" id="L416">        return findNearest(root, point, root).point;</span>
+<span class="nc" id="L416">        return findNearest(root, point, root).point;</span>
     }
 
     /**
@@ -424,21 +424,21 @@ public class KDTree {
      * @param nearest The nearest neighbor found so far.
      * */
     private Node findNearest(Node root, Point point, Node nearest) {
-<span class="fc bfc" id="L427" title="All 2 branches covered.">        if (root == null) return nearest;</span>
-<span class="fc bfc" id="L428" title="All 2 branches covered.">        if (root.point.equals(point)) return root;</span>
-<span class="fc" id="L429">        int distance = Point.comparableDistance(root.point, point);</span>
-<span class="fc" id="L430">        int distanceExceptAxis = Point.comparableDistanceExceptAxis(</span>
+<span class="nc bnc" id="L427" title="All 2 branches missed.">        if (root == null) return nearest;</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">        if (root.point.equals(point)) return root;</span>
+<span class="nc" id="L429">        int distance = Point.comparableDistance(root.point, point);</span>
+<span class="nc" id="L430">        int distanceExceptAxis = Point.comparableDistanceExceptAxis(</span>
             root.point,
             point,
-<span class="fc" id="L433">            root.getAxis()</span>
+<span class="nc" id="L433">            root.getAxis()</span>
         );
-<span class="fc bfc" id="L435" title="All 2 branches covered.">        if (distance &lt; Point.comparableDistance(nearest.point, point)) nearest =</span>
+<span class="nc bnc" id="L435" title="All 2 branches missed.">        if (distance &lt; Point.comparableDistance(nearest.point, point)) nearest =</span>
             root;
-<span class="fc" id="L437">        nearest = findNearest(root.getNearChild(point), point, nearest);</span>
-<span class="fc" id="L438">        if (</span>
-<span class="fc bfc" id="L439" title="All 2 branches covered.">            distanceExceptAxis &lt; Point.comparableDistance(nearest.point, point)</span>
-<span class="fc" id="L440">        ) nearest = findNearest(root.getFarChild(point), point, nearest);</span>
-<span class="fc" id="L441">        return nearest;</span>
+<span class="nc" id="L437">        nearest = findNearest(root.getNearChild(point), point, nearest);</span>
+<span class="nc" id="L438">        if (</span>
+<span class="nc bnc" id="L439" title="All 2 branches missed.">            distanceExceptAxis &lt; Point.comparableDistance(nearest.point, point)</span>
+<span class="nc" id="L440">        ) nearest = findNearest(root.getFarChild(point), point, nearest);</span>
+<span class="nc" id="L441">        return nearest;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

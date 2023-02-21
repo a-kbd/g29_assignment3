@@ -11,15 +11,15 @@
      * @return a^p
      */
     public static int binPow(int a, int p) {
-<span class="nc" id="L14">        int res = 1;</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        while (p &gt; 0) {</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">            if ((p &amp; 1) == 1) {</span>
-<span class="nc" id="L17">                res = res * a;</span>
+<span class="fc" id="L14">        int res = 1;</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        while (p &gt; 0) {</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">            if ((p &amp; 1) == 1) {</span>
+<span class="fc" id="L17">                res = res * a;</span>
             }
-<span class="nc" id="L19">            a = a * a;</span>
-<span class="nc" id="L20">            p &gt;&gt;&gt;= 1;</span>
+<span class="fc" id="L19">            a = a * a;</span>
+<span class="fc" id="L20">            p &gt;&gt;&gt;= 1;</span>
         }
-<span class="nc" id="L22">        return res;</span>
+<span class="fc" id="L22">        return res;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

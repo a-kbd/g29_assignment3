@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SumOfDigits.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.maths</a> &gt; <span class="el_source">SumOfDigits.java</span></div><h1>SumOfDigits.java</h1><pre class="source lang-java linenums">package com.thealgorithms.maths;
 
-<span class="nc bnc" id="L3" title="All 2 branches missed.">public class SumOfDigits {</span>
+<span class="pc bpc" id="L3" title="1 of 2 branches missed.">public class SumOfDigits {</span>
 
     public static void main(String[] args) {
 <span class="nc bnc" id="L6" title="All 4 branches missed.">        assert sumOfDigits(-123) == 6 &amp;&amp;</span>
@@ -23,14 +23,14 @@
      * @return sum of digits of given {@code number}
      */
     public static int sumOfDigits(int number) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        number = number &lt; 0 ? -number : number;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        number = number &lt; 0 ? -number : number;</span>
         /* calculate abs value */
-<span class="nc" id="L28">        int sum = 0;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        while (number != 0) {</span>
-<span class="nc" id="L30">            sum += number % 10;</span>
-<span class="nc" id="L31">            number /= 10;</span>
+<span class="fc" id="L28">        int sum = 0;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        while (number != 0) {</span>
+<span class="fc" id="L30">            sum += number % 10;</span>
+<span class="fc" id="L31">            number /= 10;</span>
         }
-<span class="nc" id="L33">        return sum;</span>
+<span class="fc" id="L33">        return sum;</span>
     }
 
     /**
@@ -40,11 +40,11 @@
      * @return sum of digits of given {@code number}
      */
     public static int sumOfDigitsRecursion(int number) {
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        number = number &lt; 0 ? -number : number;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        number = number &lt; 0 ? -number : number;</span>
         /* calculate abs value */
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        return number &lt; 10</span>
-<span class="nc" id="L46">            ? number</span>
-<span class="nc" id="L47">            : number % 10 + sumOfDigitsRecursion(number / 10);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        return number &lt; 10</span>
+<span class="fc" id="L46">            ? number</span>
+<span class="fc" id="L47">            : number % 10 + sumOfDigitsRecursion(number / 10);</span>
     }
 
     /**
@@ -54,14 +54,14 @@
      * @return sum of digits of given {@code number}
      */
     public static int sumOfDigitsFast(int number) {
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        number = number &lt; 0 ? -number : number;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        number = number &lt; 0 ? -number : number;</span>
         /* calculate abs value */
-<span class="nc" id="L59">        char[] digits = (number + &quot;&quot;).toCharArray();</span>
-<span class="nc" id="L60">        int sum = 0;</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        for (int i = 0; i &lt; digits.length; ++i) {</span>
-<span class="nc" id="L62">            sum += digits[i] - '0';</span>
+<span class="fc" id="L59">        char[] digits = (number + &quot;&quot;).toCharArray();</span>
+<span class="fc" id="L60">        int sum = 0;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        for (int i = 0; i &lt; digits.length; ++i) {</span>
+<span class="fc" id="L62">            sum += digits[i] - '0';</span>
         }
-<span class="nc" id="L64">        return sum;</span>
+<span class="fc" id="L64">        return sum;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

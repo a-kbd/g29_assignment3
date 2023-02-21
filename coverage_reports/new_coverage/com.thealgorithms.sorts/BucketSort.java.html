@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * Wikipedia: https://en.wikipedia.org/wiki/Bucket_sort
  */
-<span class="nc bnc" id="L11" title="All 2 branches missed.">public class BucketSort {</span>
+<span class="pc bpc" id="L11" title="1 of 2 branches missed.">public class BucketSort {</span>
 
     public static void main(String[] args) {
 <span class="nc" id="L14">        int[] arr = new int[10];</span>
@@ -34,41 +34,41 @@ import java.util.Random;
      */
     public static int[] bucketSort(int[] arr) {
         /* get max value of arr */
-<span class="nc" id="L37">        int max = max(arr);</span>
+<span class="fc" id="L37">        int max = max(arr);</span>
 
         /* get min value of arr */
-<span class="nc" id="L40">        int min = min(arr);</span>
+<span class="fc" id="L40">        int min = min(arr);</span>
 
         /* number of buckets */
-<span class="nc" id="L43">        int numberOfBuckets = max - min + 1;</span>
+<span class="fc" id="L43">        int numberOfBuckets = max - min + 1;</span>
 
-<span class="nc" id="L45">        List&lt;List&lt;Integer&gt;&gt; buckets = new ArrayList&lt;&gt;(numberOfBuckets);</span>
+<span class="fc" id="L45">        List&lt;List&lt;Integer&gt;&gt; buckets = new ArrayList&lt;&gt;(numberOfBuckets);</span>
 
         /* init buckets */
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        for (int i = 0; i &lt; numberOfBuckets; ++i) {</span>
-<span class="nc" id="L49">            buckets.add(new ArrayList&lt;&gt;());</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (int i = 0; i &lt; numberOfBuckets; ++i) {</span>
+<span class="fc" id="L49">            buckets.add(new ArrayList&lt;&gt;());</span>
         }
 
         /* store elements to buckets */
-<span class="nc bnc" id="L53" title="All 2 branches missed.">        for (int value : arr) {</span>
-<span class="nc" id="L54">            int hash = hash(value, min, numberOfBuckets);</span>
-<span class="nc" id="L55">            buckets.get(hash).add(value);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        for (int value : arr) {</span>
+<span class="fc" id="L54">            int hash = hash(value, min, numberOfBuckets);</span>
+<span class="fc" id="L55">            buckets.get(hash).add(value);</span>
         }
 
         /* sort individual bucket */
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (List&lt;Integer&gt; bucket : buckets) {</span>
-<span class="nc" id="L60">            Collections.sort(bucket);</span>
-<span class="nc" id="L61">        }</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (List&lt;Integer&gt; bucket : buckets) {</span>
+<span class="fc" id="L60">            Collections.sort(bucket);</span>
+<span class="fc" id="L61">        }</span>
 
         /* concatenate buckets to origin array */
-<span class="nc" id="L64">        int index = 0;</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        for (List&lt;Integer&gt; bucket : buckets) {</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (int value : bucket) {</span>
-<span class="nc" id="L67">                arr[index++] = value;</span>
-<span class="nc" id="L68">            }</span>
-<span class="nc" id="L69">        }</span>
+<span class="fc" id="L64">        int index = 0;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (List&lt;Integer&gt; bucket : buckets) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            for (int value : bucket) {</span>
+<span class="fc" id="L67">                arr[index++] = value;</span>
+<span class="fc" id="L68">            }</span>
+<span class="fc" id="L69">        }</span>
         
-<span class="nc" id="L71">        return arr;</span>
+<span class="fc" id="L71">        return arr;</span>
     }
 
     /**
@@ -80,7 +80,7 @@ import java.util.Random;
      * @return index of bucket
      */
     private static int hash(int elem, int min, int numberOfBucket) {
-<span class="nc" id="L83">        return (elem - min) / numberOfBucket;</span>
+<span class="fc" id="L83">        return (elem - min) / numberOfBucket;</span>
     }
 
     /**
@@ -90,13 +90,13 @@ import java.util.Random;
      * @return max value of given array
      */
     public static int max(int[] arr) {
-<span class="nc" id="L93">        int max = arr[0];</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        for (int value : arr) {</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (value &gt; max) {</span>
-<span class="nc" id="L96">                max = value;</span>
+<span class="fc" id="L93">        int max = arr[0];</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        for (int value : arr) {</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (value &gt; max) {</span>
+<span class="fc" id="L96">                max = value;</span>
             }
         }
-<span class="nc" id="L99">        return max;</span>
+<span class="fc" id="L99">        return max;</span>
     }
 
     /**
@@ -106,13 +106,13 @@ import java.util.Random;
      * @return min value of given array
      */
     public static int min(int[] arr) {
-<span class="nc" id="L109">        int min = arr[0];</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">        for (int value : arr) {</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (value &lt; min) {</span>
-<span class="nc" id="L112">                min = value;</span>
+<span class="fc" id="L109">        int min = arr[0];</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        for (int value : arr) {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            if (value &lt; min) {</span>
+<span class="fc" id="L112">                min = value;</span>
             }
         }
-<span class="nc" id="L115">        return min;</span>
+<span class="fc" id="L115">        return min;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

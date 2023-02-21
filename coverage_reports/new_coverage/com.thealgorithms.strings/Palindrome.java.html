@@ -13,9 +13,9 @@
      * {@code false}
      */
     public static boolean isPalindrome(String s) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        return (</span>
-<span class="nc bnc" id="L17" title="All 2 branches missed.">            (s == null || s.length() &lt;= 1) ||</span>
-<span class="nc bnc" id="L18" title="All 2 branches missed.">            s.equals(new StringBuilder(s).reverse().toString())</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        return (</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">            (s == null || s.length() &lt;= 1) ||</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">            s.equals(new StringBuilder(s).reverse().toString())</span>
         );
     }
 
@@ -27,15 +27,15 @@
      * {@code false}
      */
     public static boolean isPalindromeRecursion(String s) {
-<span class="nc bnc" id="L30" title="All 4 branches missed.">        if (s == null || s.length() &lt;= 1) {</span>
-<span class="nc" id="L31">            return true;</span>
+<span class="fc bfc" id="L30" title="All 4 branches covered.">        if (s == null || s.length() &lt;= 1) {</span>
+<span class="fc" id="L31">            return true;</span>
         }
 
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (s.charAt(0) != s.charAt(s.length() - 1)) {</span>
-<span class="nc" id="L35">            return false;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (s.charAt(0) != s.charAt(s.length() - 1)) {</span>
+<span class="fc" id="L35">            return false;</span>
         }
 
-<span class="nc" id="L38">        return isPalindromeRecursion(s.substring(1, s.length() - 1));</span>
+<span class="fc" id="L38">        return isPalindromeRecursion(s.substring(1, s.length() - 1));</span>
     }
 
     /**
@@ -46,15 +46,15 @@
      * {@code false}
      */
     public static boolean isPalindromeTwoPointer(String s) {
-<span class="nc bnc" id="L49" title="All 4 branches missed.">        if (s == null || s.length() &lt;= 1) {</span>
-<span class="nc" id="L50">            return true;</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        if (s == null || s.length() &lt;= 1) {</span>
+<span class="fc" id="L50">            return true;</span>
         }
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (int i = 0, j = s.length() - 1; i &lt; j; ++i, --j) {</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (s.charAt(i) != s.charAt(j)) {</span>
-<span class="nc" id="L54">                return false;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (int i = 0, j = s.length() - 1; i &lt; j; ++i, --j) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            if (s.charAt(i) != s.charAt(j)) {</span>
+<span class="fc" id="L54">                return false;</span>
             }
         }
-<span class="nc" id="L57">        return true;</span>
+<span class="fc" id="L57">        return true;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

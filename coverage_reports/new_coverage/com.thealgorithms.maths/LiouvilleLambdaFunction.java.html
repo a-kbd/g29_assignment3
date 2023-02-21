@@ -23,15 +23,15 @@
      * @throws IllegalArgumentException when number is negative
      */
     static int liouvilleLambda(int number) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (number &lt;= 0) {</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (number &lt;= 0) {</span>
             //throw exception when number is less than or is zero
-<span class="nc" id="L28">            throw new IllegalArgumentException(</span>
+<span class="fc" id="L28">            throw new IllegalArgumentException(</span>
                 &quot;Number must be greater than zero.&quot;
             );
         }
 
         //return 1 if size of prime factor list is even, -1 otherwise
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        return PrimeFactorization.pfactors(number).size() % 2 == 0 ? 1 : -1;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        return PrimeFactorization.pfactors(number).size() % 2 == 0 ? 1 : -1;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

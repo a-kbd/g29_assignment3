@@ -11,41 +11,41 @@
  * If the arrays' length is even, the value left to the middle will be used.
  * More information and Pseudocode: https://en.wikipedia.org/wiki/Dutch_national_flag_problem
  */
-<span class="nc" id="L14">public class DutchNationalFlagSort implements SortAlgorithm {</span>
+<span class="fc" id="L14">public class DutchNationalFlagSort implements SortAlgorithm {</span>
 
     @Override
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] unsorted) {
-<span class="nc" id="L18">        return dutch_national_flag_sort(</span>
+<span class="fc" id="L18">        return dutch_national_flag_sort(</span>
             unsorted,
-<span class="nc" id="L20">            unsorted[(int) Math.ceil((unsorted.length) / 2.0) - 1]</span>
+<span class="fc" id="L20">            unsorted[(int) Math.ceil((unsorted.length) / 2.0) - 1]</span>
         );
     }
 
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] unsorted, T intendedMiddle) {
-<span class="nc" id="L25">        return dutch_national_flag_sort(unsorted, intendedMiddle);</span>
+<span class="fc" id="L25">        return dutch_national_flag_sort(unsorted, intendedMiddle);</span>
     }
 
     private &lt;T extends Comparable&lt;T&gt;&gt; T[] dutch_national_flag_sort(
         T[] arr,
         T intendedMiddle
     ) {
-<span class="nc" id="L32">        int i = 0;</span>
-<span class="nc" id="L33">        int j = 0;</span>
-<span class="nc" id="L34">        int k = arr.length - 1;</span>
+<span class="fc" id="L32">        int i = 0;</span>
+<span class="fc" id="L33">        int j = 0;</span>
+<span class="fc" id="L34">        int k = arr.length - 1;</span>
 
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (j &lt;= k) {</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (0 &gt; arr[j].compareTo(intendedMiddle)) {</span>
-<span class="nc" id="L38">                SortUtils.swap(arr, i, j);</span>
-<span class="nc" id="L39">                j++;</span>
-<span class="nc" id="L40">                i++;</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            } else if (0 &lt; arr[j].compareTo(intendedMiddle)) {</span>
-<span class="nc" id="L42">                SortUtils.swap(arr, j, k);</span>
-<span class="nc" id="L43">                k--;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        while (j &lt;= k) {</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            if (0 &gt; arr[j].compareTo(intendedMiddle)) {</span>
+<span class="fc" id="L38">                SortUtils.swap(arr, i, j);</span>
+<span class="fc" id="L39">                j++;</span>
+<span class="fc" id="L40">                i++;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            } else if (0 &lt; arr[j].compareTo(intendedMiddle)) {</span>
+<span class="fc" id="L42">                SortUtils.swap(arr, j, k);</span>
+<span class="fc" id="L43">                k--;</span>
             } else {
-<span class="nc" id="L45">                j++;</span>
+<span class="fc" id="L45">                j++;</span>
             }
         }
-<span class="nc" id="L48">        return arr;</span>
+<span class="fc" id="L48">        return arr;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

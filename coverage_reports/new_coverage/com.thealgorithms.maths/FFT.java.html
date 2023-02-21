@@ -27,10 +27,10 @@ import java.util.Collections;
         /**
          * Default Constructor. Creates the complex number 0.
          */
-<span class="fc" id="L30">        public Complex() {</span>
-<span class="fc" id="L31">            real = 0;</span>
-<span class="fc" id="L32">            img = 0;</span>
-<span class="fc" id="L33">        }</span>
+<span class="nc" id="L30">        public Complex() {</span>
+<span class="nc" id="L31">            real = 0;</span>
+<span class="nc" id="L32">            img = 0;</span>
+<span class="nc" id="L33">        }</span>
 
         /**
          * Constructor. Creates a complex number.
@@ -38,10 +38,10 @@ import java.util.Collections;
          * @param r The real part of the number.
          * @param i The imaginary part of the number.
          */
-<span class="fc" id="L41">        public Complex(double r, double i) {</span>
-<span class="fc" id="L42">            real = r;</span>
-<span class="fc" id="L43">            img = i;</span>
-<span class="fc" id="L44">        }</span>
+<span class="nc" id="L41">        public Complex(double r, double i) {</span>
+<span class="nc" id="L42">            real = r;</span>
+<span class="nc" id="L43">            img = i;</span>
+<span class="nc" id="L44">        }</span>
 
         /**
          * Returns the real part of the complex number.
@@ -49,7 +49,7 @@ import java.util.Collections;
          * @return The real part of the complex number.
          */
         public double getReal() {
-<span class="fc" id="L52">            return real;</span>
+<span class="nc" id="L52">            return real;</span>
         }
 
         /**
@@ -58,7 +58,7 @@ import java.util.Collections;
          * @return The imaginary part of the complex number.
          */
         public double getImaginary() {
-<span class="fc" id="L61">            return img;</span>
+<span class="nc" id="L61">            return img;</span>
         }
 
         /**
@@ -68,10 +68,10 @@ import java.util.Collections;
          * @return The sum.
          */
         public Complex add(Complex z) {
-<span class="fc" id="L71">            Complex temp = new Complex();</span>
-<span class="fc" id="L72">            temp.real = this.real + z.real;</span>
-<span class="fc" id="L73">            temp.img = this.img + z.img;</span>
-<span class="fc" id="L74">            return temp;</span>
+<span class="nc" id="L71">            Complex temp = new Complex();</span>
+<span class="nc" id="L72">            temp.real = this.real + z.real;</span>
+<span class="nc" id="L73">            temp.img = this.img + z.img;</span>
+<span class="nc" id="L74">            return temp;</span>
         }
 
         /**
@@ -81,10 +81,10 @@ import java.util.Collections;
          * @return The difference.
          */
         public Complex subtract(Complex z) {
-<span class="fc" id="L84">            Complex temp = new Complex();</span>
-<span class="fc" id="L85">            temp.real = this.real - z.real;</span>
-<span class="fc" id="L86">            temp.img = this.img - z.img;</span>
-<span class="fc" id="L87">            return temp;</span>
+<span class="nc" id="L84">            Complex temp = new Complex();</span>
+<span class="nc" id="L85">            temp.real = this.real - z.real;</span>
+<span class="nc" id="L86">            temp.img = this.img - z.img;</span>
+<span class="nc" id="L87">            return temp;</span>
         }
 
         /**
@@ -94,10 +94,10 @@ import java.util.Collections;
          * @return The product.
          */
         public Complex multiply(Complex z) {
-<span class="fc" id="L97">            Complex temp = new Complex();</span>
-<span class="fc" id="L98">            temp.real = this.real * z.real - this.img * z.img;</span>
-<span class="fc" id="L99">            temp.img = this.real * z.img + this.img * z.real;</span>
-<span class="fc" id="L100">            return temp;</span>
+<span class="nc" id="L97">            Complex temp = new Complex();</span>
+<span class="nc" id="L98">            temp.real = this.real * z.real - this.img * z.img;</span>
+<span class="nc" id="L99">            temp.img = this.real * z.img + this.img * z.real;</span>
+<span class="nc" id="L100">            return temp;</span>
         }
 
         /**
@@ -107,10 +107,10 @@ import java.util.Collections;
          * @return The product.
          */
         public Complex multiply(double n) {
-<span class="fc" id="L110">            Complex temp = new Complex();</span>
-<span class="fc" id="L111">            temp.real = this.real * n;</span>
-<span class="fc" id="L112">            temp.img = this.img * n;</span>
-<span class="fc" id="L113">            return temp;</span>
+<span class="nc" id="L110">            Complex temp = new Complex();</span>
+<span class="nc" id="L111">            temp.real = this.real * n;</span>
+<span class="nc" id="L112">            temp.img = this.img * n;</span>
+<span class="nc" id="L113">            return temp;</span>
         }
 
         /**
@@ -119,10 +119,10 @@ import java.util.Collections;
          * @return The conjugate.
          */
         public Complex conjugate() {
-<span class="fc" id="L122">            Complex temp = new Complex();</span>
-<span class="fc" id="L123">            temp.real = this.real;</span>
-<span class="fc" id="L124">            temp.img = -this.img;</span>
-<span class="fc" id="L125">            return temp;</span>
+<span class="nc" id="L122">            Complex temp = new Complex();</span>
+<span class="nc" id="L123">            temp.real = this.real;</span>
+<span class="nc" id="L124">            temp.img = -this.img;</span>
+<span class="nc" id="L125">            return temp;</span>
         }
 
         /**
@@ -131,7 +131,7 @@ import java.util.Collections;
          * @return The magnitude.
          */
         public double abs() {
-<span class="fc" id="L134">            return Math.hypot(this.real, this.img);</span>
+<span class="nc" id="L134">            return Math.hypot(this.real, this.img);</span>
         }
 
         /**
@@ -141,12 +141,12 @@ import java.util.Collections;
          * @return The quotient.
          */
         public Complex divide(Complex z) {
-<span class="fc" id="L144">            Complex temp = new Complex();</span>
-<span class="fc" id="L145">            double d = z.abs() * z.abs();</span>
-<span class="fc" id="L146">            d = (double) Math.round(d * 1000000000d) / 1000000000d;</span>
-<span class="fc" id="L147">            temp.real = (this.real * z.real + this.img * z.img) / (d);</span>
-<span class="fc" id="L148">            temp.img = (this.img * z.real - this.real * z.img) / (d);</span>
-<span class="fc" id="L149">            return temp;</span>
+<span class="nc" id="L144">            Complex temp = new Complex();</span>
+<span class="nc" id="L145">            double d = z.abs() * z.abs();</span>
+<span class="nc" id="L146">            d = (double) Math.round(d * 1000000000d) / 1000000000d;</span>
+<span class="nc" id="L147">            temp.real = (this.real * z.real + this.img * z.img) / (d);</span>
+<span class="nc" id="L148">            temp.img = (this.img * z.real - this.real * z.img) / (d);</span>
+<span class="nc" id="L149">            return temp;</span>
         }
 
         /**
@@ -156,10 +156,10 @@ import java.util.Collections;
          * @return The quotient.
          */
         public Complex divide(double n) {
-<span class="fc" id="L159">            Complex temp = new Complex();</span>
-<span class="fc" id="L160">            temp.real = this.real / n;</span>
-<span class="fc" id="L161">            temp.img = this.img / n;</span>
-<span class="fc" id="L162">            return temp;</span>
+<span class="nc" id="L159">            Complex temp = new Complex();</span>
+<span class="nc" id="L160">            temp.real = this.real / n;</span>
+<span class="nc" id="L161">            temp.img = this.img / n;</span>
+<span class="nc" id="L162">            return temp;</span>
         }
     }
 
@@ -185,38 +185,38 @@ import java.util.Collections;
         boolean inverse
     ) {
         /* Pad the signal with zeros if necessary */
-<span class="fc" id="L188">        paddingPowerOfTwo(x);</span>
-<span class="fc" id="L189">        int N = x.size();</span>
-<span class="fc" id="L190">        int log2N = findLog2(N);</span>
-<span class="fc" id="L191">        x = fftBitReversal(N, log2N, x);</span>
-<span class="pc bpc" id="L192" title="1 of 2 branches missed.">        int direction = inverse ? -1 : 1;</span>
+<span class="nc" id="L188">        paddingPowerOfTwo(x);</span>
+<span class="nc" id="L189">        int N = x.size();</span>
+<span class="nc" id="L190">        int log2N = findLog2(N);</span>
+<span class="nc" id="L191">        x = fftBitReversal(N, log2N, x);</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        int direction = inverse ? -1 : 1;</span>
 
         /* Main loop of the algorithm */
-<span class="fc bfc" id="L195" title="All 2 branches covered.">        for (int len = 2; len &lt;= N; len *= 2) {</span>
-<span class="fc" id="L196">            double angle = -2 * Math.PI / len * direction;</span>
-<span class="fc" id="L197">            Complex wlen = new Complex(Math.cos(angle), Math.sin(angle));</span>
-<span class="fc bfc" id="L198" title="All 2 branches covered.">            for (int i = 0; i &lt; N; i += len) {</span>
-<span class="fc" id="L199">                Complex w = new Complex(1, 0);</span>
-<span class="fc bfc" id="L200" title="All 2 branches covered.">                for (int j = 0; j &lt; len / 2; j++) {</span>
-<span class="fc" id="L201">                    Complex u = x.get(i + j);</span>
-<span class="fc" id="L202">                    Complex v = w.multiply(x.get(i + j + len / 2));</span>
-<span class="fc" id="L203">                    x.set(i + j, u.add(v));</span>
-<span class="fc" id="L204">                    x.set(i + j + len / 2, u.subtract(v));</span>
-<span class="fc" id="L205">                    w = w.multiply(wlen);</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        for (int len = 2; len &lt;= N; len *= 2) {</span>
+<span class="nc" id="L196">            double angle = -2 * Math.PI / len * direction;</span>
+<span class="nc" id="L197">            Complex wlen = new Complex(Math.cos(angle), Math.sin(angle));</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            for (int i = 0; i &lt; N; i += len) {</span>
+<span class="nc" id="L199">                Complex w = new Complex(1, 0);</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">                for (int j = 0; j &lt; len / 2; j++) {</span>
+<span class="nc" id="L201">                    Complex u = x.get(i + j);</span>
+<span class="nc" id="L202">                    Complex v = w.multiply(x.get(i + j + len / 2));</span>
+<span class="nc" id="L203">                    x.set(i + j, u.add(v));</span>
+<span class="nc" id="L204">                    x.set(i + j + len / 2, u.subtract(v));</span>
+<span class="nc" id="L205">                    w = w.multiply(wlen);</span>
                 }
             }
         }
-<span class="fc" id="L209">        x = inverseFFT(N, inverse, x);</span>
-<span class="fc" id="L210">        return x;</span>
+<span class="nc" id="L209">        x = inverseFFT(N, inverse, x);</span>
+<span class="nc" id="L210">        return x;</span>
     }
 
     /* Find the log2(N) */
     public static int findLog2(int N) {
-<span class="fc" id="L215">        int log2N = 0;</span>
-<span class="fc bfc" id="L216" title="All 2 branches covered.">        while ((1 &lt;&lt; log2N) &lt; N) {</span>
-<span class="fc" id="L217">            log2N++;</span>
+<span class="nc" id="L215">        int log2N = 0;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        while ((1 &lt;&lt; log2N) &lt; N) {</span>
+<span class="nc" id="L217">            log2N++;</span>
         }
-<span class="fc" id="L219">        return log2N;</span>
+<span class="nc" id="L219">        return log2N;</span>
     }
 
     /* Swap the values of the signal with bit-reversal method */
@@ -226,13 +226,13 @@ import java.util.Collections;
         ArrayList&lt;Complex&gt; x
     ) {
         int reverse;
-<span class="fc bfc" id="L229" title="All 2 branches covered.">        for (int i = 0; i &lt; N; i++) {</span>
-<span class="fc" id="L230">            reverse = reverseBits(i, log2N);</span>
-<span class="fc bfc" id="L231" title="All 2 branches covered.">            if (i &lt; reverse) {</span>
-<span class="fc" id="L232">                Collections.swap(x, i, reverse);</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">        for (int i = 0; i &lt; N; i++) {</span>
+<span class="nc" id="L230">            reverse = reverseBits(i, log2N);</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (i &lt; reverse) {</span>
+<span class="nc" id="L232">                Collections.swap(x, i, reverse);</span>
             }
         }
-<span class="fc" id="L235">        return x;</span>
+<span class="nc" id="L235">        return x;</span>
     }
 
     /* Divide by N if we want the inverse FFT */
@@ -241,13 +241,13 @@ import java.util.Collections;
         boolean inverse,
         ArrayList&lt;Complex&gt; x
     ) {
-<span class="pc bpc" id="L244" title="1 of 2 branches missed.">        if (inverse) {</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">        if (inverse) {</span>
 <span class="nc bnc" id="L245" title="All 2 branches missed.">            for (int i = 0; i &lt; x.size(); i++) {</span>
 <span class="nc" id="L246">                Complex z = x.get(i);</span>
 <span class="nc" id="L247">                x.set(i, z.divide(N));</span>
             }
         }
-<span class="fc" id="L250">        return x;</span>
+<span class="nc" id="L250">        return x;</span>
     }
 
     /**
@@ -267,13 +267,13 @@ import java.util.Collections;
      * @return The reversed number
      */
     private static int reverseBits(int num, int log2N) {
-<span class="fc" id="L270">        int reversed = 0;</span>
-<span class="fc bfc" id="L271" title="All 2 branches covered.">        for (int i = 0; i &lt; log2N; i++) {</span>
-<span class="fc bfc" id="L272" title="All 2 branches covered.">            if ((num &amp; (1 &lt;&lt; i)) != 0) {</span>
-<span class="fc" id="L273">                reversed |= 1 &lt;&lt; (log2N - 1 - i);</span>
+<span class="nc" id="L270">        int reversed = 0;</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        for (int i = 0; i &lt; log2N; i++) {</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            if ((num &amp; (1 &lt;&lt; i)) != 0) {</span>
+<span class="nc" id="L273">                reversed |= 1 &lt;&lt; (log2N - 1 - i);</span>
             }
         }
-<span class="fc" id="L276">        return reversed;</span>
+<span class="nc" id="L276">        return reversed;</span>
     }
 
     /**
@@ -283,14 +283,14 @@ import java.util.Collections;
      * @param x The ArrayList to be padded.
      */
     private static void paddingPowerOfTwo(ArrayList&lt;Complex&gt; x) {
-<span class="fc" id="L286">        int n = 1;</span>
-<span class="fc" id="L287">        int oldSize = x.size();</span>
-<span class="fc bfc" id="L288" title="All 2 branches covered.">        while (n &lt; oldSize) {</span>
-<span class="fc" id="L289">            n *= 2;</span>
+<span class="nc" id="L286">        int n = 1;</span>
+<span class="nc" id="L287">        int oldSize = x.size();</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">        while (n &lt; oldSize) {</span>
+<span class="nc" id="L289">            n *= 2;</span>
         }
-<span class="pc bpc" id="L291" title="1 of 2 branches missed.">        for (int i = 0; i &lt; n - oldSize; i++) {</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        for (int i = 0; i &lt; n - oldSize; i++) {</span>
 <span class="nc" id="L292">            x.add(new Complex());</span>
         }
-<span class="fc" id="L294">    }</span>
+<span class="nc" id="L294">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

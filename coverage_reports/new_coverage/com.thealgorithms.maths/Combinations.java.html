@@ -12,10 +12,10 @@
      * @return factorial of given number
      */
     public static long factorial(int n) {
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (n &lt; 0) {</span>
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if (n &lt; 0) {</span>
 <span class="nc" id="L16">            throw new IllegalArgumentException(&quot;number is negative&quot;);</span>
         }
-<span class="nc bnc" id="L18" title="All 4 branches missed.">        return n == 0 || n == 1 ? 1 : n * factorial(n - 1);</span>
+<span class="fc bfc" id="L18" title="All 4 branches covered.">        return n == 0 || n == 1 ? 1 : n * factorial(n - 1);</span>
     }
 
     /**
@@ -26,7 +26,7 @@
      * @return combinations of given {@code n} and {@code k}
      */
     public static long combinations(int n, int k) {
-<span class="nc" id="L29">        return factorial(n) / (factorial(k) * factorial(n - k));</span>
+<span class="fc" id="L29">        return factorial(n) / (factorial(k) * factorial(n - k));</span>
     }
 
     /**
@@ -43,19 +43,19 @@
      * @return nCk
      */
     public static long combinationsOptimized(int n, int k) {
-<span class="nc bnc" id="L46" title="All 4 branches missed.">        if (n &lt; 0 || k &lt; 0) {</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">        if (n &lt; 0 || k &lt; 0) {</span>
 <span class="nc" id="L47">            throw new IllegalArgumentException(&quot;n or k can't be negative&quot;);</span>
         }
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (n &lt; k) {</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (n &lt; k) {</span>
 <span class="nc" id="L50">            throw new IllegalArgumentException(&quot;n can't be smaller than k&quot;);</span>
         }
         // nC0 is always 1
-<span class="nc" id="L53">        long solution = 1;</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">        for (int i = 0; i &lt; k; i++) {</span>
-<span class="nc" id="L55">            long next = (n - i) * solution / (i + 1);</span>
-<span class="nc" id="L56">            solution = next;</span>
+<span class="fc" id="L53">        long solution = 1;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (int i = 0; i &lt; k; i++) {</span>
+<span class="fc" id="L55">            long next = (n - i) * solution / (i + 1);</span>
+<span class="fc" id="L56">            solution = next;</span>
         }
-<span class="nc" id="L58">        return solution;</span>
+<span class="fc" id="L58">        return solution;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

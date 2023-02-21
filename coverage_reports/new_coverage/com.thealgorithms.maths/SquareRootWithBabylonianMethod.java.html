@@ -9,14 +9,14 @@
      * @return the square root of num
      */
     public static float square_Root(float num) {
-<span class="nc" id="L12">        float a = num;</span>
-<span class="nc" id="L13">        float b = 1;</span>
-<span class="nc" id="L14">        double e = 0.000001;</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        while (a - b &gt; e) {</span>
-<span class="nc" id="L16">            a = (a + b) / 2;</span>
-<span class="nc" id="L17">            b = num / a;</span>
+<span class="fc" id="L12">        float a = num;</span>
+<span class="fc" id="L13">        float b = 1;</span>
+<span class="fc" id="L14">        double e = 0.000001;</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        while (a - b &gt; e) {</span>
+<span class="fc" id="L16">            a = (a + b) / 2;</span>
+<span class="fc" id="L17">            b = num / a;</span>
         }
-<span class="nc" id="L19">        return a;</span>
+<span class="fc" id="L19">        return a;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

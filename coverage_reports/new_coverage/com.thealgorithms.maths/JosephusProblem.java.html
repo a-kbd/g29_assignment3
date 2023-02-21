@@ -24,14 +24,14 @@
      */
 
     public static int findTheWinner(int n, int k) {
-<span class="nc" id="L27">        return winner(n, k) + 1;</span>
+<span class="fc" id="L27">        return winner(n, k) + 1;</span>
     }
 
     public static int winner(int n, int k) {
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (n == 1) {</span>
-<span class="nc" id="L32">            return 0;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (n == 1) {</span>
+<span class="fc" id="L32">            return 0;</span>
         }
-<span class="nc" id="L34">        return (winner(n - 1, k) + k) % n;</span>
+<span class="fc" id="L34">        return (winner(n - 1, k) + k) % n;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

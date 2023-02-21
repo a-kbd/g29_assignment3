@@ -12,57 +12,57 @@ import java.util.*;
     // Provides a list of kaprekarNumber in a range
     public static List&lt;Long&gt; kaprekarNumberInRange(long start, long end)
         throws Exception {
-<span class="fc" id="L15">        long n = end - start;</span>
-<span class="pc bpc" id="L16" title="1 of 2 branches missed.">        if (n &lt; 0) throw new Exception(&quot;Invalid range&quot;);</span>
-<span class="fc" id="L17">        ArrayList&lt;Long&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L15">        long n = end - start;</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (n &lt; 0) throw new Exception(&quot;Invalid range&quot;);</span>
+<span class="nc" id="L17">        ArrayList&lt;Long&gt; list = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        for (long i = start; i &lt;= end; i++) {</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">            if (isKaprekarNumber(i)) list.add(i);</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (long i = start; i &lt;= end; i++) {</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            if (isKaprekarNumber(i)) list.add(i);</span>
         }
 
-<span class="fc" id="L23">        return list;</span>
+<span class="nc" id="L23">        return list;</span>
     }
 
     // Checks whether a given number is Kaprekar Number or not
     public static boolean isKaprekarNumber(long num) {
-<span class="fc" id="L28">        String number = Long.toString(num);</span>
-<span class="fc" id="L29">        BigInteger originalNumber = BigInteger.valueOf(num);</span>
-<span class="fc" id="L30">        BigInteger numberSquared = originalNumber.multiply(originalNumber);</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (number.length() == numberSquared.toString().length()) {</span>
-<span class="fc" id="L32">            return number.equals(numberSquared.toString());</span>
+<span class="nc" id="L28">        String number = Long.toString(num);</span>
+<span class="nc" id="L29">        BigInteger originalNumber = BigInteger.valueOf(num);</span>
+<span class="nc" id="L30">        BigInteger numberSquared = originalNumber.multiply(originalNumber);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (number.length() == numberSquared.toString().length()) {</span>
+<span class="nc" id="L32">            return number.equals(numberSquared.toString());</span>
         } else {
-<span class="fc" id="L34">            BigInteger leftDigits1 = BigInteger.ZERO;</span>
+<span class="nc" id="L34">            BigInteger leftDigits1 = BigInteger.ZERO;</span>
             BigInteger leftDigits2;
-<span class="fc bfc" id="L36" title="All 2 branches covered.">            if (numberSquared.toString().contains(&quot;0&quot;)) {</span>
-<span class="fc" id="L37">                leftDigits1 =</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (numberSquared.toString().contains(&quot;0&quot;)) {</span>
+<span class="nc" id="L37">                leftDigits1 =</span>
                     new BigInteger(
                         numberSquared
-<span class="fc" id="L40">                            .toString()</span>
-<span class="fc" id="L41">                            .substring(0, numberSquared.toString().indexOf(&quot;0&quot;))</span>
+<span class="nc" id="L40">                            .toString()</span>
+<span class="nc" id="L41">                            .substring(0, numberSquared.toString().indexOf(&quot;0&quot;))</span>
                     );
             }
-<span class="fc" id="L44">            leftDigits2 =</span>
+<span class="nc" id="L44">            leftDigits2 =</span>
                 new BigInteger(
                     numberSquared
-<span class="fc" id="L47">                        .toString()</span>
-<span class="fc" id="L48">                        .substring(</span>
+<span class="nc" id="L47">                        .toString()</span>
+<span class="nc" id="L48">                        .substring(</span>
                             0,
                             (
-<span class="fc" id="L51">                                numberSquared.toString().length() -</span>
-<span class="fc" id="L52">                                number.length()</span>
+<span class="nc" id="L51">                                numberSquared.toString().length() -</span>
+<span class="nc" id="L52">                                number.length()</span>
                             )
                         )
                 );
-<span class="fc" id="L56">            BigInteger rightDigits = new BigInteger(</span>
+<span class="nc" id="L56">            BigInteger rightDigits = new BigInteger(</span>
                 numberSquared
-<span class="fc" id="L58">                    .toString()</span>
-<span class="fc" id="L59">                    .substring(</span>
-<span class="fc" id="L60">                        numberSquared.toString().length() - number.length()</span>
+<span class="nc" id="L58">                    .toString()</span>
+<span class="nc" id="L59">                    .substring(</span>
+<span class="nc" id="L60">                        numberSquared.toString().length() - number.length()</span>
                     )
             );
-<span class="fc" id="L63">            String x = leftDigits1.add(rightDigits).toString();</span>
-<span class="fc" id="L64">            String y = leftDigits2.add(rightDigits).toString();</span>
-<span class="fc bfc" id="L65" title="All 4 branches covered.">            return (number.equals(x)) || (number.equals(y));</span>
+<span class="nc" id="L63">            String x = leftDigits1.add(rightDigits).toString();</span>
+<span class="nc" id="L64">            String y = leftDigits2.add(rightDigits).toString();</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            return (number.equals(x)) || (number.equals(y));</span>
         }
     }
 }

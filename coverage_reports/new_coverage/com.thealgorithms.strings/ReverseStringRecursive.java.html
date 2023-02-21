@@ -4,17 +4,17 @@
  * Reverse String using Recursion
  */
 
-<span class="fc" id="L7">public class ReverseStringRecursive {</span>
+<span class="nc" id="L7">public class ReverseStringRecursive {</span>
     /**
      * @param str string to be reversed
      * @return reversed string
      */
     public static String reverse(String str)
     {
-<span class="fc bfc" id="L14" title="All 2 branches covered.">        if(str.isEmpty()){</span>
-<span class="fc" id="L15">            return str;</span>
+<span class="nc bnc" id="L14" title="All 2 branches missed.">        if(str.isEmpty()){</span>
+<span class="nc" id="L15">            return str;</span>
         } else {
-<span class="fc" id="L17">            return reverse(str.substring(1))+str.charAt(0);</span>
+<span class="nc" id="L17">            return reverse(str.substring(1))+str.charAt(0);</span>
         }
     }
 }

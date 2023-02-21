@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * &lt;a href=&quot;https://en.wikipedia.org/wiki/Collatz_conjecture&quot;&gt;...&lt;/a&gt;
  */
-<span class="nc" id="L9">public class CollatzConjecture {</span>
+<span class="fc" id="L9">public class CollatzConjecture {</span>
 
     /**
      * Calculate the next number of the sequence.
@@ -15,10 +15,10 @@ import java.util.List;
      * @return next number of the sequence
      */
     public int nextNumber(final int n) {
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (n % 2 == 0) {</span>
-<span class="nc" id="L19">            return n / 2;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if (n % 2 == 0) {</span>
+<span class="fc" id="L19">            return n / 2;</span>
         }
-<span class="nc" id="L21">        return 3 * n + 1;</span>
+<span class="fc" id="L21">        return 3 * n + 1;</span>
     }
 
     /**
@@ -28,16 +28,16 @@ import java.util.List;
      * @return sequence of the Collatz Conjecture
      */
     public List&lt;Integer&gt; collatzConjecture(int firstNumber) {
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (firstNumber &lt; 1) {</span>
-<span class="nc" id="L32">            throw new IllegalArgumentException(&quot;Must be a natural number&quot;);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (firstNumber &lt; 1) {</span>
+<span class="fc" id="L32">            throw new IllegalArgumentException(&quot;Must be a natural number&quot;);</span>
         }
-<span class="nc" id="L34">        ArrayList&lt;Integer&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L35">        result.add(firstNumber);</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (firstNumber != 1) {</span>
-<span class="nc" id="L37">            result.add(nextNumber(firstNumber));</span>
-<span class="nc" id="L38">            firstNumber = nextNumber(firstNumber);</span>
+<span class="fc" id="L34">        ArrayList&lt;Integer&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">        result.add(firstNumber);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        while (firstNumber != 1) {</span>
+<span class="fc" id="L37">            result.add(nextNumber(firstNumber));</span>
+<span class="fc" id="L38">            firstNumber = nextNumber(firstNumber);</span>
         }
-<span class="nc" id="L40">        return result;</span>
+<span class="fc" id="L40">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

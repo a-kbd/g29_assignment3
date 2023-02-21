@@ -6,14 +6,14 @@ import java.util.Scanner;
 
     // convert hexadecimal to decimal
     public static int getHexaToDec(String hex) {
-<span class="nc" id="L9">        String digits = &quot;0123456789ABCDEF&quot;;</span>
-<span class="nc" id="L10">        hex = hex.toUpperCase();</span>
-<span class="nc" id="L11">        int val = 0;</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        for (int i = 0; i &lt; hex.length(); i++) {</span>
-<span class="nc" id="L13">            int d = digits.indexOf(hex.charAt(i));</span>
-<span class="nc" id="L14">            val = 16 * val + d;</span>
+<span class="fc" id="L9">        String digits = &quot;0123456789ABCDEF&quot;;</span>
+<span class="fc" id="L10">        hex = hex.toUpperCase();</span>
+<span class="fc" id="L11">        int val = 0;</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        for (int i = 0; i &lt; hex.length(); i++) {</span>
+<span class="fc" id="L13">            int d = digits.indexOf(hex.charAt(i));</span>
+<span class="fc" id="L14">            val = 16 * val + d;</span>
         }
-<span class="nc" id="L16">        return val;</span>
+<span class="fc" id="L16">        return val;</span>
     }
 
     // Main method gets the hexadecimal input from user and converts it into Decimal output.

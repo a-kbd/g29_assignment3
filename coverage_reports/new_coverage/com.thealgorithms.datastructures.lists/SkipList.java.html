@@ -109,7 +109,7 @@ public class SkipList&lt;E extends Comparable&lt;E&gt;&gt; {
 <span class="fc" id="L109">            Node&lt;E&gt; next = current.next(layer);</span>
 <span class="fc bfc" id="L110" title="All 2 branches covered.">            if (e.equals(current.getValue())) {</span>
 <span class="fc" id="L111">                break;</span>
-<span class="fc bfc" id="L112" title="All 4 branches covered.">            } else if (next == null || next.getValue().compareTo(e) &gt; 0) {</span>
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">            } else if (next == null || next.getValue().compareTo(e) &gt; 0) {</span>
 <span class="fc" id="L113">                layer--;</span>
             } else {
 <span class="fc" id="L115">                current = next;</span>

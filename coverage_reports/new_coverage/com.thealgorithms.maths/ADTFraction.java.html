@@ -8,11 +8,11 @@
      * @param numerator   The fraction numerator
      * @param denominator The fraction denominator
      */
-<span class="nc" id="L11">    public ADTFraction {</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (denominator == 0) {</span>
-<span class="nc" id="L13">            throw new IllegalArgumentException(&quot;Denominator cannot be 0&quot;);</span>
+<span class="fc" id="L11">    public ADTFraction {</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (denominator == 0) {</span>
+<span class="fc" id="L13">            throw new IllegalArgumentException(&quot;Denominator cannot be 0&quot;);</span>
         }
-<span class="nc" id="L15">    }</span>
+<span class="fc" id="L15">    }</span>
 
     /**
      * Add two fractions.
@@ -21,13 +21,13 @@
      * @return A new {@code ADTFraction} containing the result of the operation
      */
     public ADTFraction plus(ADTFraction fraction) {
-<span class="nc" id="L24">        var numerator =</span>
+<span class="fc" id="L24">        var numerator =</span>
             this.denominator *
             fraction.numerator +
             this.numerator *
             fraction.denominator;
-<span class="nc" id="L29">        var denominator = this.denominator * fraction.denominator;</span>
-<span class="nc" id="L30">        return new ADTFraction(numerator, denominator);</span>
+<span class="fc" id="L29">        var denominator = this.denominator * fraction.denominator;</span>
+<span class="fc" id="L30">        return new ADTFraction(numerator, denominator);</span>
     }
 
     /**
@@ -37,7 +37,7 @@
      * @return A new {@code ADTFraction} containing the result of the operation
      */
     public ADTFraction times(int number) {
-<span class="nc" id="L40">        return times(new ADTFraction(number, 1));</span>
+<span class="fc" id="L40">        return times(new ADTFraction(number, 1));</span>
     }
 
     /**
@@ -47,9 +47,9 @@
      * @return A new {@code ADTFraction} containing the result of the operation
      */
     public ADTFraction times(ADTFraction fraction) {
-<span class="nc" id="L50">        var numerator = this.numerator * fraction.numerator;</span>
-<span class="nc" id="L51">        var denominator = this.denominator * fraction.denominator;</span>
-<span class="nc" id="L52">        return new ADTFraction(numerator, denominator);</span>
+<span class="fc" id="L50">        var numerator = this.numerator * fraction.numerator;</span>
+<span class="fc" id="L51">        var denominator = this.denominator * fraction.denominator;</span>
+<span class="fc" id="L52">        return new ADTFraction(numerator, denominator);</span>
     }
 
     /**
@@ -58,7 +58,7 @@
      * @return A new {@code ADTFraction} with the {@code numerator} and {@code denominator} switched
      */
     public ADTFraction reciprocal() {
-<span class="nc" id="L61">        return new ADTFraction(this.denominator, this.numerator);</span>
+<span class="fc" id="L61">        return new ADTFraction(this.denominator, this.numerator);</span>
     }
 
     /**
@@ -67,7 +67,7 @@
      * @return The numerical result of the division between {@code numerator} and {@code denominator}
      */
     public float value() {
-<span class="nc" id="L70">        return (float) this.numerator / this.denominator;</span>
+<span class="fc" id="L70">        return (float) this.numerator / this.denominator;</span>
     }
 
     /**
@@ -78,7 +78,7 @@
      */
     @Override
     public String toString() {
-<span class="nc" id="L81">        return String.format(&quot;%d/%d&quot;, this.numerator, this.denominator);</span>
+<span class="fc" id="L81">        return String.format(&quot;%d/%d&quot;, this.numerator, this.denominator);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -18,30 +18,30 @@ public class LeftistHeap {
 		private Node left, right;
 
 		// Node constructor setting the data element and left/right pointers to null
-<span class="fc" id="L21">		private Node(int element) {</span>
-<span class="fc" id="L22">			this.element = element;</span>
-<span class="fc" id="L23">			left = right = null;</span>
-<span class="fc" id="L24">			npl = 0;</span>
-<span class="fc" id="L25">		}</span>
+<span class="nc" id="L21">		private Node(int element) {</span>
+<span class="nc" id="L22">			this.element = element;</span>
+<span class="nc" id="L23">			left = right = null;</span>
+<span class="nc" id="L24">			npl = 0;</span>
+<span class="nc" id="L25">		}</span>
 	}
 
 	private Node root;
 
 	// Constructor
-<span class="fc" id="L31">	public LeftistHeap() {</span>
-<span class="fc" id="L32">		root = null;</span>
-<span class="fc" id="L33">	}</span>
+<span class="nc" id="L31">	public LeftistHeap() {</span>
+<span class="nc" id="L32">		root = null;</span>
+<span class="nc" id="L33">	}</span>
 
 	// Checks if heap is empty
 	public boolean isEmpty() {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">		return root == null;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		return root == null;</span>
 	}
 
 	// Resets structure to initial state
 	public void clear() {
 		// We will put head is null
-<span class="fc" id="L43">		root = null;</span>
-<span class="fc" id="L44">	}</span>
+<span class="nc" id="L43">		root = null;</span>
+<span class="nc" id="L44">	}</span>
 
 	// Merge function that merges the contents of another leftist heap with the
 	// current one
@@ -53,67 +53,67 @@ public class LeftistHeap {
 
 	// Function merge with two Nodes a and b
 	public Node merge(Node a, Node b) {
-<span class="fc bfc" id="L56" title="All 2 branches covered.">		if (a == null)</span>
-<span class="fc" id="L57">			return b;</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if (a == null)</span>
+<span class="nc" id="L57">			return b;</span>
 
-<span class="fc bfc" id="L59" title="All 2 branches covered.">		if (b == null)</span>
-<span class="fc" id="L60">			return a;</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		if (b == null)</span>
+<span class="nc" id="L60">			return a;</span>
 
 		// Violates leftist property, so must do a swap
-<span class="fc bfc" id="L63" title="All 2 branches covered.">		if (a.element &gt; b.element) {</span>
-<span class="fc" id="L64">			Node temp = a;</span>
-<span class="fc" id="L65">			a = b;</span>
-<span class="fc" id="L66">			b = temp;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if (a.element &gt; b.element) {</span>
+<span class="nc" id="L64">			Node temp = a;</span>
+<span class="nc" id="L65">			a = b;</span>
+<span class="nc" id="L66">			b = temp;</span>
 		}
 
 		// Now we call the function merge to merge a and b
-<span class="fc" id="L70">		a.right = merge(a.right, b);</span>
+<span class="nc" id="L70">		a.right = merge(a.right, b);</span>
 
 		// Violates leftist property so must swap here
-<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (a.left == null) {</span>
-<span class="fc" id="L74">			a.left = a.right;</span>
-<span class="fc" id="L75">			a.right = null;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		if (a.left == null) {</span>
+<span class="nc" id="L74">			a.left = a.right;</span>
+<span class="nc" id="L75">			a.right = null;</span>
 		} else {
-<span class="fc bfc" id="L77" title="All 2 branches covered.">			if (a.left.npl &lt; a.right.npl) {</span>
-<span class="fc" id="L78">				Node temp = a.left;</span>
-<span class="fc" id="L79">				a.left = a.right;</span>
-<span class="fc" id="L80">				a.right = temp;</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">			if (a.left.npl &lt; a.right.npl) {</span>
+<span class="nc" id="L78">				Node temp = a.left;</span>
+<span class="nc" id="L79">				a.left = a.right;</span>
+<span class="nc" id="L80">				a.right = temp;</span>
 			}
-<span class="fc" id="L82">			a.npl = a.right.npl + 1;</span>
+<span class="nc" id="L82">			a.npl = a.right.npl + 1;</span>
 		}
-<span class="fc" id="L84">		return a;</span>
+<span class="nc" id="L84">		return a;</span>
 	}
 
 	// Function insert. Uses the merge function to add the data
 	public void insert(int a) {
-<span class="fc" id="L89">		root = merge(new Node(a), root);</span>
-<span class="fc" id="L90">	}</span>
+<span class="nc" id="L89">		root = merge(new Node(a), root);</span>
+<span class="nc" id="L90">	}</span>
 
 	// Returns and removes the minimum element in the heap
 	public int extract_min() {
 		// If is empty return -1
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">		if (isEmpty())</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		if (isEmpty())</span>
 <span class="nc" id="L96">			return -1;</span>
 
-<span class="fc" id="L98">		int min = root.element;</span>
-<span class="fc" id="L99">		root = merge(root.left, root.right);</span>
-<span class="fc" id="L100">		return min;</span>
+<span class="nc" id="L98">		int min = root.element;</span>
+<span class="nc" id="L99">		root = merge(root.left, root.right);</span>
+<span class="nc" id="L100">		return min;</span>
 	}
 
 	// Function returning a list of an in order traversal of the data structure
 	public ArrayList&lt;Integer&gt; in_order() {
-<span class="fc" id="L105">		ArrayList&lt;Integer&gt; lst = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L106">		in_order_aux(root, lst);</span>
-<span class="fc" id="L107">		return new ArrayList&lt;&gt;(lst);</span>
+<span class="nc" id="L105">		ArrayList&lt;Integer&gt; lst = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L106">		in_order_aux(root, lst);</span>
+<span class="nc" id="L107">		return new ArrayList&lt;&gt;(lst);</span>
 	}
 
 	// Auxiliary function for in_order
 	private void in_order_aux(Node n, ArrayList&lt;Integer&gt; lst) {
-<span class="fc bfc" id="L112" title="All 2 branches covered.">		if (n == null)</span>
-<span class="fc" id="L113">			return;</span>
-<span class="fc" id="L114">		in_order_aux(n.left, lst);</span>
-<span class="fc" id="L115">		lst.add(n.element);</span>
-<span class="fc" id="L116">		in_order_aux(n.right, lst);</span>
-<span class="fc" id="L117">	}</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		if (n == null)</span>
+<span class="nc" id="L113">			return;</span>
+<span class="nc" id="L114">		in_order_aux(n.left, lst);</span>
+<span class="nc" id="L115">		lst.add(n.element);</span>
+<span class="nc" id="L116">		in_order_aux(n.right, lst);</span>
+<span class="nc" id="L117">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

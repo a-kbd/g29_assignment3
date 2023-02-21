@@ -18,70 +18,70 @@ public class SJFScheduling {
      * @param processes a list of processes the user wants to schedule
      *  it also sorts the processes based on the time of their arrival
      */
-<span class="nc" id="L21">    SJFScheduling(final ArrayList&lt;ProcessDetails&gt; processes) {</span>
-<span class="nc" id="L22">        this.processes = processes;</span>
-<span class="nc" id="L23">        schedule=new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L24">        sortByArrivalTime();</span>
-<span class="nc" id="L25">    }</span>
+<span class="fc" id="L21">    SJFScheduling(final ArrayList&lt;ProcessDetails&gt; processes) {</span>
+<span class="fc" id="L22">        this.processes = processes;</span>
+<span class="fc" id="L23">        schedule=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L24">        sortByArrivalTime();</span>
+<span class="fc" id="L25">    }</span>
 protected void sortByArrivalTime() {
-<span class="nc" id="L27">        int size=processes.size(),i,j;</span>
+<span class="fc" id="L27">        int size=processes.size(),i,j;</span>
         ProcessDetails temp;
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        for(i=0;i&lt;size;i++)</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for(i=0;i&lt;size;i++)</span>
         {
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            for(j=i+1;j&lt;size-1;j++)</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            for(j=i+1;j&lt;size-1;j++)</span>
             {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">                if(processes.get(j).getArrivalTime()&gt;processes.get(j+1).getArrivalTime())</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">                if(processes.get(j).getArrivalTime()&gt;processes.get(j+1).getArrivalTime())</span>
                 {
-<span class="nc" id="L35">                    temp=processes.get(j);</span>
-<span class="nc" id="L36">                    processes.set(j,processes.get(j+1));</span>
-<span class="nc" id="L37">                    processes.set(j+1,temp);</span>
+<span class="fc" id="L35">                    temp=processes.get(j);</span>
+<span class="fc" id="L36">                    processes.set(j,processes.get(j+1));</span>
+<span class="fc" id="L37">                    processes.set(j+1,temp);</span>
                 }
             }
         }
 
-<span class="nc" id="L42">}</span>
+<span class="fc" id="L42">}</span>
 
     /**
      * this functions returns the order of the executions
      */
 
     public void scheduleProcesses() {
-<span class="nc" id="L49">        ArrayList&lt;ProcessDetails&gt; ready=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L49">        ArrayList&lt;ProcessDetails&gt; ready=new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L51">        int size = processes.size(),runtime,time=0;</span>
-<span class="nc" id="L52">        int executed=0,j,k=0;</span>
+<span class="fc" id="L51">        int size = processes.size(),runtime,time=0;</span>
+<span class="fc" id="L52">        int executed=0,j,k=0;</span>
         ProcessDetails running;
 
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (size == 0) {</span>
-<span class="nc" id="L56">            return;</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (size == 0) {</span>
+<span class="fc" id="L56">            return;</span>
         }
 
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        while(executed&lt;size)</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        while(executed&lt;size)</span>
         {
-<span class="nc bnc" id="L62" title="All 4 branches missed.">            while(k&lt;size &amp;&amp; processes.get(k).getArrivalTime()&lt;=time)//here we find the processes that have arrived.</span>
+<span class="fc bfc" id="L62" title="All 4 branches covered.">            while(k&lt;size &amp;&amp; processes.get(k).getArrivalTime()&lt;=time)//here we find the processes that have arrived.</span>
             {
-<span class="nc" id="L64">                ready.add(processes.get(k));</span>
-<span class="nc" id="L65">                k++;</span>
+<span class="fc" id="L64">                ready.add(processes.get(k));</span>
+<span class="fc" id="L65">                k++;</span>
             }
 
-<span class="nc" id="L68">            running=findShortestJob(ready);</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(running==null)</span>
+<span class="fc" id="L68">            running=findShortestJob(ready);</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">            if(running==null)</span>
             {
-<span class="nc" id="L71">                  time++;</span>
+<span class="fc" id="L71">                  time++;</span>
             }
             else {
-<span class="nc" id="L74">                  runtime = running.getBurstTime();</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">                  for (j = 0; j &lt; runtime; j++) {</span>
-<span class="nc" id="L76">                      time++;}</span>
-<span class="nc" id="L77">                  schedule.add(running.getProcessId());</span>
-<span class="nc" id="L78">                  ready.remove(running);</span>
-<span class="nc" id="L79">                  executed++;</span>
+<span class="fc" id="L74">                  runtime = running.getBurstTime();</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">                  for (j = 0; j &lt; runtime; j++) {</span>
+<span class="fc" id="L76">                      time++;}</span>
+<span class="fc" id="L77">                  schedule.add(running.getProcessId());</span>
+<span class="fc" id="L78">                  ready.remove(running);</span>
+<span class="fc" id="L79">                  executed++;</span>
                   }
         }
 
 
-<span class="nc" id="L84">    }</span>
+<span class="fc" id="L84">    }</span>
 
     /**
      * this function evaluates the shortest job of all the ready processes (based on  a process burst time)
@@ -89,22 +89,22 @@ protected void sortByArrivalTime() {
      * @return returns the process' with the shortest burst time OR NULL if there are no ready processes
      */
     private ProcessDetails findShortestJob(ArrayList&lt;ProcessDetails&gt; ReadyProcesses) {
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (ReadyProcesses.isEmpty()){</span>
-<span class="nc" id="L93">            return null;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (ReadyProcesses.isEmpty()){</span>
+<span class="fc" id="L93">            return null;</span>
         }
-<span class="nc" id="L95">        int i,size = ReadyProcesses.size();</span>
-<span class="nc" id="L96">        int minBurstTime = ReadyProcesses.get(0).getBurstTime(), temp, positionOfShortestJob = 0;</span>
+<span class="fc" id="L95">        int i,size = ReadyProcesses.size();</span>
+<span class="fc" id="L96">        int minBurstTime = ReadyProcesses.get(0).getBurstTime(), temp, positionOfShortestJob = 0;</span>
 
 
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        for (i = 1; i &lt; size; i++) {</span>
-<span class="nc" id="L100">            temp = ReadyProcesses.get(i).getBurstTime();</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (minBurstTime &gt; temp  ) {</span>
-<span class="nc" id="L102">                minBurstTime = temp;</span>
-<span class="nc" id="L103">                positionOfShortestJob = i;</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        for (i = 1; i &lt; size; i++) {</span>
+<span class="fc" id="L100">            temp = ReadyProcesses.get(i).getBurstTime();</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">            if (minBurstTime &gt; temp  ) {</span>
+<span class="fc" id="L102">                minBurstTime = temp;</span>
+<span class="fc" id="L103">                positionOfShortestJob = i;</span>
             }
         }
 
-<span class="nc" id="L107">        return ReadyProcesses.get(positionOfShortestJob);</span>
+<span class="fc" id="L107">        return ReadyProcesses.get(positionOfShortestJob);</span>
     }
 
 

@@ -8,10 +8,10 @@
  *
  * */
 
-<span class="fc" id="L11">public class Blowfish {</span>
+<span class="nc" id="L11">public class Blowfish {</span>
 
     //Initializing substitution boxes
-<span class="fc" id="L14">    String S[][] = {</span>
+<span class="nc" id="L14">    String S[][] = {</span>
         {
             &quot;d1310ba6&quot;,
             &quot;98dfb5ac&quot;,
@@ -1047,7 +1047,7 @@
     };
 
     //Initializing subkeys with digits of pi
-<span class="fc" id="L1050">    String P[] = {</span>
+<span class="nc" id="L1050">    String P[] = {</span>
         &quot;243f6a88&quot;,
         &quot;85a308d3&quot;,
         &quot;13198a2e&quot;,
@@ -1069,7 +1069,7 @@
     };
 
     //Initializing modVal to 2^32
-<span class="fc" id="L1072">    long modVal = 4294967296L;</span>
+<span class="nc" id="L1072">    long modVal = 4294967296L;</span>
 
     /**
      * This method returns binary representation of the hexadecimal number passed as parameter
@@ -1078,20 +1078,20 @@
      * @return String object which is a binary representation of the hex number passed as parameter
      */
     private String hexToBin(String hex) {
-<span class="fc" id="L1081">        String binary = &quot;&quot;;</span>
+<span class="nc" id="L1081">        String binary = &quot;&quot;;</span>
         Long num;
         String binary4B;
-<span class="fc" id="L1084">        int n = hex.length();</span>
-<span class="fc bfc" id="L1085" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i++) {</span>
-<span class="fc" id="L1086">            num = Long.parseUnsignedLong(hex.charAt(i) + &quot;&quot;, 16);</span>
-<span class="fc" id="L1087">            binary4B = Long.toBinaryString(num);</span>
+<span class="nc" id="L1084">        int n = hex.length();</span>
+<span class="nc bnc" id="L1085" title="All 2 branches missed.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L1086">            num = Long.parseUnsignedLong(hex.charAt(i) + &quot;&quot;, 16);</span>
+<span class="nc" id="L1087">            binary4B = Long.toBinaryString(num);</span>
 
-<span class="fc" id="L1089">            binary4B = &quot;0000&quot; + binary4B;</span>
+<span class="nc" id="L1089">            binary4B = &quot;0000&quot; + binary4B;</span>
 
-<span class="fc" id="L1091">            binary4B = binary4B.substring(binary4B.length() - 4);</span>
-<span class="fc" id="L1092">            binary += binary4B;</span>
+<span class="nc" id="L1091">            binary4B = binary4B.substring(binary4B.length() - 4);</span>
+<span class="nc" id="L1092">            binary += binary4B;</span>
         }
-<span class="fc" id="L1094">        return binary;</span>
+<span class="nc" id="L1094">        return binary;</span>
     }
 
     /**
@@ -1101,11 +1101,11 @@
      * @return String object which is a hexadecimal representation of the binary number passed as parameter
      */
     private String binToHex(String binary) {
-<span class="fc" id="L1104">        long num = Long.parseUnsignedLong(binary, 2);</span>
-<span class="fc" id="L1105">        String hex = Long.toHexString(num);</span>
-<span class="fc bfc" id="L1106" title="All 2 branches covered.">        while (hex.length() &lt; (binary.length() / 4)) hex = &quot;0&quot; + hex;</span>
+<span class="nc" id="L1104">        long num = Long.parseUnsignedLong(binary, 2);</span>
+<span class="nc" id="L1105">        String hex = Long.toHexString(num);</span>
+<span class="nc bnc" id="L1106" title="All 2 branches missed.">        while (hex.length() &lt; (binary.length() / 4)) hex = &quot;0&quot; + hex;</span>
 
-<span class="fc" id="L1108">        return hex;</span>
+<span class="nc" id="L1108">        return hex;</span>
     }
 
     /**
@@ -1115,13 +1115,13 @@
      * @return String object obtained by XOR operation on String a and String b
      * */
     private String xor(String a, String b) {
-<span class="fc" id="L1118">        a = hexToBin(a);</span>
-<span class="fc" id="L1119">        b = hexToBin(b);</span>
-<span class="fc" id="L1120">        String ans = &quot;&quot;;</span>
-<span class="fc bfc" id="L1121" title="All 2 branches covered.">        for (int i = 0; i &lt; a.length(); i++) ans +=</span>
-<span class="fc" id="L1122">            (char) (((a.charAt(i) - '0') ^ (b.charAt(i) - '0')) + '0');</span>
-<span class="fc" id="L1123">        ans = binToHex(ans);</span>
-<span class="fc" id="L1124">        return ans;</span>
+<span class="nc" id="L1118">        a = hexToBin(a);</span>
+<span class="nc" id="L1119">        b = hexToBin(b);</span>
+<span class="nc" id="L1120">        String ans = &quot;&quot;;</span>
+<span class="nc bnc" id="L1121" title="All 2 branches missed.">        for (int i = 0; i &lt; a.length(); i++) ans +=</span>
+<span class="nc" id="L1122">            (char) (((a.charAt(i) - '0') ^ (b.charAt(i) - '0')) + '0');</span>
+<span class="nc" id="L1123">        ans = binToHex(ans);</span>
+<span class="nc" id="L1124">        return ans;</span>
     }
 
     /**
@@ -1131,13 +1131,13 @@
      * @return String object which is a is addition that is then moded with 2^32 of hex numbers passed as parameters
      */
     private String addBin(String a, String b) {
-<span class="fc" id="L1134">        String ans = &quot;&quot;;</span>
-<span class="fc" id="L1135">        long n1 = Long.parseUnsignedLong(a, 16);</span>
-<span class="fc" id="L1136">        long n2 = Long.parseUnsignedLong(b, 16);</span>
-<span class="fc" id="L1137">        n1 = (n1 + n2) % modVal;</span>
-<span class="fc" id="L1138">        ans = Long.toHexString(n1);</span>
-<span class="fc" id="L1139">        ans = &quot;00000000&quot; + ans;</span>
-<span class="fc" id="L1140">        return ans.substring(ans.length() - 8);</span>
+<span class="nc" id="L1134">        String ans = &quot;&quot;;</span>
+<span class="nc" id="L1135">        long n1 = Long.parseUnsignedLong(a, 16);</span>
+<span class="nc" id="L1136">        long n2 = Long.parseUnsignedLong(b, 16);</span>
+<span class="nc" id="L1137">        n1 = (n1 + n2) % modVal;</span>
+<span class="nc" id="L1138">        ans = Long.toHexString(n1);</span>
+<span class="nc" id="L1139">        ans = &quot;00000000&quot; + ans;</span>
+<span class="nc" id="L1140">        return ans.substring(ans.length() - 8);</span>
     }
 
     /*F-function splits the 32-bit input into four 8-bit quarters 
@@ -1146,47 +1146,47 @@
 	 The outputs are added modulo 232 and XORed to produce the final 32-bit output 
 	*/
     private String f(String plainText) {
-<span class="fc" id="L1149">        String a[] = new String[4];</span>
-<span class="fc" id="L1150">        String ans = &quot;&quot;;</span>
-<span class="fc bfc" id="L1151" title="All 2 branches covered.">        for (int i = 0; i &lt; 8; i += 2) {</span>
+<span class="nc" id="L1149">        String a[] = new String[4];</span>
+<span class="nc" id="L1150">        String ans = &quot;&quot;;</span>
+<span class="nc bnc" id="L1151" title="All 2 branches missed.">        for (int i = 0; i &lt; 8; i += 2) {</span>
             //column number for S-box is a 8-bit value
-<span class="fc" id="L1153">            long col = Long.parseUnsignedLong(</span>
-<span class="fc" id="L1154">                hexToBin(plainText.substring(i, i + 2)),</span>
+<span class="nc" id="L1153">            long col = Long.parseUnsignedLong(</span>
+<span class="nc" id="L1154">                hexToBin(plainText.substring(i, i + 2)),</span>
                 2
             );
-<span class="fc" id="L1157">            a[i / 2] = S[i / 2][(int) col];</span>
+<span class="nc" id="L1157">            a[i / 2] = S[i / 2][(int) col];</span>
         }
-<span class="fc" id="L1159">        ans = addBin(a[0], a[1]);</span>
-<span class="fc" id="L1160">        ans = xor(ans, a[2]);</span>
-<span class="fc" id="L1161">        ans = addBin(ans, a[3]);</span>
-<span class="fc" id="L1162">        return ans;</span>
+<span class="nc" id="L1159">        ans = addBin(a[0], a[1]);</span>
+<span class="nc" id="L1160">        ans = xor(ans, a[2]);</span>
+<span class="nc" id="L1161">        ans = addBin(ans, a[3]);</span>
+<span class="nc" id="L1162">        return ans;</span>
     }
 
     //generate subkeys
     private void keyGenerate(String key) {
-<span class="fc" id="L1167">        int j = 0;</span>
-<span class="fc bfc" id="L1168" title="All 2 branches covered.">        for (int i = 0; i &lt; P.length; i++) {</span>
+<span class="nc" id="L1167">        int j = 0;</span>
+<span class="nc bnc" id="L1168" title="All 2 branches missed.">        for (int i = 0; i &lt; P.length; i++) {</span>
             //XOR-ing 32-bit parts of the key with initial subkeys
-<span class="fc" id="L1170">            P[i] = xor(P[i], key.substring(j, j + 8));</span>
+<span class="nc" id="L1170">            P[i] = xor(P[i], key.substring(j, j + 8));</span>
 
-<span class="fc" id="L1172">            j = (j + 8) % key.length();</span>
+<span class="nc" id="L1172">            j = (j + 8) % key.length();</span>
         }
-<span class="fc" id="L1174">    }</span>
+<span class="nc" id="L1174">    }</span>
 
     //round function
     private String round(int time, String plainText) {
         String left, right;
-<span class="fc" id="L1179">        left = plainText.substring(0, 8);</span>
-<span class="fc" id="L1180">        right = plainText.substring(8, 16);</span>
-<span class="fc" id="L1181">        left = xor(left, P[time]);</span>
+<span class="nc" id="L1179">        left = plainText.substring(0, 8);</span>
+<span class="nc" id="L1180">        right = plainText.substring(8, 16);</span>
+<span class="nc" id="L1181">        left = xor(left, P[time]);</span>
 
         //output from F function
-<span class="fc" id="L1184">        String fOut = f(left);</span>
+<span class="nc" id="L1184">        String fOut = f(left);</span>
 
-<span class="fc" id="L1186">        right = xor(fOut, right);</span>
+<span class="nc" id="L1186">        right = xor(fOut, right);</span>
 
         //swap left and right
-<span class="fc" id="L1189">        return right + left;</span>
+<span class="nc" id="L1189">        return right + left;</span>
     }
 
     /**
@@ -1199,16 +1199,16 @@
      */
     String encrypt(String plainText, String key) {
         //generating key
-<span class="fc" id="L1202">        keyGenerate(key);</span>
+<span class="nc" id="L1202">        keyGenerate(key);</span>
 
-<span class="fc bfc" id="L1204" title="All 2 branches covered.">        for (int i = 0; i &lt; 16; i++) plainText = round(i, plainText);</span>
+<span class="nc bnc" id="L1204" title="All 2 branches missed.">        for (int i = 0; i &lt; 16; i++) plainText = round(i, plainText);</span>
 
         //postprocessing
-<span class="fc" id="L1207">        String right = plainText.substring(0, 8);</span>
-<span class="fc" id="L1208">        String left = plainText.substring(8, 16);</span>
-<span class="fc" id="L1209">        right = xor(right, P[16]);</span>
-<span class="fc" id="L1210">        left = xor(left, P[17]);</span>
-<span class="fc" id="L1211">        return left + right;</span>
+<span class="nc" id="L1207">        String right = plainText.substring(0, 8);</span>
+<span class="nc" id="L1208">        String left = plainText.substring(8, 16);</span>
+<span class="nc" id="L1209">        right = xor(right, P[16]);</span>
+<span class="nc" id="L1210">        left = xor(left, P[17]);</span>
+<span class="nc" id="L1211">        return left + right;</span>
     }
 
     /**
@@ -1221,16 +1221,16 @@
      */
     String decrypt(String cipherText, String key) {
         //generating key
-<span class="fc" id="L1224">        keyGenerate(key);</span>
+<span class="nc" id="L1224">        keyGenerate(key);</span>
 
-<span class="fc bfc" id="L1226" title="All 2 branches covered.">        for (int i = 17; i &gt; 1; i--) cipherText = round(i, cipherText);</span>
+<span class="nc bnc" id="L1226" title="All 2 branches missed.">        for (int i = 17; i &gt; 1; i--) cipherText = round(i, cipherText);</span>
 
         //postprocessing
-<span class="fc" id="L1229">        String right = cipherText.substring(0, 8);</span>
-<span class="fc" id="L1230">        String left = cipherText.substring(8, 16);</span>
-<span class="fc" id="L1231">        right = xor(right, P[1]);</span>
-<span class="fc" id="L1232">        left = xor(left, P[0]);</span>
-<span class="fc" id="L1233">        return left + right;</span>
+<span class="nc" id="L1229">        String right = cipherText.substring(0, 8);</span>
+<span class="nc" id="L1230">        String left = cipherText.substring(8, 16);</span>
+<span class="nc" id="L1231">        right = xor(right, P[1]);</span>
+<span class="nc" id="L1232">        left = xor(left, P[0]);</span>
+<span class="nc" id="L1233">        return left + right;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

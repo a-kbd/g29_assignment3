@@ -5,7 +5,7 @@
  * Based on Solution discussed on StackOverflow(https://stackoverflow.com/questions/22891076/count-number-of-subsets-with-sum-equal-to-k)
  * @author Samrat Podder(https://github.com/samratpodder)
  */
-<span class="fc" id="L8">public class SubsetCount {</span>
+<span class="nc" id="L8">public class SubsetCount {</span>
 
 
     /**
@@ -22,21 +22,21 @@
          * If we reach the end of the array arr then, either if target==arr[end], then we add one to the final count
          * Otherwise we add 0 to the final count
          */
-<span class="fc" id="L25">        int n = arr.length;</span>
-<span class="fc" id="L26">        int[][] dp = new int[n][target+1];</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i++) {</span>
-<span class="fc" id="L28">            dp[i][0] = 1;</span>
+<span class="nc" id="L25">        int n = arr.length;</span>
+<span class="nc" id="L26">        int[][] dp = new int[n][target+1];</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L28">            dp[i][0] = 1;</span>
         }
-<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if(arr[0]&lt;=target) dp[0][arr[0]] = 1;</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        for(int t=1;t&lt;=target;t++){</span>
-<span class="fc bfc" id="L32" title="All 2 branches covered.">            for (int idx = 1; idx &lt; n; idx++) {</span>
-<span class="fc" id="L33">                int notpick = dp[idx-1][t];</span>
-<span class="fc" id="L34">                int pick =0;</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">                if(arr[idx]&lt;=t) pick+=dp[idx-1][target-t];</span>
-<span class="fc" id="L36">                dp[idx][target] = pick+notpick;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(arr[0]&lt;=target) dp[0][arr[0]] = 1;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for(int t=1;t&lt;=target;t++){</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            for (int idx = 1; idx &lt; n; idx++) {</span>
+<span class="nc" id="L33">                int notpick = dp[idx-1][t];</span>
+<span class="nc" id="L34">                int pick =0;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">                if(arr[idx]&lt;=t) pick+=dp[idx-1][target-t];</span>
+<span class="nc" id="L36">                dp[idx][target] = pick+notpick;</span>
             }
         }
-<span class="fc" id="L39">        return dp[n-1][target];</span>
+<span class="nc" id="L39">        return dp[n-1][target];</span>
     }
 
 
@@ -48,22 +48,22 @@
      * @param target is the sum of each element of the subset taken together
      */
     public int getCountSO(int[] arr, int target){
-<span class="fc" id="L51">        int n = arr.length;</span>
-<span class="fc" id="L52">        int prev[]=new int[target+1];</span>
-<span class="fc" id="L53">        prev[0] =1;</span>
-<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if(arr[0]&lt;=target) prev[arr[0]] = 1;</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        for(int ind = 1; ind&lt;n; ind++){</span>
-<span class="fc" id="L56">            int cur[]=new int[target+1];</span>
-<span class="fc" id="L57">            cur[0]=1;</span>
-<span class="fc bfc" id="L58" title="All 2 branches covered.">            for(int t= 1; t&lt;=target; t++){</span>
-<span class="fc" id="L59">                int notTaken = prev[t];</span>
-<span class="fc" id="L60">                int taken = 0;</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">                if(arr[ind]&lt;=t) taken = prev[t-arr[ind]];</span>
-<span class="fc" id="L62">                cur[t]= notTaken + taken;</span>
+<span class="nc" id="L51">        int n = arr.length;</span>
+<span class="nc" id="L52">        int prev[]=new int[target+1];</span>
+<span class="nc" id="L53">        prev[0] =1;</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        if(arr[0]&lt;=target) prev[arr[0]] = 1;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        for(int ind = 1; ind&lt;n; ind++){</span>
+<span class="nc" id="L56">            int cur[]=new int[target+1];</span>
+<span class="nc" id="L57">            cur[0]=1;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for(int t= 1; t&lt;=target; t++){</span>
+<span class="nc" id="L59">                int notTaken = prev[t];</span>
+<span class="nc" id="L60">                int taken = 0;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                if(arr[ind]&lt;=t) taken = prev[t-arr[ind]];</span>
+<span class="nc" id="L62">                cur[t]= notTaken + taken;</span>
             }
-<span class="fc" id="L64">            prev = cur;</span>
+<span class="nc" id="L64">            prev = cur;</span>
         }
-<span class="fc" id="L66">        return prev[target];</span>
+<span class="nc" id="L66">        return prev[target];</span>
     }
 
 }

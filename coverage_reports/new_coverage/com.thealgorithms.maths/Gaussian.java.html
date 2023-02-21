@@ -8,22 +8,22 @@ import java.util.ArrayList;
         int mat_size,
         ArrayList&lt;Double&gt; matrix
     ) {
-<span class="fc" id="L11">        ArrayList&lt;Double&gt; answerArray = new ArrayList&lt;Double&gt;();</span>
-<span class="fc" id="L12">        int i, j = 0;</span>
+<span class="nc" id="L11">        ArrayList&lt;Double&gt; answerArray = new ArrayList&lt;Double&gt;();</span>
+<span class="nc" id="L12">        int i, j = 0;</span>
 
-<span class="fc" id="L14">        double[][] mat = new double[mat_size + 1][mat_size + 1];</span>
-<span class="fc" id="L15">        double[][] x = new double[mat_size][mat_size + 1];</span>
+<span class="nc" id="L14">        double[][] mat = new double[mat_size + 1][mat_size + 1];</span>
+<span class="nc" id="L15">        double[][] x = new double[mat_size][mat_size + 1];</span>
 
         // Values from arraylist to matrix
-<span class="fc bfc" id="L18" title="All 2 branches covered.">        for (i = 0; i &lt; mat_size; i++) {</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">            for (j = 0; j &lt;= mat_size; j++) {</span>
-<span class="fc" id="L20">                mat[i][j] = matrix.get(i);</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        for (i = 0; i &lt; mat_size; i++) {</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">            for (j = 0; j &lt;= mat_size; j++) {</span>
+<span class="nc" id="L20">                mat[i][j] = matrix.get(i);</span>
             }
         }
 
-<span class="fc" id="L24">        mat = gaussianElimination(mat_size, i, mat);</span>
-<span class="fc" id="L25">        answerArray = valueOfGaussian(mat_size, x, mat);</span>
-<span class="fc" id="L26">        return answerArray;</span>
+<span class="nc" id="L24">        mat = gaussianElimination(mat_size, i, mat);</span>
+<span class="nc" id="L25">        answerArray = valueOfGaussian(mat_size, x, mat);</span>
+<span class="nc" id="L26">        return answerArray;</span>
     }
 
     // Perform Gaussian elimination
@@ -32,17 +32,17 @@ import java.util.ArrayList;
         int i,
         double[][] mat
     ) {
-<span class="fc" id="L35">        int step = 0;</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (step = 0; step &lt; mat_size - 1; step++) {</span>
-<span class="fc bfc" id="L37" title="All 2 branches covered.">            for (i = step; i &lt; mat_size - 1; i++) {</span>
-<span class="fc" id="L38">                double a = (mat[i + 1][step] / mat[step][step]);</span>
+<span class="nc" id="L35">        int step = 0;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        for (step = 0; step &lt; mat_size - 1; step++) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            for (i = step; i &lt; mat_size - 1; i++) {</span>
+<span class="nc" id="L38">                double a = (mat[i + 1][step] / mat[step][step]);</span>
 
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                for (int j = step; j &lt;= mat_size; j++) {</span>
-<span class="fc" id="L41">                    mat[i + 1][j] = mat[i + 1][j] - (a * mat[step][j]);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                for (int j = step; j &lt;= mat_size; j++) {</span>
+<span class="nc" id="L41">                    mat[i + 1][j] = mat[i + 1][j] - (a * mat[step][j]);</span>
                 }
             }
         }
-<span class="fc" id="L45">        return mat;</span>
+<span class="nc" id="L45">        return mat;</span>
     }
 
     // calculate the x_1, x_2,... values of the gaussian and save it in an arraylist.
@@ -51,29 +51,29 @@ import java.util.ArrayList;
         double[][] x,
         double[][] mat
     ) {
-<span class="fc" id="L54">        ArrayList&lt;Double&gt; answerArray = new ArrayList&lt;Double&gt;();</span>
+<span class="nc" id="L54">        ArrayList&lt;Double&gt; answerArray = new ArrayList&lt;Double&gt;();</span>
         int i, j;
 
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        for (i = 0; i &lt; mat_size; i++) {</span>
-<span class="fc bfc" id="L58" title="All 2 branches covered.">            for (j = 0; j &lt;= mat_size; j++) {</span>
-<span class="fc" id="L59">                x[i][j] = mat[i][j];</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        for (i = 0; i &lt; mat_size; i++) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for (j = 0; j &lt;= mat_size; j++) {</span>
+<span class="nc" id="L59">                x[i][j] = mat[i][j];</span>
             }
         }
 
-<span class="fc bfc" id="L63" title="All 2 branches covered.">        for (i = mat_size - 1; i &gt;= 0; i--) {</span>
-<span class="fc" id="L64">            double sum = 0;</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">            for (j = mat_size - 1; j &gt; i; j--) {</span>
-<span class="fc" id="L66">                x[i][j] = x[j][j] * x[i][j];</span>
-<span class="fc" id="L67">                sum = x[i][j] + sum;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        for (i = mat_size - 1; i &gt;= 0; i--) {</span>
+<span class="nc" id="L64">            double sum = 0;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (j = mat_size - 1; j &gt; i; j--) {</span>
+<span class="nc" id="L66">                x[i][j] = x[j][j] * x[i][j];</span>
+<span class="nc" id="L67">                sum = x[i][j] + sum;</span>
             }
-<span class="fc bfc" id="L69" title="All 2 branches covered.">            if (x[i][i] == 0) {</span>
-<span class="fc" id="L70">                x[i][i] = 0;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (x[i][i] == 0) {</span>
+<span class="nc" id="L70">                x[i][i] = 0;</span>
             } else {
-<span class="fc" id="L72">                x[i][i] = (x[i][mat_size] - sum) / (x[i][i]);</span>
+<span class="nc" id="L72">                x[i][i] = (x[i][mat_size] - sum) / (x[i][i]);</span>
             }
-<span class="fc" id="L74">            answerArray.add(x[i][j]);</span>
+<span class="nc" id="L74">            answerArray.add(x[i][j]);</span>
         }
-<span class="fc" id="L76">        return answerArray;</span>
+<span class="nc" id="L76">        return answerArray;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

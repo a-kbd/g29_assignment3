@@ -4,27 +4,27 @@
  * @author Amir Hassan (https://github.com/ahsNT)
  * @see SortAlgorithm
  */
-<span class="nc" id="L7">public class SlowSort implements SortAlgorithm {</span>
+<span class="fc" id="L7">public class SlowSort implements SortAlgorithm {</span>
 
     @Override
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] unsortedArray) {
-<span class="nc" id="L11">        sort(unsortedArray, 0, unsortedArray.length - 1);</span>
-<span class="nc" id="L12">        return unsortedArray;</span>
+<span class="fc" id="L11">        sort(unsortedArray, 0, unsortedArray.length - 1);</span>
+<span class="fc" id="L12">        return unsortedArray;</span>
     }
 
     private &lt;T extends Comparable&lt;T&gt;&gt; void sort(T[] array, int i, int j) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (SortUtils.greaterOrEqual(i, j)) {</span>
-<span class="nc" id="L17">            return;</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if (SortUtils.greaterOrEqual(i, j)) {</span>
+<span class="fc" id="L17">            return;</span>
         }
-<span class="nc" id="L19">        int m = (i + j) / 2;</span>
-<span class="nc" id="L20">        sort(array, i, m);</span>
-<span class="nc" id="L21">        sort(array, m + 1, j);</span>
-<span class="nc bnc" id="L22" title="All 2 branches missed.">        if (SortUtils.less(array[j], array[m])) {</span>
-<span class="nc" id="L23">            T temp = array[j];</span>
-<span class="nc" id="L24">            array[j] = array[m];</span>
-<span class="nc" id="L25">            array[m] = temp;</span>
+<span class="fc" id="L19">        int m = (i + j) / 2;</span>
+<span class="fc" id="L20">        sort(array, i, m);</span>
+<span class="fc" id="L21">        sort(array, m + 1, j);</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (SortUtils.less(array[j], array[m])) {</span>
+<span class="fc" id="L23">            T temp = array[j];</span>
+<span class="fc" id="L24">            array[j] = array[m];</span>
+<span class="fc" id="L25">            array[m] = temp;</span>
         }
-<span class="nc" id="L27">        sort(array, i, j - 1);</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L27">        sort(array, i, j - 1);</span>
+<span class="fc" id="L28">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

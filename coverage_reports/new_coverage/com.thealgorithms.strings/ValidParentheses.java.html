@@ -8,27 +8,27 @@
 
 <span class="nc" id="L9">public class ValidParentheses {</span>
 	public static boolean isValid(String s) {
-<span class="nc" id="L11">		char[] stack = new char[s.length()];</span>
-<span class="nc" id="L12">		int head = 0;</span>
-<span class="nc bnc" id="L13" title="All 2 branches missed.">		for(char c : s.toCharArray()) {</span>
-<span class="nc bnc" id="L14" title="All 5 branches missed.">			switch(c) {</span>
+<span class="fc" id="L11">		char[] stack = new char[s.length()];</span>
+<span class="fc" id="L12">		int head = 0;</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">		for(char c : s.toCharArray()) {</span>
+<span class="pc bpc" id="L14" title="1 of 5 branches missed.">			switch(c) {</span>
 				case '{':
 				case '[':
 				case '(':
-<span class="nc" id="L18">					stack[head++] = c;</span>
-<span class="nc" id="L19">					break;</span>
+<span class="fc" id="L18">					stack[head++] = c;</span>
+<span class="fc" id="L19">					break;</span>
 				case '}':
-<span class="nc bnc" id="L21" title="All 4 branches missed.">					if(head == 0 || stack[--head] != '{') return false;</span>
+<span class="pc bpc" id="L21" title="2 of 4 branches missed.">					if(head == 0 || stack[--head] != '{') return false;</span>
 					break;
 				case ')':
-<span class="nc bnc" id="L24" title="All 4 branches missed.">					if(head == 0 || stack[--head] != '(') return false;</span>
+<span class="pc bpc" id="L24" title="2 of 4 branches missed.">					if(head == 0 || stack[--head] != '(') return false;</span>
 					break;
 				case ']':
-<span class="nc bnc" id="L27" title="All 4 branches missed.">					if(head == 0 || stack[--head] != '[') return false;</span>
+<span class="pc bpc" id="L27" title="1 of 4 branches missed.">					if(head == 0 || stack[--head] != '[') return false;</span>
 					break;
 			}
 		}
-<span class="nc bnc" id="L31" title="All 2 branches missed.">		return head == 0;</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">		return head == 0;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -6,35 +6,35 @@ import java.util.LinkedList;
 public class GenericHashMapUsingArrayList&lt;K, V&gt; {
 
     ArrayList&lt;LinkedList&lt;Node&gt;&gt; buckets;
-<span class="fc" id="L9">    private float lf = 0.5f;</span>
+<span class="nc" id="L9">    private float lf = 0.5f;</span>
     private int size;
 
-<span class="fc" id="L12">    public GenericHashMapUsingArrayList() {</span>
-<span class="fc" id="L13">        buckets = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L14" title="All 2 branches covered.">        for (int i = 0; i &lt; 10; i++) {</span>
-<span class="fc" id="L15">            buckets.add(new LinkedList&lt;&gt;());</span>
+<span class="nc" id="L12">    public GenericHashMapUsingArrayList() {</span>
+<span class="nc" id="L13">        buckets = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L14" title="All 2 branches missed.">        for (int i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L15">            buckets.add(new LinkedList&lt;&gt;());</span>
         }
-<span class="fc" id="L17">        size = 0;</span>
-<span class="fc" id="L18">    }</span>
+<span class="nc" id="L17">        size = 0;</span>
+<span class="nc" id="L18">    }</span>
 
     public void put(K key, V value) {
-<span class="fc" id="L21">        int hash = Math.abs(key.hashCode() % buckets.size());</span>
-<span class="fc" id="L22">        LinkedList&lt;Node&gt; nodes = buckets.get(hash);</span>
+<span class="nc" id="L21">        int hash = Math.abs(key.hashCode() % buckets.size());</span>
+<span class="nc" id="L22">        LinkedList&lt;Node&gt; nodes = buckets.get(hash);</span>
 
-<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        for (Node node : nodes) {</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (Node node : nodes) {</span>
 <span class="nc bnc" id="L25" title="All 2 branches missed.">            if (node.key.equals(key)) {</span>
 <span class="nc" id="L26">                node.val = value;</span>
 <span class="nc" id="L27">                return;</span>
             }
 <span class="nc" id="L29">        }</span>
 
-<span class="fc" id="L31">        nodes.add(new Node(key, value));</span>
-<span class="fc" id="L32">        size++;</span>
+<span class="nc" id="L31">        nodes.add(new Node(key, value));</span>
+<span class="nc" id="L32">        size++;</span>
 
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if ((float) size / buckets.size() &gt; lf) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if ((float) size / buckets.size() &gt; lf) {</span>
 <span class="nc" id="L35">            reHash();</span>
         }
-<span class="fc" id="L37">    }</span>
+<span class="nc" id="L37">    }</span>
 
     private void reHash() {
 <span class="nc" id="L40">        ArrayList&lt;LinkedList&lt;Node&gt;&gt; old = buckets;</span>
@@ -51,37 +51,37 @@ public class GenericHashMapUsingArrayList&lt;K, V&gt; {
 <span class="nc" id="L51">    }</span>
 
     public V get(K key) {
-<span class="fc" id="L54">        int hash = Math.abs(key.hashCode() % buckets.size());</span>
-<span class="fc" id="L55">        LinkedList&lt;Node&gt; nodes = buckets.get(hash);</span>
-<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (Node node : nodes) {</span>
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            if (node.key.equals(key)) {</span>
-<span class="fc" id="L58">                return node.val;</span>
+<span class="nc" id="L54">        int hash = Math.abs(key.hashCode() % buckets.size());</span>
+<span class="nc" id="L55">        LinkedList&lt;Node&gt; nodes = buckets.get(hash);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        for (Node node : nodes) {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (node.key.equals(key)) {</span>
+<span class="nc" id="L58">                return node.val;</span>
             }
 <span class="nc" id="L60">        }</span>
-<span class="fc" id="L61">        return null;</span>
+<span class="nc" id="L61">        return null;</span>
     }
 
     public void remove(K key) {
-<span class="fc" id="L65">        int hash = Math.abs(key.hashCode() % buckets.size());</span>
-<span class="fc" id="L66">        LinkedList&lt;Node&gt; nodes = buckets.get(hash);</span>
+<span class="nc" id="L65">        int hash = Math.abs(key.hashCode() % buckets.size());</span>
+<span class="nc" id="L66">        LinkedList&lt;Node&gt; nodes = buckets.get(hash);</span>
 
-<span class="fc" id="L68">        Node target = null;</span>
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        for (Node node : nodes) {</span>
-<span class="pc bpc" id="L70" title="1 of 2 branches missed.">            if (node.key.equals(key)) {</span>
-<span class="fc" id="L71">                target = node;</span>
-<span class="fc" id="L72">                break;</span>
+<span class="nc" id="L68">        Node target = null;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (Node node : nodes) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (node.key.equals(key)) {</span>
+<span class="nc" id="L71">                target = node;</span>
+<span class="nc" id="L72">                break;</span>
             }
 <span class="nc" id="L74">        }</span>
-<span class="fc" id="L75">        nodes.remove(target);</span>
-<span class="fc" id="L76">        size--;</span>
-<span class="fc" id="L77">    }</span>
+<span class="nc" id="L75">        nodes.remove(target);</span>
+<span class="nc" id="L76">        size--;</span>
+<span class="nc" id="L77">    }</span>
 
     public boolean containsKey(K key) {
-<span class="fc bfc" id="L80" title="All 2 branches covered.">        return get(key) != null;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        return get(key) != null;</span>
     }
 
     public int size() {
-<span class="fc" id="L84">        return this.size;</span>
+<span class="nc" id="L84">        return this.size;</span>
     }
 
     @Override
@@ -105,10 +105,10 @@ public class GenericHashMapUsingArrayList&lt;K, V&gt; {
         K key;
         V val;
 
-<span class="fc" id="L108">        public Node(K key, V val) {</span>
-<span class="fc" id="L109">            this.key = key;</span>
-<span class="fc" id="L110">            this.val = val;</span>
-<span class="fc" id="L111">        }</span>
+<span class="nc" id="L108">        public Node(K key, V val) {</span>
+<span class="nc" id="L109">            this.key = key;</span>
+<span class="nc" id="L110">            this.val = val;</span>
+<span class="nc" id="L111">        }</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

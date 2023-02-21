@@ -24,35 +24,35 @@
      *         -1 when number has odd number of prime factors
      */
     static int mobius(int number) {
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (number &lt;= 0) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (number &lt;= 0) {</span>
             //throw exception when number is less than or is zero
-<span class="nc" id="L29">            throw new IllegalArgumentException(</span>
+<span class="fc" id="L29">            throw new IllegalArgumentException(</span>
                 &quot;Number must be greater than zero.&quot;
             );
         }
 
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (number == 1) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (number == 1) {</span>
             //return 1 if number passed is less or is 1
-<span class="nc" id="L36">            return 1;</span>
+<span class="fc" id="L36">            return 1;</span>
         }
 
-<span class="nc" id="L39">        int primeFactorCount = 0;</span>
+<span class="fc" id="L39">        int primeFactorCount = 0;</span>
 
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        for (int i = 1; i &lt;= number; i++) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (int i = 1; i &lt;= number; i++) {</span>
             //find prime factors of number
-<span class="nc bnc" id="L43" title="All 4 branches missed.">            if (number % i == 0 &amp;&amp; PrimeCheck.isPrime(i)) {</span>
+<span class="fc bfc" id="L43" title="All 4 branches covered.">            if (number % i == 0 &amp;&amp; PrimeCheck.isPrime(i)) {</span>
                 //check if number is divisible by square of prime factor
-<span class="nc bnc" id="L45" title="All 2 branches missed.">                if (number % (i * i) == 0) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (number % (i * i) == 0) {</span>
                     //if number is divisible by square of prime factor
-<span class="nc" id="L47">                    return 0;</span>
+<span class="fc" id="L47">                    return 0;</span>
                 }
                 /*increment primeFactorCount by 1 
 				if number is not divisible by square of found prime factor*/
-<span class="nc" id="L51">                primeFactorCount++;</span>
+<span class="fc" id="L51">                primeFactorCount++;</span>
             }
         }
 
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        return (primeFactorCount % 2 == 0) ? 1 : -1;</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        return (primeFactorCount % 2 == 0) ? 1 : -1;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

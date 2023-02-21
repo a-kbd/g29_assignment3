@@ -7,7 +7,7 @@ import static com.thealgorithms.sorts.SortUtils.less;
  *
  * @see SortAlgorithm
  */
-<span class="fc" id="L10">class MergeSort implements SortAlgorithm {</span>
+<span class="nc" id="L10">class MergeSort implements SortAlgorithm {</span>
 
     @SuppressWarnings(&quot;rawtypes&quot;)
     private static Comparable[] aux;
@@ -21,9 +21,9 @@ import static com.thealgorithms.sorts.SortUtils.less;
      */
     @Override
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] unsorted) {
-<span class="fc" id="L24">        aux = new Comparable[unsorted.length];</span>
-<span class="fc" id="L25">        doSort(unsorted, 0, unsorted.length - 1);</span>
-<span class="fc" id="L26">        return unsorted;</span>
+<span class="nc" id="L24">        aux = new Comparable[unsorted.length];</span>
+<span class="nc" id="L25">        doSort(unsorted, 0, unsorted.length - 1);</span>
+<span class="nc" id="L26">        return unsorted;</span>
     }
 
     /**
@@ -32,13 +32,13 @@ import static com.thealgorithms.sorts.SortUtils.less;
      * @param right the last index of the array.
      */
     private static &lt;T extends Comparable&lt;T&gt;&gt; void doSort(T[] arr, int left, int right) {
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (left &lt; right) {</span>
-<span class="fc" id="L36">            int mid = (left + right) &gt;&gt;&gt; 1;</span>
-<span class="fc" id="L37">            doSort(arr, left, mid);</span>
-<span class="fc" id="L38">            doSort(arr, mid + 1, right);</span>
-<span class="fc" id="L39">            merge(arr, left, mid, right);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (left &lt; right) {</span>
+<span class="nc" id="L36">            int mid = (left + right) &gt;&gt;&gt; 1;</span>
+<span class="nc" id="L37">            doSort(arr, left, mid);</span>
+<span class="nc" id="L38">            doSort(arr, mid + 1, right);</span>
+<span class="nc" id="L39">            merge(arr, left, mid, right);</span>
         }
-<span class="fc" id="L41">    }</span>
+<span class="nc" id="L41">    }</span>
 
     /**
      * Merges two parts of an array.
@@ -51,20 +51,20 @@ import static com.thealgorithms.sorts.SortUtils.less;
      */
     @SuppressWarnings(&quot;unchecked&quot;)
     private static &lt;T extends Comparable&lt;T&gt;&gt; void merge(T[] arr, int left, int mid, int right) {
-<span class="fc" id="L54">        int i = left, j = mid + 1;</span>
-<span class="fc" id="L55">        System.arraycopy(arr, left, aux, left, right + 1 - left);</span>
+<span class="nc" id="L54">        int i = left, j = mid + 1;</span>
+<span class="nc" id="L55">        System.arraycopy(arr, left, aux, left, right + 1 - left);</span>
 
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        for (int k = left; k &lt;= right; k++) {</span>
-<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (j &gt; right) {</span>
-<span class="fc" id="L59">                arr[k] = (T) aux[i++];</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">            } else if (i &gt; mid) {</span>
-<span class="fc" id="L61">                arr[k] = (T) aux[j++];</span>
-<span class="fc bfc" id="L62" title="All 2 branches covered.">            } else if (less(aux[j], aux[i])) {</span>
-<span class="fc" id="L63">                arr[k] = (T) aux[j++];</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        for (int k = left; k &lt;= right; k++) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (j &gt; right) {</span>
+<span class="nc" id="L59">                arr[k] = (T) aux[i++];</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            } else if (i &gt; mid) {</span>
+<span class="nc" id="L61">                arr[k] = (T) aux[j++];</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            } else if (less(aux[j], aux[i])) {</span>
+<span class="nc" id="L63">                arr[k] = (T) aux[j++];</span>
             } else {
-<span class="fc" id="L65">                arr[k] = (T) aux[i++];</span>
+<span class="nc" id="L65">                arr[k] = (T) aux[i++];</span>
             }
         }
-<span class="fc" id="L68">    }</span>
+<span class="nc" id="L68">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -16,14 +16,14 @@ import java.util.Scanner;
      * @return The Decimal number
      */
     public static int octToDec(String s) {
-<span class="fc" id="L19">        int i = 0;</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (int j = 0; j &lt; s.length(); j++) {</span>
-<span class="fc" id="L21">            char num = s.charAt(j);</span>
-<span class="fc" id="L22">            num -= '0';</span>
-<span class="fc" id="L23">            i *= 8;</span>
-<span class="fc" id="L24">            i += num;</span>
+<span class="nc" id="L19">        int i = 0;</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        for (int j = 0; j &lt; s.length(); j++) {</span>
+<span class="nc" id="L21">            char num = s.charAt(j);</span>
+<span class="nc" id="L22">            num -= '0';</span>
+<span class="nc" id="L23">            i *= 8;</span>
+<span class="nc" id="L24">            i += num;</span>
         }
-<span class="fc" id="L26">        return i;</span>
+<span class="nc" id="L26">        return i;</span>
     }
 
     /**
@@ -33,17 +33,17 @@ import java.util.Scanner;
      * @return The Hexadecimal number
      */
     public static String decimalToHex(int d) {
-<span class="fc" id="L36">        String digits = &quot;0123456789ABCDEF&quot;;</span>
-<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (d &lt;= 0) {</span>
+<span class="nc" id="L36">        String digits = &quot;0123456789ABCDEF&quot;;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (d &lt;= 0) {</span>
 <span class="nc" id="L38">            return &quot;0&quot;;</span>
         }
-<span class="fc" id="L40">        String hex = &quot;&quot;;</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        while (d &gt; 0) {</span>
-<span class="fc" id="L42">            int digit = d % 16;</span>
-<span class="fc" id="L43">            hex = digits.charAt(digit) + hex;</span>
-<span class="fc" id="L44">            d = d / 16;</span>
-<span class="fc" id="L45">        }</span>
-<span class="fc" id="L46">        return hex;</span>
+<span class="nc" id="L40">        String hex = &quot;&quot;;</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        while (d &gt; 0) {</span>
+<span class="nc" id="L42">            int digit = d % 16;</span>
+<span class="nc" id="L43">            hex = digits.charAt(digit) + hex;</span>
+<span class="nc" id="L44">            d = d / 16;</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">        return hex;</span>
     }
 
     public static void main(String args[]) {

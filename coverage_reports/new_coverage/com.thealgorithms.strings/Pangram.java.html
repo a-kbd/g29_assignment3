@@ -3,7 +3,7 @@
 /**
  * Wikipedia: https://en.wikipedia.org/wiki/Pangram
  */
-<span class="nc bnc" id="L6" title="All 2 branches missed.">public class Pangram {</span>
+<span class="pc bpc" id="L6" title="1 of 2 branches missed.">public class Pangram {</span>
 
     /**
      * Test code
@@ -22,19 +22,19 @@
      * @return {@code true} if s is a Pangram, otherwise {@code false}
      */
     public static boolean isPangram(String s) {
-<span class="nc" id="L25">        boolean[] lettersExisting = new boolean[26];</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        for (char c : s.toCharArray()) {</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">            int letterIndex = c - (Character.isUpperCase(c) ? 'A' : 'a');</span>
-<span class="nc bnc" id="L28" title="All 4 branches missed.">            if (letterIndex &gt;= 0 &amp;&amp; letterIndex &lt; lettersExisting.length) {</span>
-<span class="nc" id="L29">                lettersExisting[letterIndex] = true;</span>
+<span class="fc" id="L25">        boolean[] lettersExisting = new boolean[26];</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (char c : s.toCharArray()) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            int letterIndex = c - (Character.isUpperCase(c) ? 'A' : 'a');</span>
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">            if (letterIndex &gt;= 0 &amp;&amp; letterIndex &lt; lettersExisting.length) {</span>
+<span class="fc" id="L29">                lettersExisting[letterIndex] = true;</span>
             }
         }
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        for (boolean letterFlag : lettersExisting) {</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (!letterFlag) {</span>
-<span class="nc" id="L34">                return false;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (boolean letterFlag : lettersExisting) {</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            if (!letterFlag) {</span>
+<span class="fc" id="L34">                return false;</span>
             }
         }
-<span class="nc" id="L37">        return true;</span>
+<span class="fc" id="L37">        return true;</span>
     }
     
     /**
@@ -44,16 +44,16 @@
      * @return {@code true} if s is a Pangram, otherwise {@code false}
      */
     public static boolean isPangram2(String s) {
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (s.length() &lt; 26) {</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (s.length() &lt; 26) {</span>
 <span class="nc" id="L48">            return false;</span>
         }
-<span class="nc" id="L50">        s = s.toLowerCase(); // Converting s to Lower-Case</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (char i = 'a'; i &lt;= 'z'; i++) {</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (s.indexOf(i) == -1) {</span>
-<span class="nc" id="L53">                return false; // if any alphabet is not present, return false</span>
+<span class="fc" id="L50">        s = s.toLowerCase(); // Converting s to Lower-Case</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (char i = 'a'; i &lt;= 'z'; i++) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (s.indexOf(i) == -1) {</span>
+<span class="fc" id="L53">                return false; // if any alphabet is not present, return false</span>
             }
         }
-<span class="nc" id="L56">        return true;</span>
+<span class="fc" id="L56">        return true;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

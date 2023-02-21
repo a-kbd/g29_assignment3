@@ -8,7 +8,7 @@
  * @author FAHRI YARDIMCI
  * @author khalil2535
  */
-<span class="nc" id="L11">public class Caesar {</span>
+<span class="fc" id="L11">public class Caesar {</span>
 
     /**
      * Encrypt text by shifting every Latin char by add number shift for ASCII
@@ -17,27 +17,27 @@
      * @return Encrypted message
      */
     public String encode(String message, int shift) {
-<span class="nc" id="L20">        StringBuilder encoded = new StringBuilder();</span>
+<span class="fc" id="L20">        StringBuilder encoded = new StringBuilder();</span>
 
-<span class="nc" id="L22">        shift %= 26;</span>
+<span class="fc" id="L22">        shift %= 26;</span>
 
-<span class="nc" id="L24">        final int length = message.length();</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        for (int i = 0; i &lt; length; i++) {</span>
+<span class="fc" id="L24">        final int length = message.length();</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int i = 0; i &lt; length; i++) {</span>
             //            int current = message.charAt(i); //using char to shift characters because ascii
             // is in-order latin alphabet
-<span class="nc" id="L28">            char current = message.charAt(i); // Java law : char + int = char</span>
+<span class="fc" id="L28">            char current = message.charAt(i); // Java law : char + int = char</span>
 
-<span class="nc bnc" id="L30" title="All 2 branches missed.">            if (isCapitalLatinLetter(current)) {</span>
-<span class="nc" id="L31">                current += shift;</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">                encoded.append((char) (current &gt; 'Z' ? current - 26 : current)); // 26 = number of latin letters</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">            } else if (isSmallLatinLetter(current)) {</span>
-<span class="nc" id="L34">                current += shift;</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">                encoded.append((char) (current &gt; 'z' ? current - 26 : current)); // 26 = number of latin letters</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            if (isCapitalLatinLetter(current)) {</span>
+<span class="fc" id="L31">                current += shift;</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">                encoded.append((char) (current &gt; 'Z' ? current - 26 : current)); // 26 = number of latin letters</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            } else if (isSmallLatinLetter(current)) {</span>
+<span class="fc" id="L34">                current += shift;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">                encoded.append((char) (current &gt; 'z' ? current - 26 : current)); // 26 = number of latin letters</span>
             } else {
-<span class="nc" id="L37">                encoded.append(current);</span>
+<span class="fc" id="L37">                encoded.append(current);</span>
             }
         }
-<span class="nc" id="L40">        return encoded.toString();</span>
+<span class="fc" id="L40">        return encoded.toString();</span>
     }
 
     /**
@@ -47,50 +47,50 @@
      * @return message
      */
     public String decode(String encryptedMessage, int shift) {
-<span class="nc" id="L50">        StringBuilder decoded = new StringBuilder();</span>
+<span class="fc" id="L50">        StringBuilder decoded = new StringBuilder();</span>
 
-<span class="nc" id="L52">        shift %= 26;</span>
+<span class="fc" id="L52">        shift %= 26;</span>
 
-<span class="nc" id="L54">        final int length = encryptedMessage.length();</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        for (int i = 0; i &lt; length; i++) {</span>
-<span class="nc" id="L56">            char current = encryptedMessage.charAt(i);</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (isCapitalLatinLetter(current)) {</span>
-<span class="nc" id="L58">                current -= shift;</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">                decoded.append((char) (current &lt; 'A' ? current + 26 : current)); // 26 = number of latin letters</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">            } else if (isSmallLatinLetter(current)) {</span>
-<span class="nc" id="L61">                current -= shift;</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">                decoded.append((char) (current &lt; 'a' ? current + 26 : current)); // 26 = number of latin letters</span>
+<span class="fc" id="L54">        final int length = encryptedMessage.length();</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (int i = 0; i &lt; length; i++) {</span>
+<span class="fc" id="L56">            char current = encryptedMessage.charAt(i);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if (isCapitalLatinLetter(current)) {</span>
+<span class="fc" id="L58">                current -= shift;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                decoded.append((char) (current &lt; 'A' ? current + 26 : current)); // 26 = number of latin letters</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            } else if (isSmallLatinLetter(current)) {</span>
+<span class="fc" id="L61">                current -= shift;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                decoded.append((char) (current &lt; 'a' ? current + 26 : current)); // 26 = number of latin letters</span>
             } else {
-<span class="nc" id="L64">                decoded.append(current);</span>
+<span class="fc" id="L64">                decoded.append(current);</span>
             }
         }
-<span class="nc" id="L67">        return decoded.toString();</span>
+<span class="fc" id="L67">        return decoded.toString();</span>
     }
 
     /**
      * @return true if character is capital Latin letter or false for others
      */
     private static boolean isCapitalLatinLetter(char c) {
-<span class="nc bnc" id="L74" title="All 4 branches missed.">        return c &gt;= 'A' &amp;&amp; c &lt;= 'Z';</span>
+<span class="fc bfc" id="L74" title="All 4 branches covered.">        return c &gt;= 'A' &amp;&amp; c &lt;= 'Z';</span>
     }
 
     /**
      * @return true if character is small Latin letter or false for others
      */
     private static boolean isSmallLatinLetter(char c) {
-<span class="nc bnc" id="L81" title="All 4 branches missed.">        return c &gt;= 'a' &amp;&amp; c &lt;= 'z';</span>
+<span class="pc bpc" id="L81" title="1 of 4 branches missed.">        return c &gt;= 'a' &amp;&amp; c &lt;= 'z';</span>
     }
 
     /**
      *  @return string array which contains all the possible decoded combination.
      */
     public String[] bruteforce(String encryptedMessage) {
-<span class="nc" id="L88">        String[] listOfAllTheAnswers = new String[27];</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        for (int i = 0; i &lt;= 26; i++) {</span>
-<span class="nc" id="L90">            listOfAllTheAnswers[i] = decode(encryptedMessage, i);</span>
+<span class="fc" id="L88">        String[] listOfAllTheAnswers = new String[27];</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (int i = 0; i &lt;= 26; i++) {</span>
+<span class="fc" id="L90">            listOfAllTheAnswers[i] = decode(encryptedMessage, i);</span>
         }
 
-<span class="nc" id="L93">        return listOfAllTheAnswers;</span>
+<span class="fc" id="L93">        return listOfAllTheAnswers;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

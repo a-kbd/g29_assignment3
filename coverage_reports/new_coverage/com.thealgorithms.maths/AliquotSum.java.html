@@ -18,17 +18,17 @@ import java.util.stream.IntStream;
      * @return aliquot sum of given {@code number}
      */
     public static int getAliquotValue(int number) {
-<span class="fc" id="L21">        var sumWrapper = new Object() {</span>
-<span class="fc" id="L22">            int value = 0;</span>
+<span class="nc" id="L21">        var sumWrapper = new Object() {</span>
+<span class="nc" id="L22">            int value = 0;</span>
         };
 
-<span class="fc" id="L25">        IntStream</span>
-<span class="fc" id="L26">            .iterate(1, i -&gt; ++i)</span>
-<span class="fc" id="L27">            .limit(number / 2)</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">            .filter(i -&gt; number % i == 0)</span>
-<span class="fc" id="L29">            .forEach(i -&gt; sumWrapper.value += i);</span>
+<span class="nc" id="L25">        IntStream</span>
+<span class="nc" id="L26">            .iterate(1, i -&gt; ++i)</span>
+<span class="nc" id="L27">            .limit(number / 2)</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            .filter(i -&gt; number % i == 0)</span>
+<span class="nc" id="L29">            .forEach(i -&gt; sumWrapper.value += i);</span>
 
-<span class="fc" id="L31">        return sumWrapper.value;</span>
+<span class="nc" id="L31">        return sumWrapper.value;</span>
     }
     
      /**
@@ -38,10 +38,10 @@ import java.util.stream.IntStream;
      * @return aliquot sum of given {@code number}
      */
     public static int getAliquotSum(int n) {
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (n &lt;= 0)</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (n &lt;= 0)</span>
 <span class="nc" id="L42">            return -1;</span>
-<span class="fc" id="L43">        int sum = 1;</span>
-<span class="fc" id="L44">        double root = Math.sqrt(n);</span>
+<span class="nc" id="L43">        int sum = 1;</span>
+<span class="nc" id="L44">        double root = Math.sqrt(n);</span>
         /*
          * We can get the factors after the root by dividing number by its factors
          * before the root.
@@ -51,15 +51,15 @@ import java.util.stream.IntStream;
          * 100/1 = 100, 100/2 = 50, 100/4 = 25 and 100/5 = 20
          * So we get 100, 50, 25 and 20 which are factors of 100 after 10
          */
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (int i = 2; i &lt;= root; i++) {</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (n % i == 0) {</span>
-<span class="fc" id="L56">                sum += i + n / i;</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        for (int i = 2; i &lt;= root; i++) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (n % i == 0) {</span>
+<span class="nc" id="L56">                sum += i + n / i;</span>
             }
         }
         // if n is a perfect square then its root was added twice in above loop, so subtracting root from sum
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (root == (int) root)</span>
-<span class="fc" id="L61">            sum -= root;</span>
-<span class="fc" id="L62">        return sum;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (root == (int) root)</span>
+<span class="nc" id="L61">            sum -= root;</span>
+<span class="nc" id="L62">        return sum;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

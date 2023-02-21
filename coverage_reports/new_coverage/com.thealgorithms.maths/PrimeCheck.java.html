@@ -35,18 +35,18 @@ import java.util.Scanner;
      * @return {@code true} if {@code n} is prime
      */
     public static boolean isPrime(int n) {
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (n == 2) {</span>
-<span class="nc" id="L39">            return true;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (n == 2) {</span>
+<span class="fc" id="L39">            return true;</span>
         }
-<span class="nc bnc" id="L41" title="All 4 branches missed.">        if (n &lt; 2 || n % 2 == 0) {</span>
-<span class="nc" id="L42">            return false;</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">        if (n &lt; 2 || n % 2 == 0) {</span>
+<span class="fc" id="L42">            return false;</span>
         }
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        for (int i = 3, limit = (int) Math.sqrt(n); i &lt;= limit; i += 2) {</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (n % i == 0) {</span>
-<span class="nc" id="L46">                return false;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (int i = 3, limit = (int) Math.sqrt(n); i &lt;= limit; i += 2) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            if (n % i == 0) {</span>
+<span class="fc" id="L46">                return false;</span>
             }
         }
-<span class="nc" id="L49">        return true;</span>
+<span class="fc" id="L49">        return true;</span>
     }
 
     /**

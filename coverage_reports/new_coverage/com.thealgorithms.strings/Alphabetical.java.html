@@ -5,7 +5,7 @@
  * based on the position of the characters in the conventional ordering of an
  * alphabet. Wikipedia: https://en.wikipedia.org/wiki/Alphabetical_order
  */
-<span class="nc bnc" id="L8" title="All 2 branches missed.">class Alphabetical {</span>
+<span class="pc bpc" id="L8" title="1 of 2 branches missed.">class Alphabetical {</span>
 
     public static void main(String[] args) {
 <span class="nc bnc" id="L11" title="All 4 branches missed.">        assert !isAlphabetical(&quot;123abc&quot;);</span>
@@ -23,16 +23,16 @@
      * {@code false}
      */
     public static boolean isAlphabetical(String s) {
-<span class="nc" id="L26">        s = s.toLowerCase();</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        for (int i = 0; i &lt; s.length() - 1; ++i) {</span>
-<span class="nc" id="L28">            if (</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">                !Character.isLetter(s.charAt(i)) ||</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">                !(s.charAt(i) &lt;= s.charAt(i + 1))</span>
+<span class="fc" id="L26">        s = s.toLowerCase();</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        for (int i = 0; i &lt; s.length() - 1; ++i) {</span>
+<span class="fc" id="L28">            if (</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">                !Character.isLetter(s.charAt(i)) ||</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">                !(s.charAt(i) &lt;= s.charAt(i + 1))</span>
             ) {
-<span class="nc" id="L32">                return false;</span>
+<span class="fc" id="L32">                return false;</span>
             }
         }
-<span class="nc" id="L35">        return true;</span>
+<span class="fc" id="L35">        return true;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

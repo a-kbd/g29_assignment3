@@ -9,7 +9,7 @@
  */
 <span class="nc" id="L10">public class IntegerToRoman {</span>
 
-<span class="nc" id="L12">    private static int[] allArabianRomanNumbers = new int[] {</span>
+<span class="fc" id="L12">    private static int[] allArabianRomanNumbers = new int[] {</span>
         1000,
         900,
         500,
@@ -24,7 +24,7 @@
         4,
         1,
     };
-<span class="nc" id="L27">    private static String[] allRomanNumbers = new String[] {</span>
+<span class="fc" id="L27">    private static String[] allRomanNumbers = new String[] {</span>
         &quot;M&quot;,
         &quot;CM&quot;,
         &quot;D&quot;,
@@ -42,22 +42,22 @@
 
     // Value must be &gt; 0
     public static String integerToRoman(int num) {
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (num &lt;= 0) {</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (num &lt;= 0) {</span>
 <span class="nc" id="L46">            return &quot;&quot;;</span>
         }
 
-<span class="nc" id="L49">        StringBuilder builder = new StringBuilder();</span>
+<span class="fc" id="L49">        StringBuilder builder = new StringBuilder();</span>
 
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (int a = 0; a &lt; allArabianRomanNumbers.length; a++) {</span>
-<span class="nc" id="L52">            int times = num / allArabianRomanNumbers[a];</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (int b = 0; b &lt; times; b++) {</span>
-<span class="nc" id="L54">                builder.append(allRomanNumbers[a]);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (int a = 0; a &lt; allArabianRomanNumbers.length; a++) {</span>
+<span class="fc" id="L52">            int times = num / allArabianRomanNumbers[a];</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            for (int b = 0; b &lt; times; b++) {</span>
+<span class="fc" id="L54">                builder.append(allRomanNumbers[a]);</span>
             }
 
-<span class="nc" id="L57">            num -= times * allArabianRomanNumbers[a];</span>
+<span class="fc" id="L57">            num -= times * allArabianRomanNumbers[a];</span>
         }
 
-<span class="nc" id="L60">        return builder.toString();</span>
+<span class="fc" id="L60">        return builder.toString();</span>
     }
 
     public static void main(String[] args) {

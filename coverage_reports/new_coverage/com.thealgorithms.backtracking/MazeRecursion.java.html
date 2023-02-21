@@ -94,16 +94,16 @@
      * @return If we did find a path for the ball，return true，else false
      */
     public static boolean setWay(int[][] map, int i, int j) {
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (map[6][5] == 2) { // means the ball find its path, ending condition</span>
-<span class="nc" id="L98">            return true;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (map[6][5] == 2) { // means the ball find its path, ending condition</span>
+<span class="fc" id="L98">            return true;</span>
         }
-<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (map[i][j] == 0) { // if the ball haven't gone through this point</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (map[i][j] == 0) { // if the ball haven't gone through this point</span>
             // then the ball follows the move strategy : down -&gt; right -&gt; up -&gt; left
-<span class="nc" id="L102">            map[i][j] = 2; // we assume that this path is feasible first, set the current point to 2 first。</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (setWay(map, i + 1, j)) { // go down</span>
-<span class="nc" id="L104">                return true;</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">            } else if (setWay(map, i, j + 1)) { // go right</span>
-<span class="nc" id="L106">                return true;</span>
+<span class="fc" id="L102">            map[i][j] = 2; // we assume that this path is feasible first, set the current point to 2 first。</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if (setWay(map, i + 1, j)) { // go down</span>
+<span class="fc" id="L104">                return true;</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">            } else if (setWay(map, i, j + 1)) { // go right</span>
+<span class="fc" id="L106">                return true;</span>
 <span class="nc bnc" id="L107" title="All 2 branches missed.">            } else if (setWay(map, i - 1, j)) { // go up</span>
 <span class="nc" id="L108">                return true;</span>
 <span class="nc bnc" id="L109" title="All 2 branches missed.">            } else if (setWay(map, i, j - 1)) { // go left</span>
@@ -118,24 +118,24 @@
         } else { // if the map[i][j] != 0 , it will probably be 1,2,3, return false because the
             // ball cannot hit the wall, cannot go to the path that has gone though before,
             // and cannot head to deadend.
-<span class="nc" id="L121">            return false;</span>
+<span class="fc" id="L121">            return false;</span>
         }
     }
 
     // Here is another move strategy for the ball: up-&gt;right-&gt;down-&gt;left
     public static boolean setWay2(int[][] map, int i, int j) {
-<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (map[6][5] == 2) { // means the ball find its path, ending condition</span>
-<span class="nc" id="L128">            return true;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (map[6][5] == 2) { // means the ball find its path, ending condition</span>
+<span class="fc" id="L128">            return true;</span>
         }
-<span class="nc bnc" id="L130" title="All 2 branches missed.">        if (map[i][j] == 0) { // if the ball haven't gone through this point</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        if (map[i][j] == 0) { // if the ball haven't gone through this point</span>
             // then the ball follows the move strategy : up-&gt;right-&gt;down-&gt;left
-<span class="nc" id="L132">            map[i][j] = 2; // we assume that this path is feasible first, set the current point to 2 first。</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (setWay2(map, i - 1, j)) { // go up</span>
-<span class="nc" id="L134">                return true;</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">            } else if (setWay2(map, i, j + 1)) { // go right</span>
-<span class="nc" id="L136">                return true;</span>
-<span class="nc bnc" id="L137" title="All 2 branches missed.">            } else if (setWay2(map, i + 1, j)) { // go down</span>
-<span class="nc" id="L138">                return true;</span>
+<span class="fc" id="L132">            map[i][j] = 2; // we assume that this path is feasible first, set the current point to 2 first。</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            if (setWay2(map, i - 1, j)) { // go up</span>
+<span class="fc" id="L134">                return true;</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">            } else if (setWay2(map, i, j + 1)) { // go right</span>
+<span class="fc" id="L136">                return true;</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">            } else if (setWay2(map, i + 1, j)) { // go down</span>
+<span class="fc" id="L138">                return true;</span>
 <span class="nc bnc" id="L139" title="All 2 branches missed.">            } else if (setWay2(map, i, j - 1)) { // go left</span>
 <span class="nc" id="L140">                return true;</span>
             } else {
@@ -148,7 +148,7 @@
         } else { // if the map[i][j] != 0 , it will probably be 1,2,3, return false because the
             // ball cannot hit the wall, cannot go to the path that has gone though before,
             // and cannot head to deadend.
-<span class="nc" id="L151">            return false;</span>
+<span class="fc" id="L151">            return false;</span>
         }
     }
 }

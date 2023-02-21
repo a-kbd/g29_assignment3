@@ -7,7 +7,7 @@ import static com.thealgorithms.sorts.SortUtils.*;
  * @author Podshivalov Nikita (https://github.com/nikitap492)
  * @see SortAlgorithm
  */
-<span class="nc" id="L10">class BubbleSort implements SortAlgorithm {</span>
+<span class="fc" id="L10">class BubbleSort implements SortAlgorithm {</span>
 
     /**
      * Implements generic bubble sort algorithm.
@@ -18,19 +18,19 @@ import static com.thealgorithms.sorts.SortUtils.*;
      */
     @Override
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] array) {
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        for (int i = 1, size = array.length; i &lt; size; ++i) {</span>
-<span class="nc" id="L22">            boolean swapped = false;</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">            for (int j = 0; j &lt; size - i; ++j) {</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">                if (greater(array[j], array[j + 1])) {</span>
-<span class="nc" id="L25">                    swap(array, j, j + 1);</span>
-<span class="nc" id="L26">                    swapped = true;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for (int i = 1, size = array.length; i &lt; size; ++i) {</span>
+<span class="fc" id="L22">            boolean swapped = false;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            for (int j = 0; j &lt; size - i; ++j) {</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">                if (greater(array[j], array[j + 1])) {</span>
+<span class="fc" id="L25">                    swap(array, j, j + 1);</span>
+<span class="fc" id="L26">                    swapped = true;</span>
                 }
             }
-<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (!swapped) {</span>
-<span class="nc" id="L30">                break;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">            if (!swapped) {</span>
+<span class="fc" id="L30">                break;</span>
             }
         }
-<span class="nc" id="L33">        return array;</span>
+<span class="fc" id="L33">        return array;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

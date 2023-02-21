@@ -8,32 +8,32 @@ import java.util.Queue;
 <span class="nc" id="L8">public class LevelOrderTraversal {</span>
 
     static List&lt;List&lt;Integer&gt;&gt; traverse(BinaryTree.Node root) {
-<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (root == null) {</span>
-<span class="fc" id="L12">            return List.of();</span>
+<span class="nc bnc" id="L11" title="All 2 branches missed.">        if (root == null) {</span>
+<span class="nc" id="L12">            return List.of();</span>
         }
 
-<span class="fc" id="L15">        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L15">        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L17">        Queue&lt;BinaryTree.Node&gt; q = new LinkedList&lt;&gt;();</span>
-<span class="fc" id="L18">        q.add(root);</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        while (!q.isEmpty()) {</span>
-<span class="fc" id="L20">            int nodesOnLevel = q.size();</span>
-<span class="fc" id="L21">            List&lt;Integer&gt; level = new LinkedList&lt;&gt;();</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">            for (int i = 0; i &lt; nodesOnLevel; i++) {</span>
-<span class="fc" id="L23">                BinaryTree.Node tempNode = q.poll();</span>
-<span class="fc" id="L24">                level.add(tempNode.data);</span>
+<span class="nc" id="L17">        Queue&lt;BinaryTree.Node&gt; q = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L18">        q.add(root);</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        while (!q.isEmpty()) {</span>
+<span class="nc" id="L20">            int nodesOnLevel = q.size();</span>
+<span class="nc" id="L21">            List&lt;Integer&gt; level = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">            for (int i = 0; i &lt; nodesOnLevel; i++) {</span>
+<span class="nc" id="L23">                BinaryTree.Node tempNode = q.poll();</span>
+<span class="nc" id="L24">                level.add(tempNode.data);</span>
 
-<span class="fc bfc" id="L26" title="All 2 branches covered.">                if (tempNode.left != null) {</span>
-<span class="fc" id="L27">                    q.add(tempNode.left);</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                if (tempNode.left != null) {</span>
+<span class="nc" id="L27">                    q.add(tempNode.left);</span>
                 }
 
-<span class="fc bfc" id="L30" title="All 2 branches covered.">                if (tempNode.right != null) {</span>
-<span class="fc" id="L31">                    q.add(tempNode.right);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">                if (tempNode.right != null) {</span>
+<span class="nc" id="L31">                    q.add(tempNode.right);</span>
                 }
             }
-<span class="fc" id="L34">            result.add(level);</span>
-<span class="fc" id="L35">        }</span>
-<span class="fc" id="L36">        return result;</span>
+<span class="nc" id="L34">            result.add(level);</span>
+<span class="nc" id="L35">        }</span>
+<span class="nc" id="L36">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SelectionSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java</a> &gt; <a href="index.source.html" class="el_package">com.thealgorithms.sorts</a> &gt; <span class="el_source">SelectionSort.java</span></div><h1>SelectionSort.java</h1><pre class="source lang-java linenums">package com.thealgorithms.sorts;
 
-<span class="nc bnc" id="L3" title="All 2 branches missed.">public class SelectionSort implements SortAlgorithm {</span>
+<span class="pc bpc" id="L3" title="1 of 2 branches missed.">public class SelectionSort implements SortAlgorithm {</span>
 
     /**
      * Generic selection sort algorithm in increasing order.
@@ -11,21 +11,21 @@
      */
     @Override
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] arr) {
-<span class="nc" id="L14">        int n = arr.length;</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        for (int i = 0; i &lt; n - 1; i++) {</span>
-<span class="nc" id="L16">            int minIndex = i;</span>
-<span class="nc bnc" id="L17" title="All 2 branches missed.">            for (int j = i + 1; j &lt; n; j++) {</span>
-<span class="nc bnc" id="L18" title="All 2 branches missed.">                if (arr[minIndex].compareTo(arr[j]) &gt; 0) {</span>
-<span class="nc" id="L19">                    minIndex = j;</span>
+<span class="fc" id="L14">        int n = arr.length;</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        for (int i = 0; i &lt; n - 1; i++) {</span>
+<span class="fc" id="L16">            int minIndex = i;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">            for (int j = i + 1; j &lt; n; j++) {</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">                if (arr[minIndex].compareTo(arr[j]) &gt; 0) {</span>
+<span class="fc" id="L19">                    minIndex = j;</span>
                 }
             }
-<span class="nc bnc" id="L22" title="All 2 branches missed.">            if (minIndex != i) {</span>
-<span class="nc" id="L23">                T temp = arr[i];</span>
-<span class="nc" id="L24">                arr[i] = arr[minIndex];</span>
-<span class="nc" id="L25">                arr[minIndex] = temp;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if (minIndex != i) {</span>
+<span class="fc" id="L23">                T temp = arr[i];</span>
+<span class="fc" id="L24">                arr[i] = arr[minIndex];</span>
+<span class="fc" id="L25">                arr[minIndex] = temp;</span>
             }
         }
-<span class="nc" id="L28">        return arr;</span>
+<span class="fc" id="L28">        return arr;</span>
     }
 
     /**

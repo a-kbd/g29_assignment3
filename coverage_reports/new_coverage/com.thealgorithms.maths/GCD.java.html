@@ -16,11 +16,11 @@
      * @return gcd
      */
     public static int gcd(int num1, int num2) {
-<span class="pc bpc" id="L19" title="2 of 4 branches missed.">        if (num1 &lt; 0 || num2 &lt; 0) {</span>
-<span class="nc" id="L20">            throw new ArithmeticException();</span>
+<span class="fc bfc" id="L19" title="All 4 branches covered.">        if (num1 &lt; 0 || num2 &lt; 0) {</span>
+<span class="fc" id="L20">            throw new ArithmeticException();</span>
         }
 
-<span class="pc bpc" id="L23" title="1 of 4 branches missed.">        if (num1 == 0 || num2 == 0) {</span>
+<span class="fc bfc" id="L23" title="All 4 branches covered.">        if (num1 == 0 || num2 == 0) {</span>
 <span class="fc" id="L24">            return Math.abs(num1 - num2);</span>
         }
 

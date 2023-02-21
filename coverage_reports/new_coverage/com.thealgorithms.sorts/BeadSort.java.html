@@ -4,43 +4,43 @@
 //BeadSort Algorithm(wikipedia) : https://en.wikipedia.org/wiki/Bead_sort
 //BeadSort can't sort negative number, Character, String. It can sort positive number only
 
-<span class="nc" id="L7">public class BeadSort {</span>
+<span class="fc" id="L7">public class BeadSort {</span>
     public int[] sort(int[] unsorted) {
-<span class="nc" id="L9">    int[] sorted = new int[unsorted.length];</span>
-<span class="nc" id="L10">    int max = 0;</span>
-<span class="nc bnc" id="L11" title="All 2 branches missed.">    for(int i = 0; i &lt; unsorted.length; i++) {</span>
-<span class="nc" id="L12">    max = Math.max(max, unsorted[i]);</span>
+<span class="fc" id="L9">    int[] sorted = new int[unsorted.length];</span>
+<span class="fc" id="L10">    int max = 0;</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">    for(int i = 0; i &lt; unsorted.length; i++) {</span>
+<span class="fc" id="L12">    max = Math.max(max, unsorted[i]);</span>
     }
 
-<span class="nc" id="L15">    char[][] grid = new char[unsorted.length][max];</span>
-<span class="nc" id="L16">    int[] count = new int[max];</span>
+<span class="fc" id="L15">    char[][] grid = new char[unsorted.length][max];</span>
+<span class="fc" id="L16">    int[] count = new int[max];</span>
 
-<span class="nc bnc" id="L18" title="All 2 branches missed.">    for(int i = 0; i &lt; unsorted.length; i++) {</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        for(int j = 0; j &lt; max; j++) {</span>
-<span class="nc" id="L20">            grid[i][j] = '-';</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">    for(int i = 0; i &lt; unsorted.length; i++) {</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        for(int j = 0; j &lt; max; j++) {</span>
+<span class="fc" id="L20">            grid[i][j] = '-';</span>
          }
      }
 
-<span class="nc bnc" id="L24" title="All 2 branches missed.">    for(int i = 0; i &lt; max; i++) {</span>
-<span class="nc" id="L25">        count[i] = 0;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    for(int i = 0; i &lt; max; i++) {</span>
+<span class="fc" id="L25">        count[i] = 0;</span>
     }
 
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        for(int i = 0; i &lt; unsorted.length; i++) {</span>
-<span class="nc" id="L29">            int k = 0;</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">            for(int j = 0; j &lt; (int) unsorted[i] ; j++) {</span>
-<span class="nc" id="L31">                grid[count[max - k - 1]++][k] = '*';</span>
-<span class="nc" id="L32">                k++;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for(int i = 0; i &lt; unsorted.length; i++) {</span>
+<span class="fc" id="L29">            int k = 0;</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            for(int j = 0; j &lt; (int) unsorted[i] ; j++) {</span>
+<span class="fc" id="L31">                grid[count[max - k - 1]++][k] = '*';</span>
+<span class="fc" id="L32">                k++;</span>
              }
         }
 
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        for(int i = 0; i &lt; unsorted.length; i++) {</span>
-<span class="nc" id="L37">            int k = 0;</span>
-<span class="nc bnc" id="L38" title="All 4 branches missed.">            for(int j = 0; j &lt; max &amp;&amp; grid[unsorted.length - 1 - i][j] == '*'; j++) {</span>
-<span class="nc" id="L39">                k++;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for(int i = 0; i &lt; unsorted.length; i++) {</span>
+<span class="fc" id="L37">            int k = 0;</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">            for(int j = 0; j &lt; max &amp;&amp; grid[unsorted.length - 1 - i][j] == '*'; j++) {</span>
+<span class="fc" id="L39">                k++;</span>
             }
-<span class="nc" id="L41">            sorted[i] = k;</span>
+<span class="fc" id="L41">            sorted[i] = k;</span>
         }
-<span class="nc" id="L43">        return sorted;</span>
+<span class="fc" id="L43">        return sorted;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

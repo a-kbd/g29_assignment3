@@ -13,27 +13,27 @@ import java.io.*;
     //returns True if the number is a Dudeney number and False if it is not a Dudeney number.
     public static boolean isDudeney(int n) {
         // Calculating Cube Root
-<span class="nc" id="L16">        int cube_root = (int) (Math.round((Math.pow(n, 1.0 / 3.0))));</span>
+<span class="fc" id="L16">        int cube_root = (int) (Math.round((Math.pow(n, 1.0 / 3.0))));</span>
         // If the number is not a perfect cube the method returns false.
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (cube_root * cube_root * cube_root != n) {</span>
+<span class="pc bpc" id="L18" title="1 of 2 branches missed.">        if (cube_root * cube_root * cube_root != n) {</span>
 <span class="nc" id="L19">            return false;</span>
         }
-<span class="nc" id="L21">        int sum_of_digits = 0; // Stores the sums of the digit of the entered number</span>
-<span class="nc" id="L22">        int temp = n; //A temporary variable to store the entered number</span>
+<span class="fc" id="L21">        int sum_of_digits = 0; // Stores the sums of the digit of the entered number</span>
+<span class="fc" id="L22">        int temp = n; //A temporary variable to store the entered number</span>
         // Loop to calculate sum of the digits.
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        while (temp &gt; 0) {</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        while (temp &gt; 0) {</span>
             // Extracting Last digit of the number
-<span class="nc" id="L26">            int rem = temp % 10;</span>
+<span class="fc" id="L26">            int rem = temp % 10;</span>
 
             // Calculating sum of digits.
-<span class="nc" id="L29">            sum_of_digits += rem;</span>
+<span class="fc" id="L29">            sum_of_digits += rem;</span>
 
             // Removing the last digit
-<span class="nc" id="L32">            temp /= 10;</span>
-<span class="nc" id="L33">        }</span>
+<span class="fc" id="L32">            temp /= 10;</span>
+<span class="fc" id="L33">        }</span>
 
         //If the cube root of the number is not equal to the sum of its digits we return false.
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        return cube_root == sum_of_digits;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        return cube_root == sum_of_digits;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

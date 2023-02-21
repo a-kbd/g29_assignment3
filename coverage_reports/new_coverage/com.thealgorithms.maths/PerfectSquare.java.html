@@ -3,7 +3,7 @@
 /**
  * https://en.wikipedia.org/wiki/Perfect_square
  */
-<span class="nc bnc" id="L6" title="All 2 branches missed.">public class PerfectSquare {</span>
+<span class="pc bpc" id="L6" title="1 of 2 branches missed.">public class PerfectSquare {</span>
 
     public static void main(String[] args) {
 <span class="nc bnc" id="L9" title="All 4 branches missed.">        assert !isPerfectSquare(-1);</span>
@@ -21,8 +21,8 @@
      * &lt;tt&gt;false&lt;/tt&gt;
      */
     public static boolean isPerfectSquare(int number) {
-<span class="nc" id="L24">        int sqrt = (int) Math.sqrt(number);</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        return sqrt * sqrt == number;</span>
+<span class="fc" id="L24">        int sqrt = (int) Math.sqrt(number);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        return sqrt * sqrt == number;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

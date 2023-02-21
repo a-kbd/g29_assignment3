@@ -43,7 +43,7 @@ import java.util.List;
      * @return true if the first element is greater than the second element
      */
     static &lt;T extends Comparable&lt;T&gt;&gt; boolean greater(T v, T w) {
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        return v.compareTo(w) &gt; 0;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        return v.compareTo(w) &gt; 0;</span>
     }
 
     /**
@@ -56,7 +56,7 @@ import java.util.List;
      * element
      */
     static &lt;T extends Comparable&lt;T&gt;&gt; boolean greaterOrEqual(T v, T w) {
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        return v.compareTo(w) &gt;= 0;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        return v.compareTo(w) &gt;= 0;</span>
     }
 
     /**
@@ -108,15 +108,15 @@ import java.util.List;
      */
     static &lt;T extends Comparable&lt;T&gt;&gt; boolean isSorted(T[] array) {
 <span class="fc bfc" id="L110" title="All 2 branches covered.">        for (int i = 1; i &lt; array.length; i++)</span>
-<span class="pc bpc" id="L111" title="1 of 2 branches missed.">            if (less(array[i], array[i - 1]))</span>
-<span class="nc" id="L112">                return false;</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            if (less(array[i], array[i - 1]))</span>
+<span class="fc" id="L112">                return false;</span>
 <span class="fc" id="L113">        return true;</span>
     }
 
     static &lt;T extends Comparable&lt;T&gt;&gt; boolean isSorted(List&lt;T&gt; list) {
 <span class="fc bfc" id="L117" title="All 2 branches covered.">        for (int i = 1; i &lt; list.size(); i++)</span>
-<span class="pc bpc" id="L118" title="1 of 2 branches missed.">            if (less(list.get(i), list.get(i - 1)))</span>
-<span class="nc" id="L119">                return false;</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            if (less(list.get(i), list.get(i - 1)))</span>
+<span class="fc" id="L119">                return false;</span>
 <span class="fc" id="L120">        return true;</span>
     }
 }

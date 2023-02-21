@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author [Madhur Panwar](https://github.com/mdrpanwar)
  */
-<span class="nc bnc" id="L17" title="All 2 branches missed.">public class BSTRecursiveGeneric&lt;T extends Comparable&lt;T&gt;&gt; {</span>
+<span class="pc bpc" id="L17" title="1 of 2 branches missed.">public class BSTRecursiveGeneric&lt;T extends Comparable&lt;T&gt;&gt; {</span>
 
     /**
      * only data member is root of BST
@@ -24,9 +24,9 @@ import java.util.List;
     /**
      * Constructor use to initialize node as null
      */
-<span class="nc" id="L27">    public BSTRecursiveGeneric() {</span>
-<span class="nc" id="L28">        root = null;</span>
-<span class="nc" id="L29">    }</span>
+<span class="fc" id="L27">    public BSTRecursiveGeneric() {</span>
+<span class="fc" id="L28">        root = null;</span>
+<span class="fc" id="L29">    }</span>
 
     /**
      * main function for testing
@@ -128,14 +128,14 @@ import java.util.List;
      * @return the modified value of the root parameter after insertion
      */
     private Node&lt;T&gt; insert(Node&lt;T&gt; node, T data) {
-<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (node == null) {</span>
-<span class="nc" id="L132">            node = new Node&lt;&gt;(data);</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">        } else if (node.data.compareTo(data) &gt; 0) {</span>
-<span class="nc" id="L134">            node.left = insert(node.left, data);</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">        } else if (node.data.compareTo(data) &lt; 0) {</span>
-<span class="nc" id="L136">            node.right = insert(node.right, data);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L132">            node = new Node&lt;&gt;(data);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        } else if (node.data.compareTo(data) &gt; 0) {</span>
+<span class="fc" id="L134">            node.left = insert(node.left, data);</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">        } else if (node.data.compareTo(data) &lt; 0) {</span>
+<span class="fc" id="L136">            node.right = insert(node.right, data);</span>
         }
-<span class="nc" id="L138">        return node;</span>
+<span class="fc" id="L138">        return node;</span>
     }
 
     /**
@@ -200,17 +200,17 @@ import java.util.List;
      * @param sortedList the list to add the srted elements into
      */
     private void inOrderSort(Node&lt;T&gt; node, List&lt;T&gt; sortedList) {
-<span class="nc bnc" id="L203" title="All 2 branches missed.">        if (node == null) {</span>
-<span class="nc" id="L204">            return;</span>
+<span class="fc bfc" id="L203" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L204">            return;</span>
         }
-<span class="nc bnc" id="L206" title="All 2 branches missed.">        if (node.left != null) {</span>
-<span class="nc" id="L207">            inOrderSort(node.left, sortedList);</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        if (node.left != null) {</span>
+<span class="fc" id="L207">            inOrderSort(node.left, sortedList);</span>
         }
-<span class="nc" id="L209">        sortedList.add(node.data);</span>
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (node.right != null) {</span>
-<span class="nc" id="L211">            inOrderSort(node.right, sortedList);</span>
+<span class="fc" id="L209">        sortedList.add(node.data);</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">        if (node.right != null) {</span>
+<span class="fc" id="L211">            inOrderSort(node.right, sortedList);</span>
         }
-<span class="nc" id="L213">    }</span>
+<span class="fc" id="L213">    }</span>
 
     /**
      * Serach recursively if the given value is present in BST or not.
@@ -238,8 +238,8 @@ import java.util.List;
      * @param data the value to be inserted
      */
     public void add(T data) {
-<span class="nc" id="L241">        this.root = insert(this.root, data);</span>
-<span class="nc" id="L242">    }</span>
+<span class="fc" id="L241">        this.root = insert(this.root, data);</span>
+<span class="fc" id="L242">    }</span>
 
     /**
      * If data is present in BST delete it else do nothing.
@@ -264,9 +264,9 @@ import java.util.List;
      * traversal
      */
     public List&lt;T&gt; inorderSort() {
-<span class="nc" id="L267">        List&lt;T&gt; sortedList = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L268">        inOrderSort(this.root, sortedList);</span>
-<span class="nc" id="L269">        return sortedList;</span>
+<span class="fc" id="L267">        List&lt;T&gt; sortedList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L268">        inOrderSort(this.root, sortedList);</span>
+<span class="fc" id="L269">        return sortedList;</span>
     }
 
     /**
@@ -313,11 +313,11 @@ import java.util.List;
         /**
          * Constructor with data as parameter
          */
-<span class="nc" id="L316">        Node(T d) {</span>
-<span class="nc" id="L317">            data = d;</span>
-<span class="nc" id="L318">            left = null;</span>
-<span class="nc" id="L319">            right = null;</span>
-<span class="nc" id="L320">        }</span>
+<span class="fc" id="L316">        Node(T d) {</span>
+<span class="fc" id="L317">            data = d;</span>
+<span class="fc" id="L318">            left = null;</span>
+<span class="fc" id="L319">            right = null;</span>
+<span class="fc" id="L320">        }</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

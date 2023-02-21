@@ -6,7 +6,7 @@
  * the string &quot;abcdef&quot; to the end of the string, so that the original string
  * becomes the string &quot;cdefab&quot;
  */
-<span class="nc bnc" id="L9" title="All 2 branches missed.">public class Rotation {</span>
+<span class="pc bpc" id="L9" title="1 of 2 branches missed.">public class Rotation {</span>
 
     public static void main(String[] args) {
 <span class="nc bnc" id="L12" title="All 4 branches missed.">        assert rotation(&quot;abcdef&quot;, 2).equals(&quot;cdefab&quot;);</span>
@@ -25,7 +25,7 @@
      * @return string after rotation
      */
     public static String rotation(String s, int n) {
-<span class="nc" id="L28">        return s.substring(n) + s.substring(0, n);</span>
+<span class="fc" id="L28">        return s.substring(n) + s.substring(0, n);</span>
     }
 
     /**

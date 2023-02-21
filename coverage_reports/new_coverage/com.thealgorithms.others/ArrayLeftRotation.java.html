@@ -20,14 +20,14 @@
      * @return : int[] result of left rotation
      */
     public static int[] rotateLeft(int[] arr, int n) {
-<span class="nc" id="L23">        int size = arr.length;</span>
-<span class="nc" id="L24">        int[] dst = new int[size];</span>
-<span class="nc" id="L25">        n = n % size;</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        for (int i = 0; i &lt; size; i++) {</span>
-<span class="nc" id="L27">            dst[i] = arr[n];</span>
-<span class="nc" id="L28">            n = (n + 1) % size;</span>
+<span class="fc" id="L23">        int size = arr.length;</span>
+<span class="fc" id="L24">        int[] dst = new int[size];</span>
+<span class="fc" id="L25">        n = n % size;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L27">            dst[i] = arr[n];</span>
+<span class="fc" id="L28">            n = (n + 1) % size;</span>
         }
-<span class="nc" id="L30">        return dst;</span>
+<span class="fc" id="L30">        return dst;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

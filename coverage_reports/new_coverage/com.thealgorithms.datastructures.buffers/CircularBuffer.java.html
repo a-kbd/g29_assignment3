@@ -6,56 +6,56 @@ public class CircularBuffer&lt;Item&gt; {
     private final Item[] buffer;
     private final CircularPointer putPointer;
     private final CircularPointer getPointer;
-<span class="fc" id="L9">    private final AtomicInteger size = new AtomicInteger(0);</span>
+<span class="nc" id="L9">    private final AtomicInteger size = new AtomicInteger(0);</span>
 
-<span class="fc" id="L11">    public CircularBuffer(int size) {</span>
+<span class="nc" id="L11">    public CircularBuffer(int size) {</span>
         //noinspection unchecked
-<span class="fc" id="L13">        this.buffer = (Item[]) new Object[size];</span>
-<span class="fc" id="L14">        this.putPointer = new CircularPointer(0, size);</span>
-<span class="fc" id="L15">        this.getPointer = new CircularPointer(0, size);</span>
-<span class="fc" id="L16">    }</span>
+<span class="nc" id="L13">        this.buffer = (Item[]) new Object[size];</span>
+<span class="nc" id="L14">        this.putPointer = new CircularPointer(0, size);</span>
+<span class="nc" id="L15">        this.getPointer = new CircularPointer(0, size);</span>
+<span class="nc" id="L16">    }</span>
 
     public boolean isEmpty() {
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        return size.get() == 0;</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        return size.get() == 0;</span>
     }
 
     public boolean isFull() {
-<span class="fc bfc" id="L23" title="All 2 branches covered.">        return size.get() == buffer.length;</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        return size.get() == buffer.length;</span>
     }
 
     public Item get() {
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (isEmpty())</span>
-<span class="fc" id="L28">            return null;</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (isEmpty())</span>
+<span class="nc" id="L28">            return null;</span>
 
-<span class="fc" id="L30">        Item item = buffer[getPointer.getAndIncrement()];</span>
-<span class="fc" id="L31">        size.decrementAndGet();</span>
-<span class="fc" id="L32">        return item;</span>
+<span class="nc" id="L30">        Item item = buffer[getPointer.getAndIncrement()];</span>
+<span class="nc" id="L31">        size.decrementAndGet();</span>
+<span class="nc" id="L32">        return item;</span>
     }
 
     public boolean put(Item item) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (isFull())</span>
-<span class="fc" id="L37">            return false;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (isFull())</span>
+<span class="nc" id="L37">            return false;</span>
 
-<span class="fc" id="L39">        buffer[putPointer.getAndIncrement()] = item;</span>
-<span class="fc" id="L40">        size.incrementAndGet();</span>
-<span class="fc" id="L41">        return true;</span>
+<span class="nc" id="L39">        buffer[putPointer.getAndIncrement()] = item;</span>
+<span class="nc" id="L40">        size.incrementAndGet();</span>
+<span class="nc" id="L41">        return true;</span>
     }
 
     private static class CircularPointer {
         private int pointer;
         private final int max;
 
-<span class="fc" id="L48">        public CircularPointer(int pointer, int max) {</span>
-<span class="fc" id="L49">            this.pointer = pointer;</span>
-<span class="fc" id="L50">            this.max = max;</span>
-<span class="fc" id="L51">        }</span>
+<span class="nc" id="L48">        public CircularPointer(int pointer, int max) {</span>
+<span class="nc" id="L49">            this.pointer = pointer;</span>
+<span class="nc" id="L50">            this.max = max;</span>
+<span class="nc" id="L51">        }</span>
 
         public int getAndIncrement() {
-<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (pointer == max)</span>
-<span class="fc" id="L55">                pointer = 0;</span>
-<span class="fc" id="L56">            int tmp = pointer;</span>
-<span class="fc" id="L57">            pointer++;</span>
-<span class="fc" id="L58">            return tmp;</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (pointer == max)</span>
+<span class="nc" id="L55">                pointer = 0;</span>
+<span class="nc" id="L56">            int tmp = pointer;</span>
+<span class="nc" id="L57">            pointer++;</span>
+<span class="nc" id="L58">            return tmp;</span>
         }
     }
 }

@@ -26,19 +26,19 @@ import java.util.*;
     public static &lt;T extends Comparable&lt;T&gt;&gt; T select(List&lt;T&gt; list, int n) {
 <span class="fc" id="L27">        Objects.requireNonNull(list, &quot;The list of elements must not be null.&quot;);</span>
 
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        if (list.size() == 0) {</span>
-<span class="nc" id="L30">            String msg = &quot;The list of elements must not be empty.&quot;;</span>
-<span class="nc" id="L31">            throw new IllegalArgumentException(msg);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (list.size() == 0) {</span>
+<span class="fc" id="L30">            String msg = &quot;The list of elements must not be empty.&quot;;</span>
+<span class="fc" id="L31">            throw new IllegalArgumentException(msg);</span>
         }
 
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (n &lt; 0) {</span>
-<span class="nc" id="L35">            String msg = &quot;The index must not be negative.&quot;;</span>
-<span class="nc" id="L36">            throw new IndexOutOfBoundsException(msg);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (n &lt; 0) {</span>
+<span class="fc" id="L35">            String msg = &quot;The index must not be negative.&quot;;</span>
+<span class="fc" id="L36">            throw new IndexOutOfBoundsException(msg);</span>
         }
 
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (n &gt;= list.size()) {</span>
-<span class="nc" id="L40">            String msg = &quot;The index must be less than the number of elements.&quot;;</span>
-<span class="nc" id="L41">            throw new IndexOutOfBoundsException(msg);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (n &gt;= list.size()) {</span>
+<span class="fc" id="L40">            String msg = &quot;The index must be less than the number of elements.&quot;;</span>
+<span class="fc" id="L41">            throw new IndexOutOfBoundsException(msg);</span>
         }
 
 <span class="fc" id="L44">        int index = selectIndex(list, n);</span>
@@ -115,8 +115,8 @@ import java.util.*;
 
 <span class="fc bfc" id="L116" title="All 2 branches covered.">        for (int i = left; i &lt; right; i += 5) {</span>
 <span class="fc" id="L117">            int subRight = i + 4;</span>
-<span class="pc bpc" id="L118" title="1 of 2 branches missed.">            if (subRight &gt; right) {</span>
-<span class="nc" id="L119">                subRight = right;</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            if (subRight &gt; right) {</span>
+<span class="fc" id="L119">                subRight = right;</span>
             }
 <span class="fc" id="L121">            int median5 = partition5(list, i, subRight);</span>
 <span class="fc" id="L122">            int rightIndex = left + (i - left) / 5;</span>

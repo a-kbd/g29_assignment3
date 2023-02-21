@@ -5,37 +5,37 @@ import java.util.HashMap;
 <span class="nc" id="L5">class longestNonRepeativeSubstring {</span>
 
     public static int lengthOfLongestSubstring(String s) {
-<span class="nc" id="L8">        int max = 0, start = 0, i = 0;</span>
-<span class="nc" id="L9">        HashMap&lt;Character, Integer&gt; map = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L8">        int max = 0, start = 0, i = 0;</span>
+<span class="fc" id="L9">        HashMap&lt;Character, Integer&gt; map = new HashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L11" title="All 2 branches missed.">        while (i &lt; s.length()) {</span>
-<span class="nc" id="L12">            char temp = s.charAt(i);</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        while (i &lt; s.length()) {</span>
+<span class="fc" id="L12">            char temp = s.charAt(i);</span>
 
             // adding key to map if not present
-<span class="nc bnc" id="L15" title="All 2 branches missed.">            if (!map.containsKey(temp)) map.put(temp, 0);</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">            if (!map.containsKey(temp)) map.put(temp, 0);</span>
             // checking if the first value is the dublicate value
-<span class="nc bnc" id="L17" title="All 2 branches missed.">            else if (s.charAt(start) == temp) start++;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">            else if (s.charAt(start) == temp) start++;</span>
             // checking if the previous value is dublicate value
-<span class="nc bnc" id="L19" title="All 2 branches missed.">            else if (s.charAt(i - 1) == temp) {</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">                if (max &lt; map.size()) max = map.size();</span>
-<span class="nc" id="L21">                map = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L22">                start = i;</span>
-<span class="nc" id="L23">                i--;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">            else if (s.charAt(i - 1) == temp) {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">                if (max &lt; map.size()) max = map.size();</span>
+<span class="fc" id="L21">                map = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L22">                start = i;</span>
+<span class="fc" id="L23">                i--;</span>
             }
             // last possible place where dublicate value can be is between start and i
             else {
-<span class="nc bnc" id="L27" title="All 2 branches missed.">                if (max &lt; map.size()) max = map.size();</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">                while (s.charAt(start) != temp) {</span>
-<span class="nc" id="L29">                    map.remove(s.charAt(start));</span>
-<span class="nc" id="L30">                    start++;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">                if (max &lt; map.size()) max = map.size();</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">                while (s.charAt(start) != temp) {</span>
+<span class="fc" id="L29">                    map.remove(s.charAt(start));</span>
+<span class="fc" id="L30">                    start++;</span>
                 }
-<span class="nc" id="L32">                start++;</span>
+<span class="fc" id="L32">                start++;</span>
             }
 
-<span class="nc" id="L35">            i++;</span>
-<span class="nc" id="L36">        }</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (max &lt; map.size()) max = map.size();</span>
-<span class="nc" id="L38">        return max;</span>
+<span class="fc" id="L35">            i++;</span>
+<span class="fc" id="L36">        }</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (max &lt; map.size()) max = map.size();</span>
+<span class="fc" id="L38">        return max;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

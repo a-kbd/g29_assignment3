@@ -11,38 +11,38 @@ public class FCFSScheduling {
 
     private List&lt;ProcessDetails&gt; processes;
 
-<span class="fc" id="L14">    FCFSScheduling(final List&lt;ProcessDetails&gt; processes) {</span>
-<span class="fc" id="L15">        this.processes = processes;</span>
-<span class="fc" id="L16">    }</span>
+<span class="nc" id="L14">    FCFSScheduling(final List&lt;ProcessDetails&gt; processes) {</span>
+<span class="nc" id="L15">        this.processes = processes;</span>
+<span class="nc" id="L16">    }</span>
 
     public void scheduleProcesses() {
-<span class="fc" id="L19">        evaluateWaitingTime();</span>
-<span class="fc" id="L20">        evaluateTurnAroundTime();</span>
-<span class="fc" id="L21">    }</span>
+<span class="nc" id="L19">        evaluateWaitingTime();</span>
+<span class="nc" id="L20">        evaluateTurnAroundTime();</span>
+<span class="nc" id="L21">    }</span>
 
     private void evaluateWaitingTime() {
-<span class="fc" id="L24">        int processesNumber = processes.size();</span>
+<span class="nc" id="L24">        int processesNumber = processes.size();</span>
 
-<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if(processesNumber == 0) {</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if(processesNumber == 0) {</span>
 <span class="nc" id="L27">            return;</span>
         }
 
-<span class="fc" id="L30">        int waitingTime = 0;</span>
-<span class="fc" id="L31">        int burstTime = processes.get(0).getBurstTime();</span>
+<span class="nc" id="L30">        int waitingTime = 0;</span>
+<span class="nc" id="L31">        int burstTime = processes.get(0).getBurstTime();</span>
 
-<span class="fc" id="L33">        processes.get(0).setWaitingTime(waitingTime); // for the first process, waiting time will be 0.</span>
+<span class="nc" id="L33">        processes.get(0).setWaitingTime(waitingTime); // for the first process, waiting time will be 0.</span>
 
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        for(int i=1; i&lt;processesNumber; i++) {</span>
-<span class="fc" id="L36">           processes.get(i).setWaitingTime(waitingTime + burstTime);</span>
-<span class="fc" id="L37">           waitingTime = processes.get(i).getWaitingTime();</span>
-<span class="fc" id="L38">           burstTime = processes.get(i).getBurstTime();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        for(int i=1; i&lt;processesNumber; i++) {</span>
+<span class="nc" id="L36">           processes.get(i).setWaitingTime(waitingTime + burstTime);</span>
+<span class="nc" id="L37">           waitingTime = processes.get(i).getWaitingTime();</span>
+<span class="nc" id="L38">           burstTime = processes.get(i).getBurstTime();</span>
         }
-<span class="fc" id="L40">    }</span>
+<span class="nc" id="L40">    }</span>
 
     private void evaluateTurnAroundTime() {
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        for(int i=0; i&lt;processes.size(); i++) {</span>
-<span class="fc" id="L44">            processes.get(i).setTurnAroundTimeTime(processes.get(i).getBurstTime() + processes.get(i).getWaitingTime());</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for(int i=0; i&lt;processes.size(); i++) {</span>
+<span class="nc" id="L44">            processes.get(i).setTurnAroundTimeTime(processes.get(i).getBurstTime() + processes.get(i).getWaitingTime());</span>
         }
-<span class="fc" id="L46">    }</span>
+<span class="nc" id="L46">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -27,10 +27,10 @@
      * @return surface area of given cube
      */
     public static double surfaceAreaCube(final double sideLength) {
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (sideLength &lt;= 0) {</span>
-<span class="fc" id="L31">            throw new IllegalArgumentException(&quot;Must be a positive sideLength&quot;);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (sideLength &lt;= 0) {</span>
+<span class="nc" id="L31">            throw new IllegalArgumentException(&quot;Must be a positive sideLength&quot;);</span>
         }
-<span class="fc" id="L33">        return 6 * sideLength * sideLength;</span>
+<span class="nc" id="L33">        return 6 * sideLength * sideLength;</span>
     }
 
     /**
@@ -40,10 +40,10 @@
      * @return surface area of given sphere
      */
     public static double surfaceAreaSphere(final double radius) {
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (radius &lt;= 0) {</span>
-<span class="fc" id="L44">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (radius &lt;= 0) {</span>
+<span class="nc" id="L44">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
         }
-<span class="fc" id="L46">        return 4 * Math.PI * radius * radius;</span>
+<span class="nc" id="L46">        return 4 * Math.PI * radius * radius;</span>
     }
 
     /**
@@ -54,13 +54,13 @@
      * @return area of given rectangle
      */
     public static double surfaceAreaRectangle(final double length, final double width) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L58">            throw new IllegalArgumentException(&quot;Must be a positive length&quot;);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (length &lt;= 0) {</span>
+<span class="nc" id="L58">            throw new IllegalArgumentException(&quot;Must be a positive length&quot;);</span>
         }
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (width &lt;= 0) {</span>
-<span class="fc" id="L61">            throw new IllegalArgumentException(&quot;Must be a positive width&quot;);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (width &lt;= 0) {</span>
+<span class="nc" id="L61">            throw new IllegalArgumentException(&quot;Must be a positive width&quot;);</span>
         }
-<span class="fc" id="L63">        return length * width;</span>
+<span class="nc" id="L63">        return length * width;</span>
     }
 
     /**
@@ -71,13 +71,13 @@
      * @return volume of given cylinder
      */
     public static double surfaceAreaCylinder(final double radius, final double height) {
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (radius &lt;= 0) {</span>
-<span class="fc" id="L75">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (radius &lt;= 0) {</span>
+<span class="nc" id="L75">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
         }
-<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (height &lt;= 0) {</span>
-<span class="fc" id="L78">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (height &lt;= 0) {</span>
+<span class="nc" id="L78">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
         }
-<span class="fc" id="L80">        return 2 * (Math.PI * radius * radius + Math.PI * radius * height);</span>
+<span class="nc" id="L80">        return 2 * (Math.PI * radius * radius + Math.PI * radius * height);</span>
     }
 
     /**
@@ -87,10 +87,10 @@
      * @return area of given square
      */
     public static double surfaceAreaSquare(final double sideLength) {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (sideLength &lt;= 0) {</span>
-<span class="fc" id="L91">            throw new IllegalArgumentException(&quot;Must be a positive sideLength&quot;);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (sideLength &lt;= 0) {</span>
+<span class="nc" id="L91">            throw new IllegalArgumentException(&quot;Must be a positive sideLength&quot;);</span>
         }
-<span class="fc" id="L93">        return sideLength * sideLength;</span>
+<span class="nc" id="L93">        return sideLength * sideLength;</span>
     }
 
     /**
@@ -101,13 +101,13 @@
      * @return area of given triangle
      */
     public static double surfaceAreaTriangleRectangle(final double base, final double height) {
-<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (base &lt;= 0) {</span>
-<span class="fc" id="L105">            throw new IllegalArgumentException(POSITIVE_BASE);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (base &lt;= 0) {</span>
+<span class="nc" id="L105">            throw new IllegalArgumentException(POSITIVE_BASE);</span>
         }
-<span class="fc bfc" id="L107" title="All 2 branches covered.">        if (height &lt;= 0) {</span>
-<span class="fc" id="L108">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (height &lt;= 0) {</span>
+<span class="nc" id="L108">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
         }
-<span class="fc" id="L110">        return base * height / 2;</span>
+<span class="nc" id="L110">        return base * height / 2;</span>
     }
 
     /**
@@ -118,13 +118,13 @@
      * @return area of given parallelogram
      */
     public static double surfaceAreaParallelogram(final double base, final double height) {
-<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (base &lt;= 0) {</span>
-<span class="fc" id="L122">            throw new IllegalArgumentException(POSITIVE_BASE);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (base &lt;= 0) {</span>
+<span class="nc" id="L122">            throw new IllegalArgumentException(POSITIVE_BASE);</span>
         }
-<span class="fc bfc" id="L124" title="All 2 branches covered.">        if (height &lt;= 0) {</span>
-<span class="fc" id="L125">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (height &lt;= 0) {</span>
+<span class="nc" id="L125">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
         }
-<span class="fc" id="L127">        return base * height;</span>
+<span class="nc" id="L127">        return base * height;</span>
     }
 
     /**
@@ -136,16 +136,16 @@
      * @return area of given trapezium
      */
     public static double surfaceAreaTrapezium(final double base1, final double base2, final double height) {
-<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (base1 &lt;= 0) {</span>
-<span class="fc" id="L140">            throw new IllegalArgumentException(POSITIVE_BASE + 1);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (base1 &lt;= 0) {</span>
+<span class="nc" id="L140">            throw new IllegalArgumentException(POSITIVE_BASE + 1);</span>
         }
-<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (base2 &lt;= 0) {</span>
-<span class="fc" id="L143">            throw new IllegalArgumentException(POSITIVE_BASE + 2);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (base2 &lt;= 0) {</span>
+<span class="nc" id="L143">            throw new IllegalArgumentException(POSITIVE_BASE + 2);</span>
         }
-<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (height &lt;= 0) {</span>
-<span class="fc" id="L146">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        if (height &lt;= 0) {</span>
+<span class="nc" id="L146">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
         }
-<span class="fc" id="L148">        return (base1 + base2) * height / 2;</span>
+<span class="nc" id="L148">        return (base1 + base2) * height / 2;</span>
     }
 
     /**
@@ -155,10 +155,10 @@
      * @return area of given circle
      */
     public static double surfaceAreaCircle(final double radius) {
-<span class="fc bfc" id="L158" title="All 2 branches covered.">        if (radius &lt;= 0) {</span>
-<span class="fc" id="L159">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (radius &lt;= 0) {</span>
+<span class="nc" id="L159">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
         }
-<span class="fc" id="L161">        return Math.PI * radius * radius;</span>
+<span class="nc" id="L161">        return Math.PI * radius * radius;</span>
     }
 
     /**
@@ -168,10 +168,10 @@
      * @return surface area of given hemisphere
      */
     public static double surfaceAreaHemisphere(final double radius) {
-<span class="fc bfc" id="L171" title="All 2 branches covered.">        if (radius &lt;= 0) {</span>
-<span class="fc" id="L172">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (radius &lt;= 0) {</span>
+<span class="nc" id="L172">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
         }
-<span class="fc" id="L174">        return 3 * Math.PI * radius * radius;</span>
+<span class="nc" id="L174">        return 3 * Math.PI * radius * radius;</span>
     }
 
     /**
@@ -182,13 +182,13 @@
      * @return surface area of given cone.
      */
     public static double surfaceAreaCone(final double radius, final double height) {
-<span class="fc bfc" id="L185" title="All 2 branches covered.">        if (radius &lt;= 0) {</span>
-<span class="fc" id="L186">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        if (radius &lt;= 0) {</span>
+<span class="nc" id="L186">            throw new IllegalArgumentException(POSITIVE_RADIUS);</span>
         }
-<span class="fc bfc" id="L188" title="All 2 branches covered.">        if (height &lt;= 0) {</span>
-<span class="fc" id="L189">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (height &lt;= 0) {</span>
+<span class="nc" id="L189">            throw new IllegalArgumentException(POSITIVE_HEIGHT);</span>
         }
-<span class="fc" id="L191">        return Math.PI * radius * (radius + Math.pow(height * height + radius * radius, 0.5));</span>
+<span class="nc" id="L191">        return Math.PI * radius * (radius + Math.pow(height * height + radius * radius, 0.5));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

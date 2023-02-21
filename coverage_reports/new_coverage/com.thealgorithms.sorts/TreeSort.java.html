@@ -17,11 +17,11 @@ import java.util.List;
  *
  * @author Madhur Panwar (https://github.com/mdrpanwar)
  */
-<span class="nc" id="L20">public class TreeSort implements SortAlgorithm {</span>
+<span class="fc" id="L20">public class TreeSort implements SortAlgorithm {</span>
 
     @Override
     public &lt;T extends Comparable&lt;T&gt;&gt; T[] sort(T[] unsortedArray) {
-<span class="nc" id="L24">        return doTreeSortArray(unsortedArray);</span>
+<span class="fc" id="L24">        return doTreeSortArray(unsortedArray);</span>
     }
 
     @Override
@@ -31,24 +31,24 @@ import java.util.List;
 
     private &lt;T extends Comparable&lt;T&gt;&gt; T[] doTreeSortArray(T[] unsortedArray) {
         // create a generic BST tree
-<span class="nc" id="L34">        BSTRecursiveGeneric&lt;T&gt; tree = new BSTRecursiveGeneric&lt;T&gt;();</span>
+<span class="fc" id="L34">        BSTRecursiveGeneric&lt;T&gt; tree = new BSTRecursiveGeneric&lt;T&gt;();</span>
 
         // add all elements to the tree
-<span class="nc bnc" id="L37" title="All 2 branches missed.">        for (T element : unsortedArray) {</span>
-<span class="nc" id="L38">            tree.add(element);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (T element : unsortedArray) {</span>
+<span class="fc" id="L38">            tree.add(element);</span>
         }
 
         // get the sorted list by inorder traversal of the tree
-<span class="nc" id="L42">        List&lt;T&gt; sortedList = tree.inorderSort();</span>
+<span class="fc" id="L42">        List&lt;T&gt; sortedList = tree.inorderSort();</span>
 
         // add the elements back to the initial array
-<span class="nc" id="L45">        int i = 0;</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        for (T element : sortedList) {</span>
-<span class="nc" id="L47">            unsortedArray[i++] = element;</span>
-<span class="nc" id="L48">        }</span>
+<span class="fc" id="L45">        int i = 0;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for (T element : sortedList) {</span>
+<span class="fc" id="L47">            unsortedArray[i++] = element;</span>
+<span class="fc" id="L48">        }</span>
 
         // return the array
-<span class="nc" id="L51">        return unsortedArray;</span>
+<span class="fc" id="L51">        return unsortedArray;</span>
     }
 
     private &lt;T extends Comparable&lt;T&gt;&gt; List&lt;T&gt; doTreeSortList(
