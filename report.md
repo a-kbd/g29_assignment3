@@ -119,8 +119,10 @@ Everyone got the same result when running Lizard, doing the manual calculation w
 **git diff ...**
 
 > **MyAtoi**
+The complexity of MyAtoi is mostly due to the different cases of numbers can be embedded in strings. Some of it, especially the edge cases, can be factored out into a specific function. Especially the MAX_INT handling could be split of into its own function. The switch statement would be difficult to factor out so I would leave it in place.
 
 > **CRCAlgorithm**
+CRCAlgorithm's complexity is due to the usage of ArrayLists, nested while and/or for loops and also because of the amount of condiional statements. One way to improve the complexity is to combine two nested loops into one combined. Also, it would be good to split the three biggest functions to smaller functions.
 
 > **BinaryTree**  
 Much of the complexity of BinaryTree is attributed to the fact that it includes code to print the tree in pre- post- and infix order as well as a BFS implementation in the same class. One refactoring idea could be to remove these parts of the class and instead have them in separate classes that only handle functionality regarding printing or searching in a tree, that way the BinaryTree class would only be for the representation of the data structure as well as putting and removing values from it. The impact of carrying out refoctoring in the way described would lower the CC and also perhaps make the code of the whole repo easier to understand and more encapsulated. There are not really any drawbacks, another benefit would be that other tree datastructures such as red-black trees or KD-trees could also use the BFS functions (assuming the nodes have similar pointers to their successors etc) 
@@ -173,6 +175,7 @@ It only works for the specific program as it is entirely manual. It does not tak
  No. The manual coverage JaCoCo reports is 59% whereas the manual tool reports roughly 33%.
 
 > **CRCAlgorithm**\
+There were no test cases implemented by default. A manual coverage of 68%, 81%, 88% was shown, however it differs since there are random values inside the function.
 
 > **BinaryTree**\
 There was no test suite included in the repo for the BinaryTree. However, looking at the comments of the class itself, one could see the documentation and through that deduce the required functionality. E.g. in the test later we are testing assertEquals(remove(9), true) or because the remove function is supposed to return a boolean based on whether the specified node was found and removed from the tree or not. \
@@ -199,13 +202,19 @@ All test cases added are in [this branch](https://github.com/a-kbd/g29_assignmen
 git diff ...
 
 Number of test cases added: two per team member (P) or at least four (P+).
-> **MyAtoi** 
-
-> **BinaryTree**\
+> **MyAtoi**
+After implementing the tests JaCoCo showed an improvement to 73%. The main issue was that multiple switch statements for different numerals were not covered. The tests cases improved on that. Additionally, the case of a plus sign was added to add coverage for the case of a redundant plus sign.
+[Tests added for MyAtoi](https://github.com/a-kbd/g29_assignment3/tree/20-feature-request-improve-coverage-for-myatoi)
+> **BinaryTree**
 [Tests added for BinaryTree](https://github.com/a-kbd/g29_assignment3/tree/23-feature-request-improve-coverage-for-binarytree)
 
+<<<<<<< HEAD
 > **CRCAlgorithm**\
 [Tests added for CRCAlgorithm](https://github.com/a-kbd/g29_assignment3/tree/7-feature-request-implement-manual-test-coverage-for-the-crcalgorithm)
+=======
+> **CRCAlgorithm**
+[Tests added for CRCAlgorithm](https://github.com/a-kbd/g29_assignment3/blob/7-feature-request-implement-manual-test-coverage-for-the-crcalgorithm/src/test/java/com/thealgorithms/others/CRCAlgorithmTest.java)
+>>>>>>> 7e58ff3b20d09efb1ef0d2a1f59e8c131b91fa79
 
 >**LongDivision**\
 After implementing new tests, JaCoCo showed a coverage of 88% which is an improvement of around 18%. This is primarily because the previous test cases missed to test some of the conditions implemented in the LongDivision function. One test especially, was added to test the edge case of when the divisor is zero. The original code did not have functionality for handling this case and was therefore added.\
