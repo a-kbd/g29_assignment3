@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.thealgorithms.datastructures.trees.BinaryTree;
+import com.thealgorithms.others.CRCAlgorithm;
+
 import com.thealgorithms.maths.LongDivision;
 
 public class CoverageTest {
@@ -21,6 +23,16 @@ public class CoverageTest {
         System.out.println("\n===== LongDivision coverage test =====\n");
         LongDivision l = new LongDivision();
         l.divide(10, 3);
+
+        CRCAlgorithm c = new CRCAlgorithm("1001", 10, 0.1);
+
+        c.generateRandomMess();
+        c.divideMessageWithP(true);
+        c.divideMessageWithP(false);
+        c.changeMess();
+
+        System.out.println("\n===== CRCAlgorithm coverage test =====\n");
+        c.getCoverage();
 
     }
 
